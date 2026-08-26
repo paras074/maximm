@@ -1,0 +1,447 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .cs-container {
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .breadcrumbs {
+    font-size: 12px;
+    margin-bottom: 24px;
+    color: {{ section.settings.text_color }};
+  }
+  #shopify-section-{{ section.id }} .breadcrumbs a {
+    font-weight: 500;
+    color: {{ section.settings.primary_color }};
+    text-decoration: none;
+  }
+  #shopify-section-{{ section.id }} .breadcrumbs span.last {
+    color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner {
+    width: 100%;
+    height: 250px;
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+  #shopify-section-{{ section.id }} .hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: {{ section.settings.image_opacity | divided_by: 100.0 }};
+  }
+  
+  #shopify-section-{{ section.id }} .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  
+  #shopify-section-{{ section.id }} .hero-title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+    font-family: 'Barlow', sans-serif;
+  }
+  
+  #shopify-section-{{ section.id }} .hero-desc {
+    font-size: {{ section.settings.desc_size_mobile }}px;
+    max-width: 834px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.5;
+  }
+  #shopify-section-{{ section.id }} .hero-desc p {
+    margin: 0;
+  }
+  #shopify-section-{{ section.id }} .hero-desc strong {
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .share-container {
+    position: relative;
+  }
+  #shopify-section-{{ section.id }} .btn-share {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  #shopify-section-{{ section.id }} .btn-share:hover {
+    background: #f0f0f0;
+  }
+  #shopify-section-{{ section.id }} .btn-share svg {
+    width: 16px;
+    height: 19px;
+  }
+
+  #shopify-section-{{ section.id }} .share-dropdown {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    right: auto;
+    margin-top: 0;
+    margin-left: 12px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 40px;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(-10px);
+    transition: all 0.2s ease;
+    z-index: 100;
+  }
+  #shopify-section-{{ section.id }} .share-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+  }
+  #shopify-section-{{ section.id }} .share-dropdown a {
+    color: {{ section.settings.primary_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f6f6f6;
+    transition: background 0.2s;
+  }
+  #shopify-section-{{ section.id }} .share-dropdown a:hover {
+    background: rgba(216, 217, 255, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .cs-container {
+      
+    }
+    #shopify-section-{{ section.id }} .hero-banner {
+      height: 379px;
+      margin-bottom: 36px;
+      border-radius: 0;
+    }
+    #shopify-section-{{ section.id }} .hero-content {
+      flex-direction: row;
+      gap: 40px;
+    }
+    #shopify-section-{{ section.id }} .share-dropdown {
+      top: 100%;
+      left: auto;
+      right: 0;
+      margin-top: 12px;
+      margin-left: 0;
+      border-radius: 8px;
+      padding: 12px;
+      flex-direction: column;
+      gap: 12px;
+      transform: translateY(-10px) translateX(0);
+    }
+    #shopify-section-{{ section.id }} .share-dropdown.show {
+      transform: translateY(0) translateX(0);
+    }
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .cs-container {
+      
+    }
+    #shopify-section-{{ section.id }} .hero-title {
+      font-size: {{ section.settings.title_size_desktop }}px;
+      margin-bottom: 32px;
+    }
+    #shopify-section-{{ section.id }} .hero-desc {
+      font-size: {{ section.settings.desc_size_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+{% assign current_url = shop.url | append: request.path %}
+{% assign current_title = page.title | default: article.title | default: 'Case Study' %}
+
+<div class="cs-container page-width">
+  {% if section.settings.show_breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="/">Home</a> / <a href="{{ section.settings.breadcrumbs_parent_link }}">{{ section.settings.breadcrumbs_parent_label }}</a> / <span class="last">{{ current_title }}</span>
+    </div>
+  {% endif %}
+
+  <div class="hero-banner">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | escape }}">
+    {% else %}
+      <div style="width: 100%; height: 100%; background: #ddd; display: flex; align-items: center; justify-content: center; color: #666;">
+        Placeholder Image
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-text-col">
+      {% if section.settings.title != blank %}
+        <h1 class="hero-title">{{ section.settings.title }}</h1>
+      {% else %}
+        <h1 class="hero-title">{{ current_title }}</h1>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <div class="hero-desc">{{ section.settings.description }}</div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_share %}
+      <div class="share-container">
+        <button class="btn-share" id="btn-share-{{ section.id }}" aria-label="Share">
+          <svg class="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16.1255 19.125"><g id="Group"><path d="M5.5625 9.5625C5.5625 10.2255 5.29911 10.8614 4.83027 11.3303C4.36143 11.7991 3.72554 12.0625 3.0625 12.0625C2.39946 12.0625 1.76357 11.7991 1.29473 11.3303C0.825892 10.8614 0.5625 10.2255 0.5625 9.5625C0.5625 8.89946 0.825892 8.26357 1.29473 7.79473C1.76357 7.32589 2.39946 7.0625 3.0625 7.0625C3.72554 7.0625 4.36143 7.32589 4.83027 7.79473C5.29911 8.26357 5.5625 8.89946 5.5625 9.5625Z" id="Vector" stroke="currentColor" stroke-width="1.125"></path><path d="M10.5625 4.0625L5.5625 7.5625M10.5625 15.0625L5.5625 11.5625" id="Vector_2" stroke="currentColor" stroke-linecap="round" stroke-width="1.125"></path><path d="M15.563 16.0625C15.563 16.7255 15.2996 17.3614 14.8308 17.8303C14.3619 18.2991 13.726 18.5625 13.063 18.5625C12.3999 18.5625 11.7641 18.2991 11.2952 17.8303C10.8264 17.3614 10.563 16.7255 10.563 16.0625C10.563 15.3995 10.8264 14.7636 11.2952 14.2947C11.7641 13.8259 12.3999 13.5625 13.063 13.5625C13.726 13.5625 14.3619 13.8259 14.8308 14.2947C15.2996 14.7636 15.563 15.3995 15.563 16.0625ZM15.563 3.0625C15.563 3.72554 15.2996 4.36143 14.8308 4.83027C14.3619 5.29911 13.726 5.5625 13.063 5.5625C12.3999 5.5625 11.7641 5.29911 11.2952 4.83027C10.8264 4.36143 10.563 3.72554 10.563 3.0625C10.563 2.39946 10.8264 1.76357 11.2952 1.29473C11.7641 0.825892 12.3999 0.5625 13.063 0.5625C13.726 0.5625 14.3619 0.825892 14.8308 1.29473C15.2996 1.76357 15.563 2.39946 15.563 3.0625Z" id="Vector_3" stroke="currentColor" stroke-width="1.125"></path></g></svg>
+        </button>
+        <div class="share-dropdown" id="shareDropdown-{{ section.id }}">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ current_url }}" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
+          <a href="https://twitter.com/intent/tweet?text={{ current_title | url_param_escape }}&url={{ current_url }}" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ current_url }}&title={{ current_title | url_param_escape }}" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="mailto:?subject={{ current_title | url_param_escape }}&body={{ current_url }}" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V8L12 13L20 8V18ZM12 11L4 6H20L12 11Z"/></svg></a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var shareBtn = document.getElementById('btn-share-{{ section.id }}');
+    var shareDropdown = document.getElementById('shareDropdown-{{ section.id }}');
+    
+    if (shareBtn && shareDropdown) {
+      shareBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        shareDropdown.classList.toggle('show');
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!shareBtn.contains(e.target) && !shareDropdown.contains(e.target)) {
+          shareDropdown.classList.remove('show');
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Case Study Details",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Featured Image"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image Opacity",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Title",
+      "info": "Leave blank to use page title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show Share Button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Breadcrumbs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show Breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "breadcrumbs_parent_label",
+      "label": "Parent Link Label",
+      "default": "Case Studies"
+    },
+    {
+      "type": "url",
+      "id": "breadcrumbs_parent_link",
+      "label": "Parent Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary/Accent Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Size (Desktop)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "desc_size_desktop",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size (Desktop)",
+      "default": 21
+    },
+    {
+      "type": "header",
+      "content": "Typography (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Size (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 168
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Study Details",
+      "category": "Case Study",
+      "settings": {
+        "title": "Fiber Optic Internet: The Future<br>of High-Speed Connectivity",
+        "description": "<p>Extension cords seem simple on the surface—but <strong>choosing the right one</strong> can significantly <strong>impact the safety, performance, and longevity</strong> of the devices you connect to them. Here’s a <strong>practical breakdown to help you choose</strong> the right extension cord for any space in your home.</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

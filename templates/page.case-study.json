@@ -1,0 +1,474 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "case_study_hero_section",
+      "disabled": true,
+      "settings": {
+        "heading": "Tailored Connectivity.<br>Universal Reliability.",
+        "text": "<p>High-performance infrastructure isn’t one-size-fits-all.<br/>We’ve engineered specialized cabling solutions to meet<br/>the unique interference, durability, and bandwidth<br/>demands of the world's most critical sectors.<br/>Select an industry to see our impact.</p>",
+        "hero_image": "shopify://shop_images/708274355450765a34e38528821ce6e22adce6a4.70827435.png",
+        "primary_btn_label": "View Our Impact",
+        "primary_btn_link": "",
+        "secondary_btn_label": "Contact Sales",
+        "secondary_btn_link": "",
+        "primary_btn_size": 16,
+        "secondary_btn_size": 14,
+        "bg_color": "#ffffff",
+        "heading_color": "#212aff",
+        "text_color": "#0d112c",
+        "primary_btn_bg": "#f1de2c",
+        "primary_btn_text": "#273cff",
+        "secondary_btn_text": "#212aff",
+        "heading_size_desktop": 48,
+        "text_size_desktop": 24,
+        "heading_size_mobile": 36,
+        "text_size_mobile": 18,
+        "padding_top": 60,
+        "padding_bottom": 120,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "case_study_details_section_9dAPCt": {
+      "type": "case_study_details_section",
+      "name": "Case Study Details",
+      "settings": {
+        "image": "shopify://shop_images/1af0f985af59b2d17eeb677d4b34ae0b1e37c9b9.1af0f985.png",
+        "image_opacity": 60,
+        "title": "Fiber Optic Internet: The Future<br>of High-Speed Connectivity",
+        "description": "<p>Extension cords seem simple on the surface—but <strong>choosing the right one</strong> can significantly <strong>impact the safety, performance, and longevity</strong> of the devices you connect to them. Here’s a <strong>practical breakdown to help you choose</strong> the right extension cord for any space in your home.</p>",
+        "show_share": true,
+        "show_breadcrumbs": true,
+        "breadcrumbs_parent_label": "Case Studies",
+        "breadcrumbs_parent_link": "",
+        "bg_color": "#ffffff",
+        "text_color": "#0d112c",
+        "primary_color": "#273cff",
+        "title_size_desktop": 64,
+        "desc_size_desktop": 21,
+        "title_size_mobile": 36,
+        "desc_size_mobile": 16,
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 60,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "overview_challenge": {
+      "type": "case_study_overview_challenge_section",
+      "settings": {
+        "overview_title": "Client Overview",
+        "overview_text": "Partner: IBM / Enterprise Data Centers\nIndustry: Mission-Critical Computing & AI Infrastructure\nScope: Scaling for 10G and Beyond\nNodes Powered: Part of our 4,200,000+ worldwide node network",
+        "show_divider": true,
+        "divider_color": "#1818184d",
+        "challenge_title": "The Challenge: Beyond the Jack",
+        "challenge_text": "<p>In a 24/7 operational environment, the network backbone isn't just about speed; it is about <strong>Zero-Failure reliability.</strong> Our partners required an infrastructure that could handle massive data throughput without the \"Silent Sting\" of signal interference commonly found in high-density environments.</p>",
+        "bg_color": "rgba(0,0,0,0)",
+        "overview_title_color": "#0d112c",
+        "overview_text_color": "#0d112c",
+        "challenge_title_color": "#0d112c",
+        "challenge_text_color": "#0d112c",
+        "overview_title_size_desktop": 32,
+        "overview_text_size_desktop": 16,
+        "challenge_title_size_desktop": 32,
+        "challenge_text_size_desktop": 24,
+        "overview_title_size_mobile": 24,
+        "overview_text_size_mobile": 16,
+        "challenge_title_size_mobile": 24,
+        "challenge_text_size_mobile": 18,
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "solution_products": {
+      "type": "case_study_solution_products_section",
+      "blocks": {
+        "product_card_ctqhUY": {
+          "type": "product_card",
+          "settings": {
+            "product": "maximm-flat-plug-extension-cord-with-slim-space-saving-plug-design-low-profile-extension-cord-14awg",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "product_card_z3zwNV": {
+          "type": "product_card",
+          "settings": {
+            "product": "extension-cord-with-lighted-power-indicator-single-outlet-14-gauge-sjtw-etl-listed",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "product_card_QJwbjq": {
+          "type": "product_card",
+          "settings": {
+            "product": "extension-cord-power-cords-indoor-outdoor-16-gauge-wire-heavy-duty-etl-listed-3-tone",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        },
+        "product_card_VbiT4V": {
+          "type": "product_card",
+          "settings": {
+            "product": "maximm-360-rotating-flat-plug-extension-cord-flat-extension-cord-under-carpet-with-slim-space-saving-plug-design-low-profile-extension-cord",
+            "custom_title": "",
+            "custom_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_ctqhUY",
+        "product_card_z3zwNV",
+        "product_card_QJwbjq",
+        "product_card_VbiT4V"
+      ],
+      "settings": {
+        "show_bg_graphic": true,
+        "title": "The Maximm Solution: Precision Engineering",
+        "text": "<p>We orchestrated a multi-site deployment across three continents, moving from the initial blueprint to a fully functional backbone. By focusing on Architectural Integrity, we optimized the physical layout to enhance both airflow and electrical efficiency.</p>",
+        "products_header": "Products Served",
+        "bg_color": "#f9f9fa",
+        "title_color": "#1a1dc9",
+        "text_color": "#333333",
+        "products_header_color": "#2b2f42",
+        "product_img_bg": "#f2f2f2",
+        "product_link_color": "#273cff",
+        "title_size_desktop": 48,
+        "text_size_desktop": 24,
+        "products_header_size_desktop": 32,
+        "title_size_mobile": 32,
+        "text_size_mobile": 18,
+        "products_header_size_mobile": 24,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "impact": {
+      "type": "case_study_impact_section",
+      "blocks": {
+        "impact_item_KEgDDh": {
+          "type": "impact_item",
+          "settings": {
+            "title": "Future-Ready",
+            "description": "Infrastructure is now fully prepared to scale for 100G and beyond without requiring physical cable replacement."
+          }
+        },
+        "impact_item_thtpCi": {
+          "type": "impact_item",
+          "settings": {
+            "title": "Operational Continuity",
+            "description": "Achieved a zero-failure rating for 24/7 network operations in high-stress environments"
+          }
+        },
+        "impact_item_nxMMia": {
+          "type": "impact_item",
+          "settings": {
+            "title": "Problem-Solver",
+            "description": "The Invisible Shield: Solving Signal\nInterference in High-Density\nMedical Environments"
+          }
+        },
+        "impact_item_c9TfTi": {
+          "type": "impact_item",
+          "settings": {
+            "title": "Optimized Airflow",
+            "description": "Improved server cooling efficiency by\n18% through precision cable routing\nand management"
+          }
+        },
+        "impact_item_b8EGaB": {
+          "type": "impact_item",
+          "settings": {
+            "title": "Interference Neutralization",
+            "description": "Successfully eliminated signal\ndegradation caused by high-density\nEMI (Electromagnetic Interference)."
+          }
+        }
+      },
+      "block_order": [
+        "impact_item_KEgDDh",
+        "impact_item_thtpCi",
+        "impact_item_nxMMia",
+        "impact_item_c9TfTi",
+        "impact_item_b8EGaB"
+      ],
+      "settings": {
+        "bg_gradient": "linear-gradient(190deg, rgb(6, 0, 74) 10%, rgb(17, 17, 176) 110%)",
+        "grid_border_color": "#ffffff26",
+        "title_highlight": "The Impact",
+        "title_highlight_color": "#efc900",
+        "title_separator": "-",
+        "title_light": "Universal Reliability",
+        "title_light_color": "#ffffff",
+        "subtext": "<p>Through precision cable management and superior shielding, we eliminated<br/>the flicker and latency that disrupt global operations.</p>",
+        "text_color": "#ffffff",
+        "item_title_color": "#efc900",
+        "item_desc_color": "#ffffff",
+        "show_bottom_image": true,
+        "bottom_image": "shopify://shop_images/87f33e1747aeacbd2cb2653e86019093384859ce.87f33e17_1.png",
+        "bottom_image_url": "",
+        "bottom_image_margin": -100,
+        "bottom_image_margin_mobile": -40,
+        "title_size_desktop": 48,
+        "text_size_desktop": 24,
+        "item_title_size_desktop": 24,
+        "item_desc_size_desktop": 16,
+        "title_size_mobile": 32,
+        "text_size_mobile": 18,
+        "item_title_size_mobile": 20,
+        "item_desc_size_mobile": 14,
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "related_case_studies_section_Q93MAr": {
+      "type": "related_case_studies_section",
+      "blocks": {
+        "case_study_QHDycX": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_AkiiVt": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_LqHphx": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_YKwz34": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_gtBYkQ": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_bH7UEQ": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "case_study_QHDycX",
+        "case_study_AkiiVt",
+        "case_study_LqHphx",
+        "case_study_YKwz34",
+        "case_study_gtBYkQ",
+        "case_study_bH7UEQ"
+      ],
+      "name": "Related Case Studies",
+      "settings": {
+        "section_title": "Related Case Studies",
+        "section_title_color": "#1a1a1a",
+        "section_title_size": 32,
+        "section_title_size_mobile": 24,
+        "bg_color": "#ffffff",
+        "card_bg_color": "#f5f7fc",
+        "card_border_color": "#f1de2c",
+        "badge_bg_color": "linear-gradient(90deg, rgba(33, 42, 255, 1), rgba(24, 31, 194, 1) 50%, rgba(8, 9, 76, 1) 100%)",
+        "badge_text_color": "#ffffff",
+        "title_color": "#3f51ff",
+        "hover_text_color": "#181fc2",
+        "hover_link_color": "#4a4a4a",
+        "pagination_active_color": "#273cff",
+        "pagination_inactive_color": "#b1c2e9",
+        "title_size": 16,
+        "subtitle_size": 15,
+        "tag_size": 12,
+        "hover_tag_size": 12,
+        "button_size": 12,
+        "title_size_mobile": 16,
+        "subtitle_size_mobile": 14,
+        "tag_size_mobile": 10,
+        "hover_tag_size_mobile": 12,
+        "button_size_mobile": 12,
+        "padding_top": 112,
+        "padding_bottom": 80,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "case_study_faq_section_JJcMaM": {
+      "type": "case_study_faq_section",
+      "blocks": {
+        "faq_item_bK4YKJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What length of extension cord should I choose?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_HHzqYT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can extension cords be used outdoors?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_DczV77": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know the extension cord can handle my devices?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_ja76NJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store an extension cord?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_mjFMyn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I plug one extension cord into another?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_3amU89": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's the difference between light-duty and heavy-duty extension cords?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_bK4YKJ",
+        "faq_item_HHzqYT",
+        "faq_item_DczV77",
+        "faq_item_ja76NJ",
+        "faq_item_mjFMyn",
+        "faq_item_3amU89"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "bg_color": "#f5f7fc",
+        "title_color": "#273cff",
+        "question_color": "#1a1a2e",
+        "answer_color": "#414448",
+        "border_color": "#d1d1d6",
+        "icon_color": "#273cff",
+        "title_size_desktop": 40,
+        "title_size_mobile": 32,
+        "question_size_desktop": 21,
+        "question_size_mobile": 16,
+        "answer_size_desktop": 15,
+        "answer_size_mobile": 15,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "margin_bottom_desktop": 0,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "margin_bottom_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "case_study_details_section_9dAPCt",
+    "overview_challenge",
+    "solution_products",
+    "impact",
+    "related_case_studies_section_Q93MAr",
+    "case_study_faq_section_JJcMaM"
+  ]
+}

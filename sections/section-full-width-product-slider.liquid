@@ -1,0 +1,183 @@
+{{ 'section-full-width-product-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="full-width-products-slider section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="text-wrapper">
+      <h2 class="title">{{  section.settings.heading }}</h2>
+      <div class="description list-updated">
+        {{ section.settings.description }}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="tabs-wrapper">
+    {% if section.blocks.size > 1 %}
+    <div class="page-width">
+      <ul class="tabs">
+        {% for block in section.blocks %}
+          <li data-tab="tab{{ forloop.index }}" class="{% if forloop.first %}active{% endif %}">{{ block.settings.button_txt }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+    <div class="tab-content-wrapper">
+      {% for block in section.blocks %}
+        {% assign product_list = block.settings.product %}
+        <div id="tab{{ forloop.index }}" class="tab-content">
+          <div class="swiper js-full-width-products-slider ">
+            <div class="swiper-wrapper">
+              {% for product in product_list %}
+                {% if product.available %}
+                  <div class="swiper-slide product-item">
+                    <div class="product-image">
+                      <a class="link" href="{{ product.url }}">
+                        {{ product.featured_media | image_url: width: 410 | image_tag }}
+                      </a>
+                    </div>
+                    <div class="product-content">
+                      <div class="product-cat">{{ product.collections.first.title }}</div>
+                      <div class="product-title">
+                        <a href="{{ product.url }}">{{ product.title }}</a>
+                      </div>
+                      {% comment %} <!-- Start Areviews Collection Rating Code -->
+                      <div class='areviews_product_item areviews_stars{{ product.id }}' data-product-id='{{ product.id }}'></div>
+                      <!-- End Areviews Collection Rating Code --> {% endcomment %}
+                      <div class="product-footer">
+                        <div class="product-price">
+                          <span class="ico-holder">
+                            {% render 'icon-price-tag' %}
+                          </span>
+                          From {{ product.price_min | money_with_currency }}
+                        </div>
+                        <div class="product-cart">
+                          {% render 'buy-buttons-dynamic', product: product  %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="page-width">
+            <div class="browse-product-nav-wrapper">
+              <div class="progress-nav">
+                  <div class="swiper-pagination-wrapper">
+                    <div class="swiper-pagination"></div>
+                  </div>
+                  <div class="button-wrapper">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section: Full w slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "name": "product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_txt",
+          "label": "Button Text"
+        },
+        {
+          "type": "product_list",
+          "id": "product",
+          "label": "Product List"
+        }
+      ]
+    }
+  ], 
+  "presets": [
+    {
+      "name": "Section: Full w slider"
+    }
+  ]
+}
+{% endschema %}

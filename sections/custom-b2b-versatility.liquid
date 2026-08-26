@@ -1,0 +1,86 @@
+
+{{ 'b2b-versatility.css' | asset_url | stylesheet_tag }}
+
+
+<div class="section-versatility" id="versatility">    
+    <div class="page-width b2b-versatility">
+        {% if section.settings.title %}
+            <div class="title">
+                <h2>{{section.settings.title}}</h2>
+            </div>
+        {% endif %}
+        <div class="features-wrapper">
+            {% for block in section.blocks %}
+                <div class="features-card">
+                    {% if block.settings.card_icon != blank %}
+                        <div class="cards-icon"> 
+                            {{ block.settings.card_icon
+                                | image_url: width: 200
+                                | image_tag:
+                                    loading: 'lazy',
+                                    alt: block.settings.card_icon.alt
+                            }}                           
+                        </div>
+                    {% endif %}                    
+                    <div class="cards-content">
+                        {% if block.settings.cards_title %}
+                            <h3>{{ block.settings.cards_title }}</h3>
+                        {% endif %}
+                        {% if block.settings.cards_info %}
+                            <p>{{block.settings.cards_info}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name" : "B2B Versatility",
+    "class": "section b2b-versatility-section",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+           
+            
+        }
+    ],
+    "blocks": [
+        {
+            "type": "cards",
+            "name": "Features Card",
+            "settings":[
+                {
+                    "type": "text",
+                    "id": "cards_title",
+                    "label": "Features Title",
+                    "default": "Title"
+                    
+                },
+                {
+                    "type": "richtext",
+                    "id": "cards_info",
+                    "label": "Features Info"
+                },
+                {                  
+                    "type": "image_picker",
+                    "id": "card_icon",
+                    "label": "Card Icon"        
+                }
+            ]
+        }
+    ],
+    
+    "presets": [
+        {
+        "name": "B2B Versatility"
+        }
+    ]
+}
+
+{% endschema %}

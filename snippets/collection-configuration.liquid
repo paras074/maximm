@@ -1,0 +1,39 @@
+{% assign configs = collection.metafields.custom.collection_configuration.value %}
+
+<div class="page-width">
+  {% if configs != blank %}
+  <h3 class="heading-collection-top">Browse by configuration</h3>
+
+  <div class="collection-configurations">
+
+    {% for item in configs limit: 6 %}
+      {% assign collection_handle = item.collection_link.value.url | split: '/collections/' | last | split: '?' | first %}
+ 
+  
+      {% assign linked_collection = collections[collection_handle] %}
+
+      <a href="{{ item.collection_link.value.url }}" class="collection-card">
+
+        {% if item.image %}
+          {{
+            item.image
+            | image_url: width: 500
+            | image_tag:
+              loading: 'lazy',
+              alt: item.heading
+          }}
+        {% endif %}
+
+        <h3>{{ item.heading }}</h3>
+
+        {% if linked_collection %}
+          <p>{{ linked_collection.products_count }} Products</p>
+        {% endif %}
+
+      </a>
+
+    {% endfor %}
+
+  </div>
+{% endif %}
+</div>

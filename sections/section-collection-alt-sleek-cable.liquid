@@ -1,0 +1,92 @@
+{{ 'section-sleek-cable.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_image != blank %}
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="sleek-cable section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="section-heading">
+      <h3>{{ section.settings.section_heading__title }}</h3>
+    </div>
+    <div class="main-image">
+      {{ section.settings.main_image | image_url: width: 2000 | image_tag }}
+    </div>
+    <ul>
+      {% for item in collection.metafields.custom.sleek_cable_list.value %}
+      <li>
+        {{ item }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sec: Sleek Cable",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "section_heading__title",
+      "label": "Section Heading: Title"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

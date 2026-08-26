@@ -1,0 +1,188 @@
+{{ 'section-shop.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+{% render 'breadcrumb' %}
+<div class="shop-section-heading">
+  <div class="page-width">
+    <div class="shop-section-heading__inner">
+      <div class="st-row st-align-items-center">
+        <div class="st-col shop-section-heading__left">
+          <div class="collection-title">
+            <h1>
+              {{ collection.title }}
+            </h1>
+            {% comment %} <div class="product-count">
+              <span id="ProductCountDesktop">
+                {%- if collection.results_count -%}
+                  {{
+                    'templates.search.results_with_count'
+                    | t: terms: collection.terms, count: collection.results_count
+                  }}
+                {%- elsif collection.products_count == collection.all_products_count -%}
+                  {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                {%- else -%}
+                  {{
+                    'products.facets.product_count'
+                    | t: product_count: collection.products_count, count: collection.all_products_count
+                  }}
+                {%- endif -%}
+              </span>
+            </div> {% endcomment %}
+          </div>
+
+
+
+          {% assign is_b2b = false %}
+            {% for tag in customer.tags %}
+              {% assign tag_lower = tag | downcase %}
+              {% if tag_lower contains 'b2b' %}
+                {% assign is_b2b = true %}
+              {% endif %}
+            {% endfor %}
+          {% if collection.metafields.custom.buying_guide != blank %}
+            {% unless customer and is_b2b %}
+            <div class="buying-guide">
+              <div class="icon">
+                <img src="https://cdn.shopify.com/s/files/1/0692/9583/3332/files/b2b-blurb-icon.png?v=1740761139" alt="">
+                
+              </div>
+              <div class="desc">
+                Unlock Exclusive B2B Pricing  - <a href="{{ shop.url }}/pages/trade-login">Sign Up Today</a>
+                {% comment %} <modal-opener
+                  class="media-modal color-{{ settings.color_schemes | first }} product-popup-modal__opener"
+                  data-modal="#PopupModal-buying-guide">
+                  <button
+                    id="ProductPopup-buying-guide"
+                    class="product-popup-modal__button link"
+                    type="button"
+                    aria-haspopup="dialog"
+                  >
+                    Buying Guide
+                  </button>
+                </modal-opener> {% endcomment %}
+                
+              </div>
+            </div>
+            {% endunless %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if collection.metafields.custom.short_description != blank %}
+  <div class="collection-details collection-details-top page-width description-wrapper">
+    {% assign word_count = collection.metafields.custom.short_description | strip_html | split: ' ' | size %}
+    {% if word_count > 40 %}
+      <div class="collection-description">
+        <div class="collection-description-short short-description">
+          <p>{{ collection.metafields.custom.short_description | metafield_tag | strip_html | truncate: 210}}</p>
+        </div>
+        <div class="collection-description-long hide  long-description">
+          {{ collection.metafields.custom.short_description | metafield_tag}}
+        </div>
+        <div class="show-more-trigger-wrapper">
+          {% render 'icon-plus' %} <span class="show-more-trigger">show more</span>
+        </div>
+      </div>
+    {% else %}  
+      <div class="collection-description">
+        {{ collection.metafields.custom.short_description | metafield_tag }}
+      </div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+  
+</div>
+
+<modal-dialog id="PopupModal-buying-guide" class="quick-add-modal">
+  <div role="dialog"
+    aria-label="Buying Guide"
+    aria-modal="true"
+    class="quick-add-modal__content buying-guide-content"
+    tabindex="-1"
+  >
+    <button id="ModalClose-buying-guide"
+      type="button"
+      class="quick-add-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      {% render 'icon-close' %}
+    </button>
+    <div class="buying-popup-modal__content-info">
+      <div class="redirect-popup">
+        <span class="book-icon">{% render 'icon-book' %}</span>
+        <span class="page-title">{{ pages['buying-guide'].title }}</span>
+        <a href="{{ pages['buying-guide'].url }}">
+          {% render 'icon-redirect' %}
+        </a>
+      </div>
+      <div class="buying-guide-content rte">
+        {{ pages[collection.metafields.custom.buying_guide].content }}
+      </div>
+    </div>
+  </div>
+</modal-dialog>
+
+{% schema %}
+{
+  "name": "Sec: Section Shop",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,579 @@
+{% comment %}
+  Renders a header drawer menu for mobile and desktop.
+
+  Usage:
+  {% render 'header-drawer' %}
+{% endcomment %}
+
+<header-drawer class="header-drawer-mobile" data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+  <details id="Details-menu-drawer-container" class="menu-drawer-container">
+    <summary
+      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      aria-label="{{ 'sections.header.menu' | t }}"
+    >
+      <span>
+        {% render 'icon-hamburger' %}
+        {% render 'icon-close' %}
+      </span>
+    </summary>
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+      <div class="menu-drawer__inner-container">
+        <div class="wholesale-wrap">
+          <div class="wholesale-wrap__inner">
+            <div class="wholesale-login">
+              {% if customer and customer.tags contains 'b2b' or customer.tags contains 'B2B' %}
+                <span class="title">
+                  My B2B Account
+                </span>
+                <a href="/account">{{ customer.first_name }}{{ customer.last_name | prepend: ' ' }}</a>
+              {% else %}
+                <span class="title">
+                  Wholesale
+                </span>
+                <a href="/pages/trade-login">Login/Sign up</a>
+              {% endif %}
+            </div>
+            <div class="header__icons">
+              {% unless customer and customer.tags contains 'b2b' or customer.tags contains 'B2B' %}
+                {%- if shop.customer_accounts_enabled -%}
+                  <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
+                    {% render 'icon-account' %}
+                    <span class="visually-hidden">
+                      {%- liquid
+                        if customer
+                          echo 'customer.account_fallback' | t
+                        else
+                          echo 'customer.log_in' | t
+                        endif
+                      -%}
+                    </span>
+                  </a>
+                {%- endif -%}
+              {% endunless %}
+      
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+                {%- endcase -%}
+              {%- endfor -%}
+      
+              <button class="st-wishlist-details-button st-wishlist-details-button--header-icon" data-type="manually"></button>
+      
+              <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+                {%- liquid
+                  if cart == empty
+                    render 'icon-cart-empty'
+                  else
+                    render 'icon-cart'
+                  endif
+                -%}
+                <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+                {%- if cart != empty -%}
+                  <div class="cart-count-bubble">
+                    {%- if cart.item_count < 100 -%}
+                      <span aria-hidden="true">{{ cart.item_count }}</span>
+                    {%- endif -%}
+                    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                  </div>
+                {%- endif -%}
+              </a>
+            </div>
+          </div>
+          <a class="phone-wrapper" href="tel:845.219.1999" target="_blank">
+            <span class="ico">{% render 'icon-phone-blue' %}</span>
+            <span class="detail">Call us at</span>
+            <span class="phone">845.219.1999</span>
+          </a>
+        </div>
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- for link in section.settings.menu.links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1">
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-caret' %}
+                            Back
+                          </button>
+
+                         <ul class="menu-drawer__menu list-menu" role="list">
+                            <div class="menu-item">
+                              <span class="title">{{ link.title | escape }}</span>
+                              {% render 'icon-caret' %}
+                            </div>
+
+                            {%- for childlink in link.links -%}
+                              <li class="submenu-items">
+                                <a class="header-link" href="{{ childlink.url }}">
+                                  {{ childlink.title }}
+                                </a>
+
+                                {% if childlink.links != blank %}
+                                  <ul class="inner-grandchild{% if childlink.title contains 'Bulk' %} mobile-menu-pack{% endif %}">
+                                    {% for grandchild in childlink.links %}
+                                      <li>
+                                        <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                          <div class="block-banner">
+                            {% for block in section.blocks %}
+                              {% assign link_handle = link.title | handleize %}
+                              {% if link_handle == block.settings.title %}
+                                {% if block.type == 'megamenu_large' %}
+                                  <div class="mega-menu-right__box">
+                                    <a href="{{ block.settings.large_banner_url }}">
+                                      <div class="inner-container">
+                                        <div class="image-holder">
+                                          {{ block.settings.large_banner_image | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                {% elsif block.type == 'megamenu_list' %}
+                                  <div class="megamenu_list-wrapper">
+                                    <div class="section-heading">
+                                      <div class="title-wrapper">
+                                        <div class="floating-logo-element">
+                                          <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M24.8848 6.90381C26.4632 3.51904 30.4866 2.05465 33.8713 3.63299C37.2561 5.21133 38.7205 9.23473 37.1422 12.6195L30.6397 26.564C29.0614 29.9488 25.038 31.4132 21.6532 29.8348C18.2685 28.2565 16.8041 24.2331 18.3824 20.8483L24.8848 6.90381Z" fill="url(#paint0_linear_320_21652)"/>
+                                            <path d="M21.1781 15.3303C20.1555 17.4325 17.185 22.0795 14.4236 24.5571C11.8593 26.8578 10.6186 27.7027 10.3008 27.9388" stroke="#D3DDFF" stroke-width="0.170845"/>
+                                            <path d="M5.87113 19.2045C6.81819 17.1735 9.23237 16.2948 11.2633 17.2419C13.2943 18.189 14.173 20.6031 13.226 22.6341L9.06955 31.5476C8.12249 33.5785 5.70831 34.4572 3.67733 33.5102C1.64635 32.5631 0.767666 30.1489 1.71473 28.1179L5.87113 19.2045Z" fill="url(#paint1_linear_320_21652)"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_320_21652" x1="36.1366" y1="6.35438" x2="19.3317" y2="27.6584" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.104167" stop-color="#416BFF"/>
+                                            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+                                            </linearGradient>
+                                            <linearGradient id="paint1_linear_320_21652" x1="12.6093" y1="18.9033" x2="2.09284" y2="32.025" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.104167" stop-color="#416BFF"/>
+                                            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+                                            </linearGradient>
+                                            </defs>
+                                          </svg>
+                                        </div>
+                                        <h5 class="title">{{ block.settings.list_title }}</h5>
+                                      </div>
+                                      <div class="description">
+                                        {{ block.settings.desc }}
+                                      </div>
+                                    </div>
+                                    <div class="card-items st-row gutters-55">
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_one }}">
+                                            {{ block.settings.list_image_one | image_url: width: 400 | image_tag }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_one }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_one }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_two }}">
+                                            {{ block.settings.list_image_two | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_two }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_two }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_three }}">
+                                            {{ block.settings.list_image_three | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_three }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_three }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      {% if block.settings.list_image_four != blank %}
+                                      <div class="st-col-md-3 card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_four }}">
+                                            {{ block.settings.list_image_four | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_four }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_four }}
+                                          </a>
+                                        </h6>
+                                      </div>  
+                                      {% endif %}                          
+                                    </div>
+                                  </div>
+                                {% endif %}
+                              {% endif %}
+                            {%  endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            <ul class="menu-drawer__menu has-submenu list-menu list-menu-secondary" role="list">
+              {%- for link in linklists['menu-right-2025'].links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1">
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-caret' %}
+                            Back
+                          </button>
+
+                          <ul class="menu-drawer__menu list-menu" role="list">
+                            <div class="menu-item">
+                              <span class="title">{{ link.title | escape }}</span>
+                              {% render 'icon-caret' %}
+                            </div>
+                            {%- for childlink in link.links -%}
+                              <li class="submenu-items">
+                                <a class="header-link" href="{{ childlink.url }}">{{ childlink.title }}</a>
+                                {% if childlink.links !=  blank %}
+                                  <ul class="inner-grandchild">
+                                  {% for grandchild in childlink.links %}
+                                    <li>
+                                      <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
+                                    </li>
+                                  {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                          <div class="block-banner">
+                            {% for block in section.blocks %}
+                              {% assign link_handle = link.title | handleize %}
+                              {% if link_handle == block.settings.title %}
+                                {% if block.type == 'megamenu_large' %}
+                                  <div class="mega-menu-right__box">
+                                    <div class="bestsellerofyear bestsellerofyear-boxed">
+                                      {% if block.settings.is_alltime %}
+                                        <div class="floating-tag">
+                                          <img class="w-100" src="{{ 'bestsellerTagBg.png' | asset_url }}">
+                                          <div class="floating-tag__content">
+                                            <div class="label">Bestseller of year</div>
+                                            <div class="label-value">
+                                              2026
+                                            </div>
+                                          </div>
+                                        </div>
+                                      {% endif %}
+                                      <div class="inner-container">
+                                        <div class="floating-fluid-base">
+                                          <img class="w-100" src="{{ '360-fluid-base.png' | asset_url }}">
+                                        </div>
+                                        <div class="d360-details">
+                                          <div class="image-holder">
+                                            {{ block.settings.large_banner_image | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                          </div>
+                                          <div class="content-holder">
+                                            <div class="content-holder__box">
+                                              <h2>
+                                              {{ block.settings.title }}
+                                              </h2>
+                                              <p>
+                                                {{ block.settings.desc }}
+                                              </p>
+                                              <a href="{{ block.settings.large_banner_url }}" class="btn btn-white">
+                                                Shop Now
+                                                <span class="ico-holder">
+                                                  <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+                                                </span>
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% elsif block.type == 'megamenu_list' %}
+                                  <div class="megamenu_list-wrapper">
+                                    <div class="section-heading">
+                                      <div class="title-wrapper">
+                                        <div class="floating-logo-element">
+                                          <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M24.8848 6.90381C26.4632 3.51904 30.4866 2.05465 33.8713 3.63299C37.2561 5.21133 38.7205 9.23473 37.1422 12.6195L30.6397 26.564C29.0614 29.9488 25.038 31.4132 21.6532 29.8348C18.2685 28.2565 16.8041 24.2331 18.3824 20.8483L24.8848 6.90381Z" fill="url(#paint0_linear_320_21652)"/>
+                                            <path d="M21.1781 15.3303C20.1555 17.4325 17.185 22.0795 14.4236 24.5571C11.8593 26.8578 10.6186 27.7027 10.3008 27.9388" stroke="#D3DDFF" stroke-width="0.170845"/>
+                                            <path d="M5.87113 19.2045C6.81819 17.1735 9.23237 16.2948 11.2633 17.2419C13.2943 18.189 14.173 20.6031 13.226 22.6341L9.06955 31.5476C8.12249 33.5785 5.70831 34.4572 3.67733 33.5102C1.64635 32.5631 0.767666 30.1489 1.71473 28.1179L5.87113 19.2045Z" fill="url(#paint1_linear_320_21652)"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear_320_21652" x1="36.1366" y1="6.35438" x2="19.3317" y2="27.6584" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.104167" stop-color="#416BFF"/>
+                                            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+                                            </linearGradient>
+                                            <linearGradient id="paint1_linear_320_21652" x1="12.6093" y1="18.9033" x2="2.09284" y2="32.025" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.104167" stop-color="#416BFF"/>
+                                            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+                                            </linearGradient>
+                                            </defs>
+                                          </svg>
+                                        </div>
+                                        <h5 class="title">{{ block.settings.list_title }}</h5>
+                                      </div>
+                                      <div class="description">
+                                        {{ block.settings.desc }}
+                                      </div>
+                                    </div>
+                                    <div class="card-items st-row gutters-55">
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_one }}">
+                                            {{ block.settings.list_image_one | image_url: width: 400 | image_tag }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_one }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_one }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_two }}">
+                                            {{ block.settings.list_image_two | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_two }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_two }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_three }}">
+                                            {{ block.settings.list_image_three | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_three }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_three }}
+                                          </a>
+                                        </h6>
+                                      </div>
+                                      {% if block.settings.list_image_four != blank %}
+                                      <div class="st-col-md-3 card-item">
+                                        <div class="image-holder">
+                                          <a class="d-block" href="{{ block.settings.list_url_four }}">
+                                            {{ block.settings.list_image_four | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                          </a>
+                                        </div>
+                                        <h6 class="title">
+                                          <a href="{{ block.settings.list_url_four }}">
+                                            <span class="ico">
+                                              <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                            </span>
+                                            {{ block.settings.list_title_four }}
+                                          </a>
+                                        </h6>
+                                      </div>  
+                                      {% endif %}                          
+                                    </div>
+                                  </div>
+                                {% endif %}
+                              {% endif %}
+                            {%  endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+          <div class="menu-drawer__utility-links">
+            {%- if localization.available_countries or localization.available_languages -%}
+              <div class="menu-drawer__localization header-localization">
+                {%- if localization.available_countries and localization.available_countries.size > 1 -%}
+                  <localization-form>
+                    {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                          {{ 'localization.country_label' | t }}
+                        </h2>
+                        {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {% endif %}
+
+                {%- if localization.available_languages and localization.available_languages.size > 1 -%}
+                  <localization-form>
+                    {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                          {{ 'localization.language_label' | t }}
+                        </h2>
+                        {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            <ul class="list list-social list-unstyled" role="list">
+              {%- if settings.social_twitter_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
+                    {%- render 'icon-twitter' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_facebook_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                    {%- render 'icon-facebook' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_pinterest_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
+                    {%- render 'icon-pinterest' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_instagram_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                    {%- render 'icon-instagram' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tiktok_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
+                    {%- render 'icon-tiktok' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_tumblr_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_tumblr_link }}" class="list-social__link link">
+                    {%- render 'icon-tumblr' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_snapchat_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_snapchat_link }}" class="list-social__link link">
+                    {%- render 'icon-snapchat' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_youtube_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
+                    {%- render 'icon-youtube' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- if settings.social_vimeo_link != blank -%}
+                <li class="list-social__item">
+                  <a href="{{ settings.social_vimeo_link }}" class="list-social__link link">
+                    {%- render 'icon-vimeo' -%}
+                    <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-drawer>

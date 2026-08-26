@@ -1,0 +1,91 @@
+{{ 'section-brand-contactus.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="brand-contactus section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="inner-page-width ">
+      <h2>{{ section.settings.title }}</h2>
+      <a class="btn btn-primary" href="{{ section.settings.btn_url }}">
+        {{ section.settings.btn_txt }}
+        <span class="ico-holder">
+          <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Brand Contact Us",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 70
+    }
+  ]
+}
+{% endschema %}

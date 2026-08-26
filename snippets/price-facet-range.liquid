@@ -1,0 +1,90 @@
+
+
+{%- assign lowest_price = filter.min_value.value -%}
+{%- if filter.min_value.value -%}
+    {% assign lowest_price = filter.min_value.value %}
+{%- else -%}
+    {% assign lowest_price = 0 | plus: 0 %}
+{%- endif -%}
+
+{%- assign collection_handle = collection.handle -%}
+{%- assign clean_col = collections[collection_handle] -%}
+{%  paginate clean_col.products by 9999 %}
+{%- for product in clean_col.products -%}
+    {% if product.available %}
+        {% assign price = product.price %}
+        {% if lowest_price > price or lowest_price == 0 %} 
+            {%- assign lowest_price = price -%} 
+        {%- endif -%}
+    {% endif %}
+{%- endfor  -%}
+{% endpaginate %}
+
+<div class="highest-value-price">
+    The highest price is 
+    <span id="range2" class="range-two">
+        {%- if filter.max_value.value -%}
+            {{ filter.max_value.value | money_without_currency }}
+        {% else %}
+            {{ filter.range_max | money_without_currency }}
+        {% endif %}
+    </span>
+</div>
+
+<div class="price-slider slider-ui">
+    {%- capture min_value -%}
+        {%- if lowest_price < filter.min_value.value -%}
+            {{- filter.min_value.value -}}
+        {%- else -%}
+            {{- lowest_price -}}
+        {%- endif -%}
+    {%- endcapture -%}
+
+    {%- capture max_value -%}
+        {%- if filter.max_value.value -%}
+            {{- filter.max_value.value -}}
+        {%- else -%}
+            {{- filter.range_max -}}
+        {%- endif -%}
+    {%- endcapture -%}
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="slider-track"></div>
+            <input 
+                type="range" 
+                min="{{- lowest_price -}}" 
+                max="{{- filter.range_max -}}" 
+                value="{{- min_value -}}"
+                id="slider-1"
+                step="100"
+                class="slider-price-one"
+            >
+            <input 
+                type="range" 
+                min="{{- lowest_price -}}" 
+                max="{{- filter.range_max -}}" 
+                value="{{- max_value -}}" 
+                id="slider-2"
+                step="100"
+                class="slider-price-two"
+            >
+        </div>
+        <div class="values">
+            <span id="range1" class="range-one">
+                {%- if lowest_price < filter.min_value.value -%}
+                    {{ filter.min_value.value | money_without_currency }}
+                {% else %}
+                    {{ lowest_price | money_without_currency }}
+                {%- endif -%}
+            </span>
+            <span id="range2" class="range-two">
+                {%- if filter.max_value.value -%}
+                    {{ filter.max_value.value | money_without_currency }}
+                {% else %}
+                    {{ filter.range_max | money_without_currency }}
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>

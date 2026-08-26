@@ -1,0 +1,100 @@
+{{ 'section-secondary-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="secondary-banner secondary-banner--industry section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="inner-page-width">
+      <div class="content-holder ">
+        <h2>
+          {{ section.settings.title }}
+        </h2>
+        <div class="description gutters-end-0">
+          <p>
+            {{ section.settings.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="full-image overflow-hidden">
+    <div
+      class="js-parallax-image"
+      style="background-image:url({{ section.settings.main_bg_image | image_url: width: 2000 }})"
+    ></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner: Secondary IL",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_bg_image",
+      "label": " Main Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

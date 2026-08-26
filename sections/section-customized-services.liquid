@@ -1,0 +1,131 @@
+{{ 'section-product-browse.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="browse-products section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width js-has-stretch">
+    <div class="inner-page-width">
+      <div class="st-row">
+        <div class="st-col-md-3 column-left">
+          <div class="box description">
+              {{ section.settings.description }}
+          </div>
+          <div class="swiper-buttons">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+        <div class="st-col-md-9 column-right">
+          <div class="js-stretch-right">
+            <div class="swiper js-browse-products-slider">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                    <div class="swiper-slide">
+                      {% if block.settings.service_image != blank %}
+                      <div class="product-image">
+                      
+                        {{
+                          block.settings.service_image
+                          | image_url: width: 450
+                          | image_tag: loading: 'lazy', class: 'w-100'
+                        }} 
+                        
+                      </div>
+                      {% endif  %}
+                      <div class=" product-content">
+                        <h5 class="product-title">
+                            {{ block.settings.title }}
+                        </h5>
+                      </div>
+                    </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Customized Services",
+  "settings": [
+
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_image",
+          "label": "Image"
+        }        
+      ]
+    }
+  ]
+}
+{% endschema %}

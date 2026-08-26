@@ -1,0 +1,248 @@
+{{ 'heavy-duty-360.css' | asset_url | stylesheet_tag }}
+
+<div class="heavy-duty-360">
+  <div class="page-width">
+    <div class="hd360-banner">
+      <div class="hd360-bg">
+        {% if section.settings.background_image != blank %}
+          {{
+            section.settings.background_image
+            | image_url: width: 2400
+            | image_tag: loading: 'lazy', alt: section.settings.background_image.alt
+          }}
+        {% else %}
+          <img
+            src="{{ 'heavy-duty-360-bg.png' | asset_url }}"
+            alt=""
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <div class="hd360-product">
+        {% if section.settings.product_image != blank %}
+          {{
+            section.settings.product_image
+            | image_url: width: 900
+            | image_tag: loading: 'lazy', alt: section.settings.product_image.alt
+          }}
+        {% else %}
+          <img
+            src="{{ 'heavy-duty-360-product.png' | asset_url }}"
+            alt=""
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <div class="hd360-ribbon">
+        {% if section.settings.ribbon_top_text != blank %}
+          <span class="hd360-ribbon__top">{{ section.settings.ribbon_top_text }}</span>
+        {% endif %}
+        {% if section.settings.ribbon_big_text != blank %}
+          <span class="hd360-ribbon__big">
+            {{ section.settings.ribbon_big_text }}
+            <svg class="hd360-ribbon__deg" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <circle cx="6" cy="6" r="4.81" stroke="#F1DE2C" stroke-width="2.22"/>
+            </svg>
+          </span>
+        {% endif %}
+        {% if section.settings.ribbon_bottom_text != blank %}
+          <span class="hd360-ribbon__bottom">{{ section.settings.ribbon_bottom_text }}</span>
+        {% endif %}
+      </div>
+
+      <div class="hd360-card">
+        <div class="hd360-card__top">
+          {% if section.settings.title != blank %}
+            <h2 class="hd360-title">{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.specs != blank %}
+            <p class="hd360-specs">{{ section.settings.specs }}</p>
+          {% endif %}
+          {% if section.settings.subtitle != blank %}
+            <p class="hd360-subtitle">{{ section.settings.subtitle }}</p>
+          {% endif %}
+        </div>
+        <div class="hd360-card__bottom">
+          {% if section.settings.lead != blank %}
+            <div class="hd360-lead">{{ section.settings.lead }}</div>
+          {% endif %}
+          {% if section.settings.cta_text != blank %}
+            <a class="hd360-cta" href="{{ section.settings.cta_link | default: '#' }}">
+              <span>{{ section.settings.cta_text }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none" aria-hidden="true">
+                <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0343 0)" fill="url(#hd360_g1)"/>
+                <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.72815 6.13913)" fill="url(#hd360_g2)"/>
+                <path d="M13.3454 5.95139C12.717 7.28064 10.8737 10.2274 9.13775 11.8126C7.52572 13.2846 6.74248 13.8288 6.54211 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                <defs>
+                  <linearGradient id="hd360_g1" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.104167" stop-color="#15086A"/>
+                    <stop offset="1" stop-color="#416BFF"/>
+                  </linearGradient>
+                  <linearGradient id="hd360_g2" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.104167" stop-color="#15086A"/>
+                    <stop offset="1" stop-color="#416BFF"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+
+
+        <div class="hd360-features" {% if section.settings.features_bg != blank %} style="background-image: url('{{section.settings.features_bg | image_url: width: 33}}')" {% endif %}>
+        
+        {% for block in section.blocks %}
+          <div class="hd360-feature" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <div class="hd360-feature__icon">
+                {{
+                  block.settings.icon
+                  | image_url: width: 96
+                  | image_tag: loading: 'lazy', alt: block.settings.title
+                }}
+              </div>
+            {% endif %}
+            <div class="hd360-feature__text">
+              {% if block.settings.title != blank %}
+                <h3>{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <div class="hd360-feature__desc">{{ block.settings.description }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Heavy Duty 360",
+  "class": "section heavy-duty-360-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "features_bg",
+      "label": "Features Background Pattern"
+    },    
+    {
+      "type": "header",
+      "content": "Yellow Card"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Heavy Duty 14 AWG</p>"
+    },
+    {
+      "type": "text",
+      "id": "specs",
+      "label": "Specs",
+      "default": "15 AMP • 125V • 1875W"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "For higher power and better performance"
+    },
+    {
+      "type": "richtext",
+      "id": "lead",
+      "label": "Lead Text",
+      "default": "<p>Power where you need it.</p><p>Clean. Organized. Reliable.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Explore Products"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Patented Ribbon"
+    },
+    {
+      "type": "text",
+      "id": "ribbon_top_text",
+      "label": "Top Text",
+      "default": "Patented"
+    },
+    {
+      "type": "text",
+      "id": "ribbon_big_text",
+      "label": "Big Text",
+      "default": "360"
+    },
+    {
+      "type": "text",
+      "id": "ribbon_bottom_text",
+      "label": "Bottom Text",
+      "default": "Rotating Plug"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Short description goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Heavy Duty 360",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

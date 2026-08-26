@@ -1,0 +1,327 @@
+{%- style -%}
+  #wholesaleNewsletter {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+
+
+  /* Left: Wholesale panel */
+  #wholesaleNewsletter .wn-left {
+    background-color: {{ section.settings.left_bg_color }};
+    color: {{ section.settings.left_text_color }};
+  }
+
+  #wholesaleNewsletter .wn-left-btn {
+    display: inline-block;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+
+
+  #wholesaleNewsletter .wn-checklist svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: {{ section.settings.check_color }};
+  }
+
+  /* Right: Newsletter panel */
+  #wholesaleNewsletter .wn-right {
+    background-color: {{ section.settings.right_bg_color }};
+    color: {{ section.settings.right_text_color }};
+    justify-content: space-between;
+    position: relative;
+    gap:0;
+  }
+
+
+  #wholesaleNewsletter .wn-form button {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+
+  @media screen and (max-width: 749px) {
+    #wholesaleNewsletter {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+  }
+{%- endstyle -%}
+
+<div id="wholesaleNewsletter">
+  <div class="page-width">
+    <div class="wn-wrapper">
+
+      <div class="wn-panel wn-left">
+        {%- if section.settings.left_icon != blank -%}
+          <div class="wn-left-icon">
+            <img src="{{ section.settings.left_icon | image_url: width: 200 }}" alt="{{ section.settings.left_heading }}" loading="lazy">
+          </div>
+        {%- endif -%}
+
+        <div class="wn-left-content">
+          {%- if section.settings.left_heading != blank -%}
+            <h3>{{ section.settings.left_heading }}</h3>
+          {%- endif -%}
+          {%- if section.settings.left_description != blank -%}
+            <p>{{ section.settings.left_description }}</p>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="wn-left-btn">{{ section.settings.button_label }}</a>
+          {%- endif -%}
+        </div>
+
+        <ul class="wn-checklist">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'checklist_item' -%}
+              <li {{ block.shopify_attributes }}>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="wn-panel wn-right">
+        <div class="wn-right-content">
+          {%- if section.settings.right_heading != blank -%}
+            <h3>{{ section.settings.right_heading }}</h3>
+          {%- endif -%}
+          {%- if section.settings.right_description != blank -%}
+            <p>{{ section.settings.right_description }}</p>
+          {%- endif -%}
+
+          {%- form 'customer', id: 'wn-newsletter-form' -%}
+            {%- if form.posted_successfully? -%}
+              <p>Thanks for subscribing!</p>
+            {%- endif -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="wn-form">
+              <input type="email" name="contact[email]" placeholder="{{ section.settings.email_placeholder }}" required>
+              <button type="submit">{{ section.settings.subscribe_label }}</button>
+            </div>
+          {%- endform -%}
+        </div>
+
+        {%- if section.settings.right_image != blank -%}
+          <div class="wn-right-image">
+            <img src="{{ section.settings.right_image | image_url: width: 400 }}" alt="{{ section.settings.right_heading }}" loading="lazy">
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Wholesale & Newsletter",
+  "tag": "section",
+  "class": "section-wholesale-newsletter",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#1a7a3c"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Left Panel - Wholesale Program"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Background color",
+      "default": "#141414"
+    },
+    {
+      "type": "color",
+      "id": "left_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Checkmark color",
+      "default": "#3fae4a"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Heading",
+      "default": "Wholesale Program"
+    },
+    {
+      "type": "textarea",
+      "id": "left_description",
+      "label": "Description",
+      "default": "Exclusive pricing, volume discounts, and dedicated support for businesses and resellers."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Apply Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Right Panel - Newsletter Signup"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background color",
+      "default": "#f2f2f2"
+    },
+    {
+      "type": "color",
+      "id": "right_text_color",
+      "label": "Text color",
+      "default": "#141414"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Heading",
+      "default": "Stay Updated"
+    },
+    {
+      "type": "textarea",
+      "id": "right_description",
+      "label": "Description",
+      "default": "Be the first to know about new products, sales, and helpful tips."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder text",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_label",
+      "label": "Subscribe button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "checklist_item",
+      "name": "Checklist Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Checklist item"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wholesale & Newsletter",
+      "blocks": [
+        { "type": "checklist_item", "settings": { "text": "Competitive Wholesale Pricing" } },
+        { "type": "checklist_item", "settings": { "text": "Low Minimum Order Quantities" } },
+        { "type": "checklist_item", "settings": { "text": "Fast Shipping" } },
+        { "type": "checklist_item", "settings": { "text": "Dedicated Account Manager" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

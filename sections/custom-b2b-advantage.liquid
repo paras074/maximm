@@ -1,0 +1,182 @@
+{{ 'b2b-advantage.css' | asset_url | stylesheet_tag }}
+
+<div class="b2b-advantage" id="advantage">  
+    <div class="floating-img">
+        {% if section.settings.floating_image != blank %}
+            {{ section.settings.floating_image
+            | image_url: width: 1200
+            | image_tag:
+                loading: 'lazy',
+                alt: section.settings.bg_image.alt
+            }}
+        {% endif %}
+    </div>
+    <div class="page-width section-wrapper">
+        <div class="left-col">            
+            <div class="section-title">
+                {% if section.settings.section_title %}
+                    <h2>{{section.settings.section_title}}</h2>
+                {% endif %}
+            </div>
+            <div class="section-buttons">
+                <div class="black-button button">
+                    {% if section.settings.button_title %}
+                        <a href="{{section.settings.button_link}}">
+                            Apply for Wholesale
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                                <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0343 0)" fill="url(#paint0_linear_247_10)"/>
+                                <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.72815 6.13913)" fill="url(#paint1_linear_247_10)"/>
+                                <path d="M13.3454 5.95139C12.717 7.28064 10.8737 10.2274 9.13775 11.8126C7.52572 13.2846 6.74248 13.8288 6.54211 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_247_10" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.104167" stop-color="#15086A"/>
+                                <stop offset="1" stop-color="#416BFF"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_247_10" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.104167" stop-color="#15086A"/>
+                                <stop offset="1" stop-color="#416BFF"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="white-button button">
+                    {% if section.settings.button_title_1 %}
+                        <a href="{{section.settings.button_link_1}}">
+                            {{section.settings.button_title_1}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                                <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0343 0)" fill="url(#paint0_linear_247_10)"/>
+                                <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.72815 6.13913)" fill="url(#paint1_linear_247_10)"/>
+                                <path d="M13.3454 5.95139C12.717 7.28064 10.8737 10.2274 9.13775 11.8126C7.52572 13.2846 6.74248 13.8288 6.54211 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_247_10" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.104167" stop-color="#15086A"/>
+                                <stop offset="1" stop-color="#416BFF"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_247_10" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.104167" stop-color="#15086A"/>
+                                <stop offset="1" stop-color="#416BFF"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+        <div class="cards-col"> 
+            {% for block in section.blocks %}           
+                <div class="cards-holder"> 
+                    <div class="icon-holder">
+                        {% if block.settings.card_icon != blank %}
+                            <div class="cards-icon"> 
+                                {{ block.settings.card_icon
+                                    | image_url: width: 200
+                                    | image_tag:
+                                        loading: 'lazy',
+                                        alt: block.settings.card_icon.alt
+                                }}                           
+                            </div>
+                        {% endif %}
+                    </div>                
+                    
+                    <div class="cards-text">
+                        {% if block.settings.cards_heading != blank %}
+                            <div class="cards-heading">
+                                <h3>{{block.settings.cards_heading}}</h3>                                
+                            </div>
+                        {% endif %}
+                        {% if block.settings.cards_info != blank %}
+                            <div class="cards-info">                                
+                                <p>{{block.settings.cards_info}}</p>
+                            </div>
+                        {% endif %}
+                    </div>                            
+                </div> 
+            {% endfor %}            
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name" : "B2B Banner",
+    "class": "section b2b-advantage-section",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "section_title",
+            "label": "title"
+            
+        },
+        {
+            "type": "richtext",
+            "id": "para",
+            "label": "Description"
+        },
+        {
+            "type": "image_picker",
+            "id": "floating_image",
+            "label": "Image"
+        },        
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "text",
+            "id": "button_title",
+            "label": "Button Title",
+            "default": "Button"
+        },
+        {
+            "type": "url",
+            "id": "button_link_1",
+            "label": "Button 2 link"
+        },
+        {
+            "type": "text",
+            "id": "button_title_1",
+            "label": "Button 2 Title",
+            "default": "Button"
+        }
+        
+
+    ],
+    "blocks": [
+        {
+            "type": "text_with_icon",
+            "name": "cards-with-icon",
+            "settings": [
+                {                  
+                    "type": "image_picker",
+                    "id": "card_icon",
+                    "label": "Card Icon"        
+                },
+                {
+                    "type": "text",
+                    "id": "cards_heading",
+                    "label": "Cards Title",
+                    "default": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "cards_info",
+                    "label": "Cards Info"                    
+                }
+            ]
+        }
+    ],
+    
+    "presets": [
+        {
+        "name": "B2B Advantage"
+        }
+    ]
+}
+
+{% endschema %}

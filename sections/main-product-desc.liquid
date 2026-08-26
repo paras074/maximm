@@ -1,0 +1,405 @@
+
+
+<div class="bullet-points-hidden hidden">
+  {% assign collection_list = product.collection %}
+  {% if product.metafields.custom.bullet_points != blank %}
+    <div class="bullet-points">
+      <ul class="product-bullet-point">
+      {% for point in product.metafields.custom.bullet_points.value %}
+        <li class="point">
+            <a href="javascript: void(0)" class="feat-btn">
+              {% if point.icon_image != blank %}
+                <span class="ico">{{ point.icon_image | image_url: width: 50, height: 50 | image_tag }}</span>
+              {% endif %}
+              <span class="txt">{{ point.title }}</span>
+            </a>
+
+            <div class="feature-meta-wrap">
+              <span class="close-btn">{%  render 'icon-close' %}</span>
+              <h5 class="h4">{{ point.title }}</h5>
+              <div class="feature-meta">
+                {% if point.feature_image != blank %}
+                  <div class="feature-thumb">{{ point.feature_image | image_url: width: 232, height: 232 | image_tag }}</div>
+                {% endif %}
+                {% if point.feature_description != blank %}
+                  <div class="feature-desc">
+                    {{ point.feature_description |  metafield_tag}}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% elsif collection_list != blank %}
+    <div class="bullet-points">
+      <ul class="product-bullet-point">
+      {% for point in collection_list.value %}
+        <li class="point">
+            {% if point.icon_image != blank %}
+              <span class="ico">{{ point.icon_image | image_url: width: 50, height: 50 | image_tag }}</span>
+            {% endif %}
+            <span class="txt">{{ point.title }}</span>
+          </li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+
+<div class="product-section-tabs page-width">
+  {% if product.description != blank  or product.metafields.custom.gallery != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="pdp-description-gallery-wrapper">description</a>
+  {% endif %}
+
+  {% if product.metafields.spec.title != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="productspec">specs</a>
+  {% endif %}
+
+  <a href="javascript:void(0)" class="btn" data-section="az_reviews_wrapper">reviews</a>
+
+  {% if product.metafields.custom.faqs != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="product-faqs-wrapper">FAQ</a>
+  {% endif %}
+</div>
+
+{% if product.description != blank  or product.metafields.custom.gallery != blank%}
+  <div class="pdp-description-gallery-wrapper ghgjh  product-tab-section" id="pdp-description-gallery-wrapper">
+    
+    {% if product.description != blank %}
+      <div class="product-description-section" id="overview">
+        {% comment %} <div class="page-width">
+            {{ product.description }}
+        </div> {% endcomment %}
+
+        <div class="page-width rte with-metafield">
+          {% if product.metafields.first_image_block.custom != blank %}
+          <div class="first-image">
+            <img src="{{product.metafields.first_image_block.custom}}" width="100%" height="100%"/> 
+          </div>
+          {% endif %}
+          {% if product.metafields.first_desc_block.custom != blank %}
+          <div class="first-content">
+            {{product.metafields.first_desc_block.custom}}
+          </div>
+          {% endif %}
+          {% if product.metafields.second_image_block.custom != blank %}
+          <div class="second-image">
+            <img src="{{product.metafields.second_image_block.custom}}" width="100%" height="100%"/> 
+          </div>
+          {% endif %}
+          {% if product.metafields.multi_images.custom != blank %}
+          <div class="last-images">
+            {% for img in product.metafields.multi_images.custom %}
+            <div class="image">
+              <img src="{{img}}" width="100%" height="100%"/> 
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if product.metafields.description_last.custom != blank %}
+            <div class="last-content">
+            {{product.metafields.description_last.custom}}
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+    {% endif %}
+    {% if product.metafields.custom.title != blank %}
+      <div class="bullet-points-expanded">
+        <div class="page-width">
+          <ul class="product-bullet-point">
+          {% for point in product.metafields.custom.title %}
+            <li class="point">
+                {% if product.metafields.custom.product_block_image[forloop.index0] %}
+                  {% comment %} <figure class="feature-image">{{ point.feature_image | image_url: width: 500, height: 500 | image_tag }}</figure> {% endcomment %}
+                  <div class="media media--transparent media--square">
+                    {%- liquid
+                      assign number_of_columns = 3
+                      assign number_of_columns_mobile = 1
+                      assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                      assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                      assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
+ 
+                      assign image_width = 1
+                    
+                    -%}
+                    {% comment %} {% capture sizes %}
+                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
+                      (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
+                      (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
+                      calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
+                    {% endcapture %}
+                    {{
+                      point.feature_image
+                      | image_url: width: 3200
+                      | image_tag:
+                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
+                        sizes: sizes,
+                        class: 'multicolumn-card__image'
+                    }} {% endcomment %}
+                    <img class="multicolumn-card__image" src="{{ product.metafields.custom.product_block_image[forloop.index0] }}" width="100%" height="100%">
+                  </div>
+                {% endif %}
+                <h3 class="feature-title">{{ point }}</h3>
+                {% if product.metafields.custom.description[forloop.index0] != blank %}
+                  <div class="rte">
+                    {{ product.metafields.custom.description[forloop.index0] }}
+                  </div>
+                {% endif %}
+              </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% elsif collection.metafields.custom.collection_product_features != blank %}
+      <div class="bullet-points-expanded">
+        
+        <div class="page-width">
+          <ul class="product-bullet-point">
+            {% comment %} {%- liquid
+            assign highest_ratio = 0
+              for block in section.blocks
+                if block.settings.image.aspect_ratio > highest_ratio
+                  assign highest_ratio = block.settings.image.aspect_ratio
+                endif
+              endfor
+            -%} {% endcomment %}
+          {% for point in collection.metafields.custom.collection_product_features.value %}
+            <li class="point">
+                {% if point.feature_image %}
+                  {% comment %} <figure class="feature-image">{{ point.feature_image | image_url: width: 500, height: 500 | image_tag }}</figure> {% endcomment %}
+                  <div
+                    class="media media--transparent media--square"
+
+                  >
+                    {%- liquid
+                      assign number_of_columns = 3
+                      assign number_of_columns_mobile = 1
+                      assign grid_space_desktop = number_of_columns | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                      assign grid_space_tablet = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | plus: 100 | append: 'px'
+                      assign grid_space_mobile = number_of_columns_mobile | minus: 1 | times: settings.spacing_grid_horizontal | divided_by: 2 | plus: 30 | append: 'px'
+ 
+                      assign image_width = 1
+                    
+                    -%}
+                    {% capture sizes %}
+                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) * {{ image_width }} /  {{ number_of_columns }}),
+                      (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) * {{ image_width }} / {{ number_of_columns }}),
+                      (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) * {{ image_width }} / {{ number_of_columns_mobile }}),
+                      calc((100vw - {{ grid_space_mobile }}) * {{ image_width }} / {{ number_of_columns_mobile }})
+                    {% endcapture %}
+                    {{
+                      point.feature_image
+                      | image_url: width: 3200
+                      | image_tag:
+                        widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
+                        sizes: sizes,
+                        class: 'multicolumn-card__image'
+                    }}
+                  </div>
+                {% endif %}
+                <h3 class="feature-title">{{ point.title }}</h3>
+                {% if point.feature_description %}
+                  <div class="rte">
+                    {{point.feature_description |  metafield_tag}}
+                  </div>
+                {% endif %}
+              </li>
+          {% endfor %}
+          </ul> 
+        </div>
+      </div>
+    {% endif %}
+
+    {%- liquid
+    assign full_width = '100vw'
+    assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+
+    -%}
+    {% comment %} LAYOUT 1 CONTENT STARTS HERE..{% endcomment %}
+    {% if product.metafields.custom.layout_one != blank %}
+      {% render 'layout-one', product: product %}
+    {%endif%}
+
+    {% comment %} LAYOUT 2 CONTENT STARTS HERE..{% endcomment %}
+    {% if product.metafields.custom.layout_two != blank %}
+      {% render 'layout-two', product: product %}
+    {%endif%}
+
+    {% comment %} LAYOUT 3 CONTENT STARTS HERE..{% endcomment %}
+    {% if product.metafields.custom.layout_three != blank %}
+      {% render 'layout-three', product: product %}
+    {%endif%}
+
+    {% comment %} LAYOUT 4 CONTENT STARTS HERE..{% endcomment %}
+    {% if product.metafields.custom.layout_four != blank %}
+      {% render 'layout-four', product: product %}
+    {%endif%}
+
+
+    {% comment %} LAYOUT 5 CONTENT STARTS HERE..{% endcomment %}
+    {% if product.metafields.custom.layout_five != blank %}
+      {% render 'layout-five', product: product %}
+    {%endif%}
+ 
+    {% if product.metafields.custom.gallery != blank %}
+      <div class="product-gallery-section">
+        <div class="page-width">
+          <div class="section-heading">
+            <div class="st-row st-align-items-end">
+              <div class="st-col gutters-end-0">
+                <h2>Gallery</h2>
+              </div>
+              <div class="st-col-auto">
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-width">
+          <div class="swiper js-product-gallery-slider">
+            <div class="swiper-wrapper">
+              {% for image in product.metafields.custom.gallery.value %}
+                <div class="swiper-slide">{{ image | image_url: width: 700 | image_tag }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    {% endif %} 
+  </div>
+{% endif %}
+
+{% if product.metafields.spec.title != blank %}
+  <div class="product-specification product-tab-section" id="productspec" style="display: none">
+    <div class="page-width">
+      <div class="inner-page-width">
+        <div class="ps-title">Specification:</div>
+        <ul class="product-specification__list">
+          {% for title in product.metafields.spec.title %}
+            {% comment %} {% assign handle_title = title | handleize %} {% endcomment %}
+            <li class="product-specification__list-item">
+              <div class="title">
+                <div class="inner-title">{{ title }}</div>
+              </div>
+              <div class="key">{{ product.metafields.spec.answer[forloop.index0] }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if product.metafields.custom.faqs.value != blank %}
+  <div class="product-faqs-wrapper product-tab-section" id="product-faqs-wrapper" style="display: none;">
+    <div class="page-width">
+      <div class="faq-custom-container">
+        <h2> Frequently Asked Questions </h2>
+        {% for faq_entry in product.metafields.custom.faqs.value %}
+          <div class="faq-item" style="margin-bottom: 40px;">
+            
+            <h3 class="faq-title">
+              {{ faq_entry.faq_question.value | default: faq_entry.faq_question }}
+            </h3>
+            
+            <div class="faq-content rte">
+
+              {% if faq_entry.faq_answer != blank %}
+                {{ faq_entry.faq_answer | metafield_tag }}
+              {% else %}
+                {{ faq_entry.answer | metafield_tag }}
+              {% endif %}
+            </div>
+
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+
+{% if product.metafields.custom.faqs.value != blank %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq_entry in product.metafields.custom.faqs.value %}
+
+      {% capture answer_html %}{% if faq_entry.faq_answer != blank %}{{ faq_entry.faq_answer | metafield_tag }}{% elsif faq_entry.answer != blank %}{{ faq_entry.answer | metafield_tag }}{% endif %}{% endcapture %}
+
+      {% if answer_html != blank %}
+      {
+        "@type": "Question",
+        "name": {{ faq_entry.faq_question.value | default: faq_entry.faq_question | strip_html | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ answer_html | strip_html | strip_newlines | json }}
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endif %}
+
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+
+
+
+
+{% schema %}
+{
+  "name": "Product Description",
+  "tag": "section",
+  "class": "section section-product-template",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-product.settings.header.content"
+    },
+    
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Description"
+    }
+  ]  
+}
+{% endschema %}

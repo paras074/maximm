@@ -1,0 +1,161 @@
+{{ 'feature-icons-bar.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} .feature-bar {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .feature-bar {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+</style>
+
+<div class="feature-bar" style="background-color: {{ section.settings.bg_color }};">
+  <div class="feature-bar__inner page-width">
+    {% for block in section.blocks %}
+      <div class="feature-bar__item" {{ block.shopify_attributes }}>
+        <div class="feature-bar__icon">
+          {% if block.settings.icon != blank %}
+            {{ block.settings.icon | image_url: width: 60 | image_tag }}
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          {% endif %}
+        </div>
+        <div class="feature-bar__content">
+          <p class="feature-bar__title">{{ block.settings.title }}</p>
+          <p class="feature-bar__text">{{ block.settings.text }}</p>
+        </div>
+      </div>
+      {% unless forloop.last %}
+        <div class="feature-bar__divider"></div>
+      {% endunless %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Feature Icons Bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F7F7F7"
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "HEAVY DUTY PERFORMANCE"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Built with premium SJTW cable for superior strength and durability."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Icons Bar",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "HEAVY DUTY PERFORMANCE",
+            "text": "Built with premium SJTW cable for superior strength and durability."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "OUTDOOR RATED",
+            "text": "Designed and built to withstand the toughest conditions."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "POWER YOU CAN RELY ON",
+            "text": "Perfect for generators, tools and heavy equipment."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "SAFETY FIRST",
+            "text": "ETL Listed for your peace of mind."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

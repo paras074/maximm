@@ -1,0 +1,231 @@
+{{ 'section-product-browse.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="browse-products section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width js-has-stretch">
+    <div class="inner-page-width">
+      <div class="st-row">
+        <div class="st-col-md-3 column-left">
+          <div class="box h-100">
+            <h2>
+              {{ section.settings.title }}
+            </h2>
+            <div class="total-products">{{ section.settings.total_text }}</div>
+            <div class="mt-auto hidden d-md-block">
+              <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+                {{ section.settings.btn_txt }}
+                <span class="ico-holder">
+                  {% render 'icon-button-art-blue' %}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="st-col-md-9 column-right">
+          <div class="js-stretch-right">
+            <div class="swiper js-browse-products-slider">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                    {% assign collection = block.settings.collection %}
+                    {% assign col_title = block.settings.title | default: collection.title %}
+                    {% assign col_image = block.settings.image | default: collection.image %}
+
+                    {% assign lowest_price = '' %}
+
+                    {% for product in collection.products %}
+                      {% if forloop.first %}
+                        {% assign lowest_price = product.price %}
+                      {% endif %}
+                      {% assign new_price = product.price %}
+                      {% if new_price < lowest_price and new_price != 0 %}
+                        {% assign lowest_price = new_price %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% if block.settings.price != blank %}
+                      {% assign lowest_price = block.settings.price | plus: 0 %}
+                    {% endif %}
+
+                    {% if collection != blank %}
+                      <a class="swiper-slide" href="{{ collection.url }}">
+                        <div class="product-image">
+                          <span class="link">
+                            {{ col_image | image_url: width: 450 | image_tag: loading: 'lazy', class: 'w-100' }}
+                            <div class="hover-state">
+                              <span class="see-products">
+                                <span class="sp">See Products</span>
+                                <span class="arr">
+                                  <svg width="50" height="16" viewBox="0 0 50 16" fill="none">
+                                    <path d="M48.7764 8.97676C49.167 8.58624 49.167 7.95307 48.7764 7.56255L42.4125 1.19859C42.022 0.808061 41.3888 0.808061 40.9983 1.19859C40.6077 1.58911 40.6077 2.22227 40.9983 2.6128L46.6551 8.26965L40.9983 13.9265C40.6077 14.317 40.6077 14.9502 40.9983 15.3407C41.3888 15.7312 42.022 15.7312 42.4125 15.3407L48.7764 8.97676ZM0.0693359 9.26965H48.0693V7.26965H0.0693359V9.26965Z" fill="black"/>
+                                    </svg>
+                                </span>
+                              </span>
+                              <span class="see-products">
+                                <span class="sp">See Products</span>
+                                <span class="arr">
+                                  <svg width="50" height="16" viewBox="0 0 50 16" fill="none">
+                                    <path d="M48.7764 8.97676C49.167 8.58624 49.167 7.95307 48.7764 7.56255L42.4125 1.19859C42.022 0.808061 41.3888 0.808061 40.9983 1.19859C40.6077 1.58911 40.6077 2.22227 40.9983 2.6128L46.6551 8.26965L40.9983 13.9265C40.6077 14.317 40.6077 14.9502 40.9983 15.3407C41.3888 15.7312 42.022 15.7312 42.4125 15.3407L48.7764 8.97676ZM0.0693359 9.26965H48.0693V7.26965H0.0693359V9.26965Z" fill="black"/>
+                                    </svg>
+                                </span>
+                              </span>
+                            </div>
+                          </span>
+                        </div>
+                        <div class=" product-content">
+                          <h5 class="product-title">
+                            <span>{{- col_title }}</span>  
+                          </h5>
+                          <div class="product-price">
+                            <span class="ico-holder">
+                                {% render 'icon-price-tag' %}
+                            </span>
+                            From {{ lowest_price | money_with_currency }}
+                          </div>
+                        </div>
+                      </a>
+                    {% endif %}
+                {% endfor %}
+              </div>
+              <div class="fake-button_wrap d-md-none">
+                <a class="btn btn-primary" role="button">
+                  View More
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="browse-product-nav-wrapper">
+            <div class="progress-nav">
+              <div class="swiper-pagination-wrapper">
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="button-wrapper">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+            </div>
+            <div class="mt-auto d-none">
+              <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+                {{ section.settings.btn_txt }}
+                <span class="ico-holder">
+                  {% render 'icon-button-art-blue' %}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section: Product Browse",
+  "settings": [
+    {
+      "type": "text",
+      "id": "total_text",
+      "label": "Total products",
+      "default": "500+ Products"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Browse <br> Maximm"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "Browse Products"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Square image is better"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

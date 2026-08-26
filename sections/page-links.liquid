@@ -1,0 +1,125 @@
+{% stylesheet %}
+    .page-link-section {
+        padding-top: 6rem!important;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .links-wrapper {
+        display: inline-flex;
+        flex-direction: column;
+        position: relative;
+        min-width: 20.9rem;
+    }
+    .links-inner {
+        position: absolute;
+        top: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        transform: translateY(-10px);
+        overflow: hidden;
+        border-radius: 1.6rem;
+    }
+    .links-inner.visible {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .page-link-item {
+        background-color: #E9F0FF;
+        padding: 1.2rem 2.8rem;
+        
+        min-width: 17rem;
+        display: flex;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        order: 1;
+    }
+    .page-link-item.page-link-item--active {
+        background-color: #000;
+        color: #FFF;
+        order: 0;
+        border-radius: 4rem;
+        margin-bottom: 0.8rem;
+        display: flex  ;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .page-link-item.page-link-item--active  .icon-caret {
+        height: .6rem;
+        margin: 0.3rem 0 0 1.2rem;
+    }
+    .page-link-item:hover {
+        background-color: #000;
+    }
+    .page-link-item:hover{
+        color: #FFF;
+    }
+
+
+    
+{% endstylesheet %}
+
+<div class="page-width page-link-section">
+    <div class="links-wrapper">
+        {%- for link in section.settings.navigation_links.links -%}
+            {% if link.current %}
+                <a href="#" class="page-link-item page-link-item--active"  aria-current="page" >{{ link.title | escape }} {% render 'icon-caret' %}</a>
+            {% endif %}
+        {%- endfor -%}
+        <div class="links-inner">    
+            {%- for link in section.settings.navigation_links.links -%}
+                {% if link.current %}
+                    {%  continue  %}
+                {% else %}    
+                    <a
+                      id="page-link-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="page-link-item "
+    
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                {% endif %}
+              {%- endfor -%}            
+         
+        </div>
+    </div>
+
+</div>
+
+{% javascript %}
+    document.addEventListener('DOMContentLoaded', function() {
+        const activeLink = document.querySelector('.page-link-item--active');
+        const linksInner = document.querySelector('.links-inner');
+        
+        if (activeLink && linksInner) {
+            activeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                linksInner.classList.toggle('visible');
+            });
+        }
+    });
+{% endjavascript %}
+
+{% schema %}
+    {
+        "name" : "Navigation Buttons",
+        "class": "section",
+        "settings": [
+            {
+                "type": "link_list",
+                "id": "navigation_links",
+                "label": "Navigation Links"
+            }
+
+        ],
+
+        
+        "presets": [
+            {
+            "name": "Navigation Buttons"
+            }
+        ]
+    }
+{% endschema %}

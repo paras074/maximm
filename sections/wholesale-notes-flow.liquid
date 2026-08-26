@@ -1,0 +1,208 @@
+
+{% style %}
+  #shopify-section-{{ section.id }} .wholesale-notes-flow {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .wholesale-notes-flow {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<section class="wholesale-notes-flow" style="background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    <div class="wholesale-notes-flow__row">
+
+      {% for block in section.blocks %}
+        {% if block.type == 'box' %}
+          <div class="wholesale-nf-box" {{ block.shopify_attributes }}>
+            <div class="wholesale-nf-box__head">
+              {% if block.settings.icon != 'none' %}
+                <span class="wholesale-nf-box__icon">
+                  {% case block.settings.icon %}
+                    {% when 'person' %}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    {% when 'business' %}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-6h6v6"></path><path d="M9 9h.01M9 13h.01M15 9h.01M15 13h.01"></path></svg>
+                  {% endcase %}
+                </span>
+              {% endif %}
+              <h3 class="wholesale-nf-box__heading">{{ block.settings.heading }}</h3>
+            </div>
+            <ul class="wholesale-nf-box__list">
+              {% for i in (1..4) %}
+                {% assign key = 'item_' | append: i %}
+                {% if block.settings[key] != blank %}
+                  <li>{{ block.settings[key] }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% if block.settings.show_arrow_after %}
+            <div class="wholesale-nf-arrow">
+              <svg width="24" height="14" viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Notes & Customer Flow",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "box",
+      "name": "Box",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "person", "label": "Person / Retail" },
+            { "value": "business", "label": "Building / Wholesale" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Notes"
+        },
+        {
+          "type": "text",
+          "id": "item_1",
+          "label": "List item 1"
+        },
+        {
+          "type": "text",
+          "id": "item_2",
+          "label": "List item 2"
+        },
+        {
+          "type": "text",
+          "id": "item_3",
+          "label": "List item 3"
+        },
+        {
+          "type": "text",
+          "id": "item_4",
+          "label": "List item 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_arrow_after",
+          "label": "Show arrow after this box",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Notes & Customer Flow",
+      "blocks": [
+        {
+          "type": "box",
+          "settings": {
+            "icon": "none",
+            "heading": "Notes",
+            "item_1": "Anyone can browse and buy without registering.",
+            "item_2": "Wholesale registration is optional and provides additional benefits.",
+            "item_3": "All fields marked with * are required.",
+            "show_arrow_after": false
+          }
+        },
+        {
+          "type": "box",
+          "settings": {
+            "icon": "person",
+            "heading": "For Retail Customers",
+            "item_1": "Shop as guest or create account",
+            "item_2": "See retail pricing",
+            "item_3": "Standard checkout",
+            "show_arrow_after": true
+          }
+        },
+        {
+          "type": "box",
+          "settings": {
+            "icon": "business",
+            "heading": "For Wholesale Customers",
+            "item_1": "Register for wholesale account",
+            "item_2": "Get approved",
+            "item_3": "Access wholesale pricing & features",
+            "show_arrow_after": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

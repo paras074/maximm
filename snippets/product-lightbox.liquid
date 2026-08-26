@@ -1,0 +1,216 @@
+<div class="lightbox-overlay">
+    <div class="lightbox-container">
+        <div class="lightbox-header">
+            <div class="product-tabs">
+                <button type="button" class="tab-btn active" data-tab="images">Images</button>
+                {% assign has_variant_videos = false %}
+                {% for media in product.media %}
+                  {% if media.media_type contains 'video' %}
+                    {% assign has_variant_videos = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% if has_variant_videos %}
+                  <button type="button" class="tab-btn" data-tab="videos">Videos</button>
+                {% endif %}
+            </div>
+            <button type="button" class="close-btn">&times;</button>
+        </div>
+        <div class="lightbox-content">
+            <div class="tab-content active" id="images">
+                <div class="main-content">
+                    <div class="main-image-container">
+                        <button class="lightbox-arrow lightbox-arrow--prev" type="button" aria-label="Previous image">
+                            {% render 'icon-caret' %}
+                        </button>
+                        {{ product.selected_or_first_available_variant.featured_image | image_url: width: 1980 | image_tag: class: 'main-image', srcset: nil }}
+                        <button class="lightbox-arrow lightbox-arrow--next" type="button" aria-label="Next image">
+                            {% render 'icon-caret' %}
+                        </button>
+                        <div class="lightbox-loader hidden"></div>
+                        <div class="image-label">Front View</div>
+                    </div>
+                    <div class="thumbnails-container">
+                        <div class="product__title" {{ block.shopify_attributes }}>
+                          <h3>
+                            {{ product.title | escape }}
+                          </h3>
+                          <div class="options">
+                            {% if product.selected_or_first_available_variant.option1 != blank %}
+                              <div class="option">{{product.options[0]}} <span class="option-one-value">{{ product.selected_or_first_available_variant.option1 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                            {% if product.selected_or_first_available_variant.option2 != blank %}
+                              <div class="option">{{product.options[1]}} <span class="option-two-value">{{ product.selected_or_first_available_variant.option2 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                            {% if product.selected_or_first_available_variant.option3 != blank %}
+                              <div class="option">{{product.options[2]}} <span class="option-three-value">{{ product.selected_or_first_available_variant.option3 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="thumbnails-container__inner">
+                          {% liquid
+                            assign color_names = 'Color, Colour, color, colour, Collor' | split: ', '
+
+                            assign color_option_position = nil
+                            for option in product.options_with_values
+                              for color_name in color_names
+                                if option.name == color_name
+                                  assign color_option_position = option.position
+                                  break
+                                endif
+                              endfor
+                              if color_option_position
+                                break
+                              endif
+                            endfor
+
+                            assign selected_color = nil
+                            if color_option_position
+                              case color_option_position
+                                when 1
+                                  assign selected_color = product.selected_or_first_available_variant.option1
+                                when 2
+                                  assign selected_color = product.selected_or_first_available_variant.option2
+                                when 3
+                                  assign selected_color = product.selected_or_first_available_variant.option3
+                              endcase
+                            endif
+
+                            assign first_variant_with_color = nil
+                            if selected_color
+                              for variant in product.variants
+                                assign variant_color = nil
+                                case color_option_position
+                                  when 1
+                                    assign variant_color = variant.option1
+                                  when 2
+                                    assign variant_color = variant.option2
+                                  when 3
+                                    assign variant_color = variant.option3
+                                endcase
+
+                                if variant_color == selected_color
+                                  assign first_variant_with_color = variant
+                                  break
+                                endif
+                              endfor
+                            endif
+                          %}
+
+                          {% comment %} 1. Featured image first {% endcomment %}
+                          {% assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
+                          {% if featured_media %}
+                            <div class="thumbnail active" data-src="{{ featured_media | image_url: width: 1946 }}" data-label="Front View">
+                                {{ featured_media | image_url: width: 80, height: 80 | image_tag }}
+                            </div>
+                          {% endif %}
+
+                          {% comment %} 2. First variant's metafield images {% endcomment %}
+                          {% if first_variant_with_color and first_variant_with_color.metafields.custom.variant_images %}
+                            {% for variant_image in first_variant_with_color.metafields.custom.variant_images.value %}
+                              <div class="thumbnail" data-src="{{ variant_image | image_url: width: 1946 }}" data-label="Front View">
+                                  {{ variant_image | image_url: width: 80, height: 80 | image_tag }}
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+
+                          {% comment %} 3. Selected variant's metafield images (only if different) {% endcomment %}
+                          {% if product.selected_or_first_available_variant.metafields.custom.variant_images %}
+                            {% if first_variant_with_color.id != product.selected_or_first_available_variant.id %}
+                              {% for variant_image in product.selected_or_first_available_variant.metafields.custom.variant_images.value %}
+                                <div class="thumbnail" data-src="{{ variant_image | image_url: width: 1946 }}" data-label="Front View">
+                                    {{ variant_image | image_url: width: 80, height: 80 | image_tag }}
+                                </div>
+                              {% endfor %}
+                            {% endif %}
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if has_variant_videos %}
+            <div class="tab-content" id="videos">
+                <div class="main-content">
+                    <div class="main-video-container">
+                        <button class="lightbox-arrow lightbox-arrow--prev" type="button" aria-label="Previous video">
+                            {% render 'icon-caret' %}
+                        </button>
+                      {% assign video_play = false %}
+                      <div class="main-video">
+                          {% for media in product.media %}
+                            {% comment %} Show all videos regardless of alt {% endcomment %}
+                            {%- liquid
+                              case media.media_type
+                              when 'external_video'
+                                if video_play == false
+                                assign video_class = 'js-' | append: media.host
+                                  if media.host == 'youtube'
+                                    echo media | external_video_url: autoplay: true, loop: true, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy"
+                                  else
+                                    echo media | external_video_url: autoplay: true, loop: true | external_video_tag: class: video_class, loading: "lazy"
+                                  endif
+                                endif
+                                assign video_play = true
+                              when 'video'
+                                if video_play == false
+                                  echo media | media_tag: image_size: "1980x", autoplay: true, loop: true, controls: true, preload: "none"
+                                endif
+                                assign video_play = true
+                              endcase
+                            -%}
+                          {% endfor %}
+                      </div>
+                        <button class="lightbox-arrow lightbox-arrow--next" type="button" aria-label="Next video">
+                            {% render 'icon-caret' %}
+                        </button>
+                        <div class="lightbox-loader hidden"></div>
+                        <div class="video-label">Product Video</div>
+                    </div>
+                    <div class="thumbnails-container">
+                        <div class="product__title" {{ block.shopify_attributes }}>
+                          <h3>
+                            {{ product.title | escape }}
+                          </h3>
+                          <div class="options">
+                            {% if product.selected_or_first_available_variant.option1 != blank %}
+                              <div class="option">{{product.options[0]}} <span class="option-one-value">{{ product.selected_or_first_available_variant.option1 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                            {% if product.selected_or_first_available_variant.option2 != blank %}
+                              <div class="option">{{product.options[1]}} <span class="option-two-value">{{ product.selected_or_first_available_variant.option2 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                            {% if product.selected_or_first_available_variant.option3 != blank %}
+                              <div class="option">{{product.options[2]}} <span class="option-three-value">{{ product.selected_or_first_available_variant.option3 | prepend: ' - ' }}</span></div>
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="thumbnails-container__inner">
+                          {% for media in product.media %}
+                            {% if media.media_type == 'external_video' %}
+                              {% comment %} Show all videos regardless of alt {% endcomment %}
+                                {% if media.host == 'youtube' %}
+                                  <div class="thumbnail" data-src="{{ media.external_id }}" data-label="Youtube" data-poster="{{ media.preview_image | image_url: width: 400 }}">
+                                    {{ media.preview_image | image_url: width: 80, height: 80 | image_tag  }}
+                                    <span class="thumbnail-label" style="display:none;">YouTube</span>
+                                  </div>
+                                {% elsif media.host == 'vimeo' %}
+                                  <div class="thumbnail" data-src="{{ media.external_id }}" data-label="Vimeo" data-poster="{{ media.preview_image | image_url: width: 400 }}">
+                                    {{ media.preview_image | image_url: width: 80, height: 80 | image_tag  }}
+                                    <span class="thumbnail-label" style="display:none;">Vimeo</span>
+                                  </div>
+                                {% endif %}
+                            {% elsif media.media_type == 'video' %}
+                              {% comment %} Show all videos regardless of alt {% endcomment %}
+                                <div class="thumbnail" data-src="{{ media.sources[0].url }}" data-label="Direct" data-poster="{{ media.preview_image | image_url: width: 400 }}">
+                                  {{ media.preview_image | image_url: width: 80, height: 80 | image_tag  }}
+                                  <span class="thumbnail-label" style="display:none;">Direct</span>
+                                </div>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>

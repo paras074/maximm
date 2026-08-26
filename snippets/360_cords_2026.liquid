@@ -1,0 +1,48 @@
+{% assign collection_link = collection.url %}
+{% if collection.metafields.custom.custom_collection_link != blank %}
+  {% assign collection_link = collection.metafields.custom.custom_collection_link %}
+{% endif %}
+
+<div class="collection-360-card">
+
+  <div class="collection-360-image">
+    <a href="{{ collection_link }}">
+
+      {% if collection.image != blank %}
+        {{ collection.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: collection.title }}
+
+      {% elsif collection.products.first.featured_image != blank %}
+        {{ collection.products.first.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: collection.products.first.title }}
+
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {% endif %}
+
+    </a>
+  </div>
+
+  <div class="collection-360-content">
+
+    <h5 class="collection-360-title">
+      <a href="{{ collection_link }}">
+        {% if collection.metafields.custom.custom_collection_tittle != blank %}
+          {{ collection.metafields.custom.custom_collection_tittle }}
+        {% else %}
+          {{ collection.title }}
+        {% endif %}
+      </a>
+    </h5>
+
+    {% if collection.metafields.custom.categroy_collection_description != blank %}
+      <p class="collection-360-description">
+        {{ collection.metafields.custom.categroy_collection_description }}
+      </p>
+    {% endif %}
+
+    <a href="{{ collection_link }}" class="collection-360-btn">
+      View Products ({{ collection.all_products_count }})
+    </a>
+
+  </div>
+<a href="{{ collection_link }}" class="ablut-link"> </a>
+</div>

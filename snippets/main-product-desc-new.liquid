@@ -1,0 +1,428 @@
+<style>
+  .faq-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    margin:0;
+    padding:18px 20px;
+    border:1px solid #ddd;
+    background:#fff;
+}
+
+.faq-content{
+    display:none;
+    padding:20px;
+    border:1px solid #ddd;
+    border-top:0;
+}
+
+.faq-item.active .faq-content{
+    display:block;
+}
+
+.faq-icon{
+    font-size:22px;
+    font-weight:600;
+    transition:.3s;
+}.product-mobile-accordion{
+    display:none;
+}
+
+@media (max-width:767px){
+
+    .product-section-tabs{
+        display:none;
+    }
+
+    .product-mobile-accordion{
+        display:block;
+    }
+
+    .mobile-accordion-item{
+        border-bottom:1px solid #ddd;
+    }
+
+    .mobile-accordion-title{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px 20px;
+        cursor:pointer;
+        font-weight:600;
+        background:#fff;
+    }
+
+    .mobile-accordion-title span{
+        font-size:24px;
+        line-height:1;
+    }
+
+    .mobile-accordion-item .product-tab-section{
+        display:none;
+        padding:20px 0;
+    }
+}
+
+</style>
+
+<div class="bullet-points-hidden hidden">
+  {% assign collection_list = product.collection %}
+  {% if product.metafields.custom.bullet_points != blank %}
+    <div class="bullet-points">
+      <ul class="product-bullet-point">
+      {% for point in product.metafields.custom.bullet_points.value %}
+        <li class="point">
+            <a href="javascript: void(0)" class="feat-btn">
+              {% if point.icon_image != blank %}
+                <span class="ico">{{ point.icon_image | image_url: width: 50, height: 50 | image_tag }}</span>
+              {% endif %}
+              <span class="txt">{{ point.title }}</span>
+            </a>
+
+            <div class="feature-meta-wrap">
+              <span class="close-btn">{%  render 'icon-close' %}</span>
+              <h5 class="h4">{{ point.title }}</h5>
+              <div class="feature-meta">
+                {% if point.feature_image != blank %}
+                  <div class="feature-thumb">{{ point.feature_image | image_url: width: 232, height: 232 | image_tag }}</div>
+                {% endif %}
+                {% if point.feature_description != blank %}
+                  <div class="feature-desc">
+                    {{ point.feature_description |  metafield_tag}}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% elsif collection_list != blank %}
+    <div class="bullet-points">
+      <ul class="product-bullet-point">
+      {% for point in collection_list.value %}
+        <li class="point">
+            {% if point.icon_image != blank %}
+              <span class="ico">{{ point.icon_image | image_url: width: 50, height: 50 | image_tag }}</span>
+            {% endif %}
+            <span class="txt">{{ point.title }}</span>
+          </li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+
+<div class="product-section-tabs page-width">
+  {% if product.description != blank  or product.metafields.custom.gallery != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="pdp-description-gallery-wrapper">description</a>
+  {% endif %}
+
+  {% if product.metafields.spec.title != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="productspec">specs</a>
+  {% endif %}
+
+  <a href="javascript:void(0)" class="btn" data-section="az_reviews_wrapper">reviews</a>
+  
+
+  {% if product.metafields.custom.faqs != blank %}
+    <a href="javascript:void(0)" class="btn" data-section="product-faqs-wrapper">FAQ</a>
+  {% endif %}
+</div>
+
+
+<div class="product-mobile-accordion">
+
+  {% if product.description != blank or product.metafields.custom.gallery != blank %}
+    <div class="mobile-accordion-item">
+      <div class="mobile-accordion-title" data-target="pdp-description-gallery-wrapper">
+        Description
+        <span>+</span>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.spec.title != blank %}
+    <div class="mobile-accordion-item">
+      <div class="mobile-accordion-title" data-target="productspec">
+        Specs
+        <span>+</span>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="mobile-accordion-item">
+    <div class="mobile-accordion-title" data-target="az_reviews_wrapper">
+      Reviews
+      <span>+</span>
+    </div>
+  </div>
+
+  {% if product.metafields.custom.faqs != blank %}
+    <div class="mobile-accordion-item">
+      <div class="mobile-accordion-title" data-target="product-faqs-wrapper">
+        FAQ
+        <span>+</span>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
+<div class="pdp-description-gallery-wrapper  nnnn product-tab-section"  id="pdp-description-gallery-wrapper">
+  <div class="dec-gallery-inner">
+    {% if product.description != blank %}
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+    {% endif %}
+  
+    {% if product.images.size > 0 %}
+      <div class="product-description-images">
+        {% for image in product.images limit: 4 %}
+          <div class="image-item">
+            {{
+              image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                widths: '400,600,800,1200',
+                class: 'description-image'
+            }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+
+
+
+
+{% if product.metafields.spec.title != blank %}
+  <div class="product-specification product-tab-section" id="productspec" style="display: none">
+    <div class="page-width-outer">
+      <div class="inner-page-width">
+        <div class="ps-title">Specification:</div>
+        <ul class="product-specification__list">
+          {% for title in product.metafields.spec.title %}
+            {% comment %} {% assign handle_title = title | handleize %} {% endcomment %}
+            <li class="product-specification__list-item">
+              <div class="title">
+                <div class="inner-title">{{ title }}</div>
+              </div>
+              <div class="key">{{ product.metafields.spec.answer[forloop.index0] }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+  <div class="product-review product-tab-section" id="az_reviews_wrapper" style="display: none">
+    <div class="page-width-outer">
+      <div class="inner-page-width">
+       <!-- Start of Judge.me code -->
+    {% assign has_legacy = false %}
+    {% if product.metafields.judgeme.widget.size > 20 %}
+        {% assign has_legacy = true %}
+    {% endif %}
+    <div style='clear:both'></div>
+    <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}' data-product-id='{{ product.id }}' data-widget='review' data-auto-install='false' data-shop-reviews-count='{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}' data-entry-point='review_widget.js' data-entry-key='review-widget/main.js'>
+        {% if has_legacy %}
+            <div class='jdgm-legacy-widget-content' style='display: none;'>{{ product.metafields.judgeme.widget }}</div>
+        {% endif %}
+    </div>
+    {% if product.metafields.judgeme.review_widget_data %}
+        <script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>
+    {% endif %}  
+<!-- End of Judge.me code -->
+    </div>
+  </div>
+  </div>
+
+{% if product.metafields.custom.faqs.value != blank %}
+  <div class="product-faqs-wrapper product-tab-section" id="product-faqs-wrapper" style="display: none;">
+    <div class="page-width">
+      <div class="faq-custom-container">
+        <h2> Frequently Asked Questions </h2>
+        {% for faq_entry in product.metafields.custom.faqs.value %}
+            <div class="faq-item" style="margin-bottom:20px;">
+
+              <h3 class="faq-title">
+                {{ faq_entry.faq_question.value | default: faq_entry.faq_question }}
+                <span class="faq-icon">+</span>
+              </h3>
+
+              <div class="faq-content rte" style="display:none;">
+                {% if faq_entry.faq_answer != blank %}
+                  {{ faq_entry.faq_answer | metafield_tag }}
+                {% else %}
+                  {{ faq_entry.answer | metafield_tag }}
+                {% endif %}
+              </div>
+
+            </div>
+          {% endfor %}
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+
+{% if product.metafields.custom.faqs.value != blank %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq_entry in product.metafields.custom.faqs.value %}
+
+      {% capture answer_html %}{% if faq_entry.faq_answer != blank %}{{ faq_entry.faq_answer | metafield_tag }}{% elsif faq_entry.answer != blank %}{{ faq_entry.answer | metafield_tag }}{% endif %}{% endcapture %}
+
+      {% if answer_html != blank %}
+      {
+        "@type": "Question",
+        "name": {{ faq_entry.faq_question.value | default: faq_entry.faq_question | strip_html | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ answer_html | strip_html | strip_newlines | json }}
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endif %}
+
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".faq-title").forEach(function(title){
+
+    title.addEventListener("click", function(){
+
+      const item = this.parentElement;
+
+      // Close other accordions
+      document.querySelectorAll(".faq-item").forEach(function(el){
+        if(el !== item){
+          el.classList.remove("active");
+          el.querySelector(".faq-content").style.display = "none";
+          el.querySelector(".faq-icon").textContent = "+";
+        }
+      });
+
+      const content = item.querySelector(".faq-content");
+
+      if(item.classList.contains("active")){
+        item.classList.remove("active");
+        content.style.display = "none";
+        this.querySelector(".faq-icon").textContent = "+";
+      }else{
+        item.classList.add("active");
+        content.style.display = "block";
+        this.querySelector(".faq-icon").textContent = "−";
+      }
+
+    });
+
+  });
+
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (window.innerWidth > 767) return;
+
+  const accordionTitles = document.querySelectorAll(".mobile-accordion-title");
+  const accordionWrapper = document.querySelector(".product-mobile-accordion");
+
+  // Hide all sections first
+  document.querySelectorAll(".product-tab-section").forEach(function(section){
+      section.style.display = "none";
+  });
+
+  // Reset all accordion buttons
+  accordionTitles.forEach(function(title){
+      title.classList.remove("active");
+      title.querySelector("span").textContent = "+";
+  });
+
+  // ===========================
+  // OPEN DESCRIPTION BY DEFAULT
+  // ===========================
+  const defaultTitle = document.querySelector(
+      '.mobile-accordion-title[data-target="pdp-description-gallery-wrapper"]'
+  );
+
+  if (defaultTitle) {
+
+      const defaultSection = document.getElementById("pdp-description-gallery-wrapper");
+      const parentItem = defaultTitle.closest(".mobile-accordion-item");
+
+      defaultTitle.classList.add("active");
+      defaultTitle.querySelector("span").textContent = "−";
+
+      if (defaultSection) {
+          parentItem.appendChild(defaultSection);
+          defaultSection.style.display = "block";
+      }
+  }
+
+  // Accordion Click
+  accordionTitles.forEach(function(title){
+
+      title.addEventListener("click", function(){
+
+          const targetId = this.dataset.target;
+          const targetSection = document.getElementById(targetId);
+          const parentItem = this.closest(".mobile-accordion-item");
+
+          const isOpen = this.classList.contains("active");
+
+          // Close all accordions
+          accordionTitles.forEach(function(other){
+
+              other.classList.remove("active");
+              other.querySelector("span").textContent = "+";
+
+              const otherSection = document.getElementById(other.dataset.target);
+
+              if(otherSection){
+                  otherSection.style.display = "none";
+
+                  // Move section back after accordion wrapper
+                  accordionWrapper.after(otherSection);
+              }
+
+          });
+
+          // If already open, keep it closed
+          if(isOpen){
+              return;
+          }
+
+          // Open clicked accordion
+          this.classList.add("active");
+          this.querySelector("span").textContent = "−";
+
+          if(targetSection){
+              parentItem.appendChild(targetSection);
+              targetSection.style.display = "block";
+          }
+
+      });
+
+  });
+
+});
+</script>

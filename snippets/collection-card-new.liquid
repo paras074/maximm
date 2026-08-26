@@ -1,0 +1,36 @@
+<a class="st-col-md-4 st-col-sm-6 card-product-item card-product-item-new" href="{{ collection.url }}">
+    <div class="product-image">
+      <span class="link">
+        {% if collection.featured_image != blank %}
+            {{ collection.featured_image | image_url: width: 450 | image_tag: loading: 'lazy', class: 'w-100' }}
+        {%  elsif collection.image != blank %}
+            {{ collection.image | image_url: width: 450 | image_tag: loading: 'lazy', class: 'w-100' }}
+        {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+        <div class="hover-state">
+          <span class="see-products">
+            <span class="sp">See Products</span>
+            <span class="arr">
+              <svg width="50" height="16" viewBox="0 0 50 16" fill="none">
+                <path d="M48.7764 8.97676C49.167 8.58624 49.167 7.95307 48.7764 7.56255L42.4125 1.19859C42.022 0.808061 41.3888 0.808061 40.9983 1.19859C40.6077 1.58911 40.6077 2.22227 40.9983 2.6128L46.6551 8.26965L40.9983 13.9265C40.6077 14.317 40.6077 14.9502 40.9983 15.3407C41.3888 15.7312 42.022 15.7312 42.4125 15.3407L48.7764 8.97676ZM0.0693359 9.26965H48.0693V7.26965H0.0693359V9.26965Z" fill="black"/>
+                </svg>
+            </span>
+          </span>
+          <span class="see-products">
+            <span class="sp">See Products</span>
+            <span class="arr">
+              <svg width="50" height="16" viewBox="0 0 50 16" fill="none">
+                <path d="M48.7764 8.97676C49.167 8.58624 49.167 7.95307 48.7764 7.56255L42.4125 1.19859C42.022 0.808061 41.3888 0.808061 40.9983 1.19859C40.6077 1.58911 40.6077 2.22227 40.9983 2.6128L46.6551 8.26965L40.9983 13.9265C40.6077 14.317 40.6077 14.9502 40.9983 15.3407C41.3888 15.7312 42.022 15.7312 42.4125 15.3407L48.7764 8.97676ZM0.0693359 9.26965H48.0693V7.26965H0.0693359V9.26965Z" fill="black"/>
+                </svg>
+            </span>
+          </span>
+        </div>
+      </span>
+    </div>
+    <div class=" product-content">
+      <h5 class="product-title">
+        <span>{{ collection.title }}</span>  
+      </h5>
+    </div>
+  </a>

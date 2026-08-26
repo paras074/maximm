@@ -1,0 +1,931 @@
+{%- style -%}
+  {{ section.settings.title_font | font_face: font_display: 'swap' }}
+  {{ section.settings.body_font | font_face: font_display: 'swap' }}
+
+  #shopify-section-{{ section.id }} .featured-showcases {
+    --primary: {{ section.settings.primary_color }};
+    --primary-dark: {{ section.settings.primary_dark }};
+    --text-dark: {{ section.settings.text_color }};
+    --text-gray: {{ section.settings.text_gray }};
+    --bg-light: {{ section.settings.bg_color }};
+    --border-color: {{ section.settings.border_color }};
+    
+    --badge-color: {{ section.settings.badge_text_color }};
+    --section-title-color: {{ section.settings.section_title_color }};
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-desc-color: {{ section.settings.card_desc_color }};
+    --meta-color: {{ section.settings.meta_color }};
+    --link-color: {{ section.settings.link_color }};
+
+    background-color: var(--bg-light);
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    position: relative;
+    font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .featured-showcases {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .badge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--badge-color);
+    font-size: {{ section.settings.badge_font_size_desktop }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--link-color);
+    font-size: {{ section.settings.link_font_size_desktop }}px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  #shopify-section-{{ section.id }} .text-link svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .section-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.section_title_font_size_desktop }}px;
+    font-weight: {{ section.settings.title_font.weight | default: 500 }};
+    color: var(--section-title-color);
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .date-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: {{ section.settings.meta_font_size_desktop }}px;
+    color: var(--meta-color);
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .featured-grid {
+      grid-template-columns: 6fr 4fr;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .main-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .main-feature-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 492px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .main-feature-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #shopify-section-{{ section.id }} .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background: #1818c8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(24, 24, 200, 0.4);
+  }
+
+  #shopify-section-{{ section.id }} .play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+    margin-left: 4px;
+  }
+  
+  #shopify-section-{{ section.id }} .placeholder-svg {
+    background-color: #f4f4f4;
+    color: #ccc;
+  }
+
+  #shopify-section-{{ section.id }} .feature-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .author-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    background: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .main-feature-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.card_title_font_size_desktop }}px;
+    color: var(--card-title-color);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .main-feature-desc {
+    font-size: {{ section.settings.card_desc_font_size_desktop }}px;
+    color: var(--card-desc-color);
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .news-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    background-color: #f8f9fb;
+    padding: 40px;
+    border-radius: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .news-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  #shopify-section-{{ section.id }} .news-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  #shopify-section-{{ section.id }} .news-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.card_title_font_size_desktop }}px;
+    color: var(--card-title-color);
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .news-meta .text-link {
+    color: var(--link-color);
+    font-size: {{ section.settings.link_font_size_desktop }}px;
+    font-weight: 500;
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
+  }
+
+  @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .badge {
+      font-size: {{ section.settings.badge_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .section-title {
+      font-size: {{ section.settings.section_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .main-feature-title,
+    #shopify-section-{{ section.id }} .news-title {
+      font-size: {{ section.settings.card_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .main-feature-desc {
+      font-size: {{ section.settings.card_desc_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .date-meta {
+      font-size: {{ section.settings.meta_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .text-link,
+    #shopify-section-{{ section.id }} .news-meta .text-link {
+      font-size: {{ section.settings.link_font_size_mobile }}px;
+    }
+  }
+
+  /* Video Modal CSS */
+  #shopify-section-{{ section.id }} .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .video-modal.active {
+    display: flex;
+  }
+  #shopify-section-{{ section.id }} .video-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    cursor: pointer;
+  }
+  #shopify-section-{{ section.id }} .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 2;
+    aspect-ratio: 16/9;
+  }
+  #shopify-section-{{ section.id }} .video-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .video-container {
+    width: 100%;
+    height: 100%;
+  }
+  #shopify-section-{{ section.id }} .video-container iframe,
+  #shopify-section-{{ section.id }} .video-container video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    border: none;
+  }
+{%- endstyle -%}
+
+<div class="featured-showcases" id="FeaturedShowcases-{{ section.id }}">
+  <div class="container">
+    {%- if section.settings.section_title != blank -%}
+      <h2 class="section-title">{{ section.settings.section_title | escape }}</h2>
+    {%- endif -%}
+
+    <div class="featured-grid">
+      
+      <!-- Left Column: Main Feature -->
+      <div class="main-feature">
+        {%- if section.settings.data_source == 'blog' and section.settings.blog != blank -%}
+          {%- assign main_article = section.settings.blog.articles.first -%}
+          {%- if main_article -%}
+            <div class="main-feature-img-wrapper">
+              {%- if main_article.image -%}
+                <img src="{{ main_article.image | img_url: '800x' }}" alt="{{ main_article.image.alt | escape }}" class="main-feature-img" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'main-feature-img placeholder-svg' }}
+              {%- endif -%}
+              <div class="play-btn" data-video-url="{{ main_article.metafields.custom.video_url | default: '' }}" data-html5-video="{{ main_article.metafields.custom.html5_video.value.url | default: '' }}">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              {%- if section.settings.fallback_author_avatar != blank -%}
+                <img src="{{ section.settings.fallback_author_avatar | img_url: '100x' }}" alt="Author Avatar" class="author-avatar" loading="lazy" style="margin: 0; flex-shrink: 0;">
+              {%- else -%}
+                <div class="author-avatar" style="display: flex; align-items: center; justify-content: center; background: #eee; color: #999; margin: 0; flex-shrink: 0;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+              {%- endif -%}
+              
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <h3 class="main-feature-title" style="margin: 0;">{{ main_article.title | escape }}</h3>
+                <p class="main-feature-desc" style="margin: 0;">{{ main_article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
+                <a href="{{ main_article.url }}" class="text-link" style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                  Read Full Story
+                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.6667 0.666667V8.15C10.6667 8.32681 10.5964 8.49638 10.4714 8.6214C10.3464 8.74643 10.1768 8.81666 10 8.81666C9.82319 8.81666 9.65362 8.74643 9.5286 8.6214C9.40357 8.49638 9.33333 8.32681 9.33333 8.15V2.27615L1.13809 10.4714C1.01306 10.5964 0.843495 10.6667 0.666684 10.6667C0.489872 10.6667 0.320301 10.5964 0.195273 10.4714C0.0702458 10.3464 3.90903e-06 10.1768 1.63151e-10 10C-3.90871e-06 9.8232 0.0702305 9.65363 0.195252 9.5286L8.39052 1.33333H2.51667C2.33986 1.33333 2.17029 1.2631 2.04526 1.13807C1.92024 1.01305 1.85 0.843477 1.85 0.666667C1.85 0.489856 1.92024 0.320286 2.04526 0.195262C2.17029 0.0702379 2.33986 0 2.51667 0L10 0C10.1768 0 10.3464 0.0702379 10.4714 0.195262C10.5964 0.320286 10.6667 0.489856 10.6667 0.666667Z" fill="#273CFF"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          {%- endif -%}
+
+        {%- else -%}
+          {%- assign main_block = section.blocks | where: 'type', 'main_feature' | first -%}
+          {%- if main_block -%}
+            <div class="main-feature-img-wrapper">
+              {%- if main_block.settings.image != blank -%}
+                <img src="{{ main_block.settings.image | img_url: '800x' }}" alt="{{ main_block.settings.image.alt | escape }}" class="main-feature-img" loading="lazy">
+              {%- else -%}
+                 {{ 'image' | placeholder_svg_tag: 'main-feature-img placeholder-svg' }}
+              {%- endif -%}
+              <div class="play-btn" data-video-url="{{ main_block.settings.video_url | escape }}" data-html5-video="{{ main_block.settings.html5_video.sources[1].url | default: main_block.settings.html5_video.sources[0].url }}">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              {%- if main_block.settings.author_avatar != blank -%}
+                <img src="{{ main_block.settings.author_avatar | img_url: '100x' }}" alt="Author Avatar" class="author-avatar" loading="lazy" style="margin: 0; flex-shrink: 0;">
+              {%- else -%}
+                <div class="author-avatar" style="display: flex; align-items: center; justify-content: center; background: #eee; color: #999; margin: 0; flex-shrink: 0;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+              {%- endif -%}
+              
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <h3 class="main-feature-title" style="margin: 0;">{{ main_block.settings.title | escape }}</h3>
+                <p class="main-feature-desc" style="margin: 0;">{{ main_block.settings.description | escape }}</p>
+                {%- if main_block.settings.link_text != blank -%}
+                  <a href="{{ main_block.settings.link }}" class="text-link" style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;">
+                    {{ main_block.settings.link_text | escape }}
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.6667 0.666667V8.15C10.6667 8.32681 10.5964 8.49638 10.4714 8.6214C10.3464 8.74643 10.1768 8.81666 10 8.81666C9.82319 8.81666 9.65362 8.74643 9.5286 8.6214C9.40357 8.49638 9.33333 8.32681 9.33333 8.15V2.27615L1.13809 10.4714C1.01306 10.5964 0.843495 10.6667 0.666684 10.6667C0.489872 10.6667 0.320301 10.5964 0.195273 10.4714C0.0702458 10.3464 3.90903e-06 10.1768 1.63151e-10 10C-3.90871e-06 9.8232 0.0702305 9.65363 0.195252 9.5286L8.39052 1.33333H2.51667C2.33986 1.33333 2.17029 1.2631 2.04526 1.13807C1.92024 1.01305 1.85 0.843477 1.85 0.666667C1.85 0.489856 1.92024 0.320286 2.04526 0.195262C2.17029 0.0702379 2.33986 0 2.51667 0L10 0C10.1768 0 10.3464 0.0702379 10.4714 0.195262C10.5964 0.320286 10.6667 0.489856 10.6667 0.666667Z" fill="#273CFF"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <!-- Right Column: News Items -->
+      <div class="news-column">
+        {%- if section.settings.data_source == 'blog' and section.settings.blog != blank -%}
+          {%- for article in section.settings.blog.articles offset: 1 limit: 2 -%}
+            <div class="news-item">
+              {%- if article.tags.size > 0 -%}
+                <div class="badge">{{ article.tags.first | escape }}</div>
+              {%- else -%}
+                <div class="badge">News</div>
+              {%- endif -%}
+              <h3 class="news-title">{{ article.title | escape }}</h3>
+              <div class="news-meta">
+                <span class="date-meta">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="fill: none !important;" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" style="fill: transparent !important;"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  {{ article.published_at | date: "%d %B, %Y" }}
+                </span>
+                <a href="{{ article.url }}" class="text-link">Read Story</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'news_item' -%}
+              <div class="news-item" {{ block.shopify_attributes }}>
+                {%- if block.settings.badge_text != blank -%}
+                  <div class="badge">{{ block.settings.badge_text | escape }}</div>
+                {%- endif -%}
+                <h3 class="news-title">{{ block.settings.title | escape }}</h3>
+                <div class="news-meta">
+                  <span class="date-meta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="fill: none !important;" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" style="fill: transparent !important;"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    {{ block.settings.date | escape }}
+                  </span>
+                  {%- if block.settings.link_text != blank -%}
+                    <a href="{{ block.settings.link }}" class="text-link">{{ block.settings.link_text | escape }}</a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div class="video-modal" id="VideoModal-{{ section.id }}">
+  <div class="video-modal-overlay"></div>
+  <div class="video-modal-content">
+    <button class="video-modal-close">&times;</button>
+    <div class="video-container" id="VideoContainer-{{ section.id }}"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const playButtons = document.querySelectorAll('#FeaturedShowcases-{{ section.id }} .play-btn');
+    const modal = document.getElementById('VideoModal-{{ section.id }}');
+    if (!modal) return;
+    const overlay = modal.querySelector('.video-modal-overlay');
+    const closeBtn = modal.querySelector('.video-modal-close');
+    const container = document.getElementById('VideoContainer-{{ section.id }}');
+
+    function openModal(videoUrl, html5Video) {
+      let iframeHtml = '';
+      if (html5Video && html5Video !== '') {
+        iframeHtml = `<video controls autoplay playsinline><source src="${html5Video}" type="video/mp4">Your browser does not support the video tag.</video>`;
+      } else if (videoUrl && videoUrl !== '') {
+        let embedUrl = videoUrl;
+        if (videoUrl.includes('youtube.com/watch?v=')) {
+          embedUrl = videoUrl.replace('watch?v=', 'embed/') + '?autoplay=1';
+        } else if (videoUrl.includes('youtu.be/')) {
+          embedUrl = videoUrl.replace('youtu.be/', 'www.youtube.com/embed/') + '?autoplay=1';
+        }
+        iframeHtml = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      } else {
+        iframeHtml = `<p style="color: white; padding: 20px;">No video configured.</p>`;
+      }
+      
+      container.innerHTML = iframeHtml;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      container.innerHTML = '';
+    }
+
+    playButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const videoUrl = this.getAttribute('data-video-url');
+        const html5Video = this.getAttribute('data-html5-video');
+        openModal(videoUrl, html5Video);
+      });
+    });
+
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured Showcases",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Featured Showcases"
+    },
+    {
+      "type": "radio",
+      "id": "data_source",
+      "label": "Data Source",
+      "options": [
+        {
+          "value": "blocks",
+          "label": "Manual Blocks"
+        },
+        {
+          "value": "blog",
+          "label": "Blog Category"
+        }
+      ],
+      "default": "blocks"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Used if Data Source is set to Blog Category"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_author_avatar",
+      "label": "Fallback Author Avatar",
+      "info": "Avatar used for the main feature when pulling from a blog"
+    },
+    {
+      "type": "header",
+      "content": "Color Customizations"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fafbff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "text_gray",
+      "label": "Text Gray (Description)",
+      "default": "#4e505b"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "primary_dark",
+      "label": "Primary Dark Color",
+      "default": "#1111b0"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#a0a0a0"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Section Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card Description Color",
+      "default": "#4e505b"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta/Date Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "header",
+      "content": "Font Customizations"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "barlow_n5"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body Font",
+      "default": "barlow_n4"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_desktop",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Meta Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Mobile Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_mobile",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Meta Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "main_feature",
+      "name": "Main Feature",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "YouTube/Vimeo URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "video",
+          "id": "html5_video",
+          "label": "HTML5 Video (MP4)"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_avatar",
+          "label": "Author/Brand Avatar"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "QVC Feature: 360° Rotating Extension Cord Set"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Designed by an electrician to solve everyday clearance issues."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Watch Full QVC Segment"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "news_item",
+      "name": "News Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "Industry Update"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "2024 Brings the Future of Power Accessibility"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "27 September, 2025"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Read Story"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Showcases",
+      "blocks": [
+        {
+          "type": "main_feature"
+        },
+        {
+          "type": "news_item"
+        },
+        {
+          "type": "news_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

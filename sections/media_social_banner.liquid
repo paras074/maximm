@@ -1,0 +1,406 @@
+{%- style -%}
+  {{ section.settings.title_font | font_face: font_display: 'swap' }}
+  {{ section.settings.body_font | font_face: font_display: 'swap' }}
+
+  #shopify-section-{{ section.id }} .social-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    margin-top: {{ section.settings.margin_top_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .social-banner {
+      flex-direction: row;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .social-content {
+    background-color: {{ section.settings.bg_color }};
+    width: 100%;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .social-content {
+      width: 470px;
+      padding: 60px 48px;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .social-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.title_font_size_desktop }}px;
+    font-weight: {{ section.settings.title_font.weight | default: 500 }};
+    color: {{ section.settings.title_color }};
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .social-title span {
+    color: {{ section.settings.accent_color }};
+  }
+
+  #shopify-section-{{ section.id }} .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .social-icon {
+    width: 49px;
+    height: 49px;
+    background: white;
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 2px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+  }
+  
+  #shopify-section-{{ section.id }} .social-icon:hover {
+    transform: translateY(-2px);
+  }
+
+  #shopify-section-{{ section.id }} .social-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: {{ section.settings.icon_color }};
+  }
+
+  #shopify-section-{{ section.id }} .social-image {
+    flex: 1;
+    height: 300px;
+    background: #000;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .social-image {
+      height: 340px; /* Matched from original */
+    }
+  }
+
+  #shopify-section-{{ section.id }} .social-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    color: #ccc;
+  }
+
+  @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .social-title {
+      font-size: {{ section.settings.title_font_size_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="container social-banner" id="SocialBanner-{{ section.id }}">
+  <div class="social-content">
+    <h2 class="social-title">
+      {{ section.settings.title_line_1 | escape }}<br>
+      <span>{{ section.settings.title_line_2 | escape }}</span>
+    </h2>
+    <div class="social-icons">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="social-icon" aria-label="{{ block.settings.platform }}" {{ block.shopify_attributes }}>
+          {%- case block.settings.platform -%}
+            {%- when 'facebook' -%}
+              <svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.48-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7A10.04 10.04 0 0022 12.06c0-5.54-4.5-10.02-10-10.02z"/></svg>
+            {%- when 'instagram' -%}
+              <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2zm-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.6 18.4 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25zM12 7a5 5 0 015 5 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5zm0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+            {%- when 'twitter' -%}
+              <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.05c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+            {%- when 'linkedin' -%}
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.66H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 01-2.06-2.06 2.06 2.06 0 112.06 2.06zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            {%- when 'youtube' -%}
+              <svg viewBox="0 0 24 24"><path d="M21.582 6.186a2.605 2.605 0 0 0-1.838-1.847C18.123 3.9 12 3.9 12 3.9s-6.123 0-7.744.439a2.605 2.605 0 0 0-1.838 1.847C2 7.822 2 12 2 12s0 4.178.418 5.814a2.605 2.605 0 0 0 1.838 1.847C5.877 20.1 12 20.1 12 20.1s6.123 0 7.744-.439a2.605 2.605 0 0 0 1.838-1.847C22 16.178 22 12 22 12s0-4.178-.418-5.814zM9.995 15.502v-7.004l6.502 3.502-6.502 3.502z"/></svg>
+            {%- when 'tiktok' -%}
+              <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.15 5.54-3.33 7.31-1.92 1.56-4.63 2.15-7.01 1.63-2.67-.58-4.9-2.6-5.59-5.26-.74-2.85.22-6 2.5-7.9 2.01-1.68 4.88-2.18 7.36-1.49v4.06c-1.43-.5-3.12-.38-4.32.55-1.19.92-1.63 2.57-1.14 4.02.48 1.41 1.89 2.45 3.39 2.55 1.72.11 3.41-.83 4.1-2.42.34-.78.47-1.65.45-2.51V.02z"/></svg>
+          {%- endcase -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="social-image">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | img_url: '1200x' }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Social Media Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "Find us on"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "Social Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Color Customizations"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color (Box)",
+      "default": "#3441fe"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Text)",
+      "default": "#fde400"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#3441fe"
+    },
+    {
+      "type": "header",
+      "content": "Font Customizations"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "barlow_n5"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body Font",
+      "default": "barlow_n4"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top margin (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom margin (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top margin (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom margin (Mobile)",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_link",
+      "name": "Social Link",
+      "settings": [
+        {
+          "type": "select",
+          "id": "platform",
+          "label": "Platform",
+          "options": [
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "twitter", "label": "Twitter" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "tiktok", "label": "TikTok" }
+          ],
+          "default": "facebook"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Profile Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Media Banner",
+      "blocks": [
+        {
+          "type": "social_link",
+          "settings": {
+            "platform": "facebook"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "platform": "instagram"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "platform": "twitter"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": {
+            "platform": "linkedin"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

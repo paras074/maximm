@@ -1,0 +1,384 @@
+{% style %}
+  #shopify-section-{{ section.id }} .overview-challenge-wrapper {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #shopify-section-{{ section.id }} .overview-title {
+    font-size: {{ section.settings.overview_title_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.overview_title_color }};
+    margin-bottom: 24px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .overview-item {
+    font-size: {{ section.settings.overview_text_size_mobile }}px;
+    color: {{ section.settings.overview_text_color }};
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .overview-item strong {
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .section-divider {
+    width: 100%;
+    height: 1px;
+    background: #d9d9d9;
+    {% if section.settings.divider_color != blank and section.settings.divider_color != 'rgba(0,0,0,0)' %}
+    background: {{ section.settings.divider_color }};
+    {% endif %}
+    margin: 48px 0;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .challenge-title {
+    font-size: {{ section.settings.challenge_title_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.challenge_title_color }};
+    margin-bottom: 24px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .challenge-text {
+    font-size: {{ section.settings.challenge_text_size_mobile }}px;
+    line-height: 1.4;
+    color: {{ section.settings.challenge_text_color }};
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .challenge-text p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .challenge-text strong {
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .slash-icon {
+    width: 15px;
+    height: 21px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .overview-challenge-wrapper {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    #shopify-section-{{ section.id }} .overview-title {
+      font-size: {{ section.settings.overview_title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .overview-item {
+      font-size: {{ section.settings.overview_text_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .challenge-title {
+      font-size: {{ section.settings.challenge_title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .challenge-text {
+      font-size: {{ section.settings.challenge_text_size_desktop }}px;
+    }
+  }
+
+  .overview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+{% endstyle %}
+
+<div class="overview-challenge-wrapper">
+  <div class="container page-width">
+    <div class="overview-section">
+      {% if section.settings.overview_title != blank %}
+        <h2 class="overview-title">{{ section.settings.overview_title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.overview_text != blank %}
+        <div class="overview-list">
+          {% assign safe_text = section.settings.overview_text | replace: '<br>', '|||' | replace: '<br/>', '|||' | replace: '<br />', '|||' | newline_to_br | replace: '<br />', '|||' | replace: '<br>', '|||' %}
+          {% assign lines = safe_text | split: '|||' %}
+          {% for line in lines %}
+            {% assign clean_line = line | strip %}
+            {% if clean_line != blank %}
+              <div class="overview-item">
+                <div class="slash-icon">
+                  <svg width="15" height="21" viewBox="0 0 15 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.38717 2.78268C6.51158 0.371377 9.37784 -0.671861 11.7891 0.452546C14.2004 1.57695 15.2437 4.44321 14.1193 6.85451L9.18454 17.4371C8.06013 19.8484 5.19387 20.8916 2.78257 19.7672C0.371267 18.6428 -0.671966 15.7765 0.452442 13.3652L5.38717 2.78268Z" fill="url(#paint0_linear_{{ section.id }}_{{ forloop.index }})"/>
+                  <defs>
+                  <linearGradient id="paint0_linear_{{ section.id }}_{{ forloop.index }}" x1="13.3871" y1="2.42511" x2="0.901361" y2="18.0039" gradientUnits="userSpaceOnUse">
+                  <stop offset="0.104167" stop-color="#416BFF"/>
+                  <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+                  </linearGradient>
+                  </defs>
+                  </svg>
+                </div>
+                {% if clean_line contains ':' %}
+                  {% assign first_part = clean_line | split: ':' | first %}
+                  {% assign rest = clean_line | replace_first: first_part, '' | replace_first: ':', '' %}
+                  <span><strong>{{ first_part | strip }}:</strong> {{ rest | strip }}</span>
+                {% else %}
+                  <span>{{ clean_line }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_divider %}
+      <div class="section-divider"></div>
+    {% endif %}
+
+    <div class="challenge-section">
+      {% if section.settings.challenge_title != blank %}
+        <h2 class="challenge-title">{{ section.settings.challenge_title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.challenge_text != blank %}
+        <div class="challenge-text">
+          {{ section.settings.challenge_text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Case Study Overview",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Overview Section"
+    },
+    {
+      "type": "text",
+      "id": "overview_title",
+      "label": "Overview Title",
+      "default": "Client Overview"
+    },
+    {
+      "type": "textarea",
+      "id": "overview_text",
+      "label": "Overview List Items",
+      "info": "Enter each item on a new line. Format as 'Label: Value'. The text before the colon will automatically be bolded.",
+      "default": "Partner: IBM / Enterprise Data Centers\nIndustry: Mission-Critical Computing & AI Infrastructure\nScope: Scaling for 10G and Beyond\nNodes Powered: Part of our 4,200,000+ worldwide node network"
+    },
+    {
+      "type": "header",
+      "content": "Divider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show Divider",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#d9d9d9"
+    },
+    {
+      "type": "header",
+      "content": "Challenge Section"
+    },
+    {
+      "type": "text",
+      "id": "challenge_title",
+      "label": "Challenge Title",
+      "default": "The Challenge: Beyond the Jack"
+    },
+    {
+      "type": "richtext",
+      "id": "challenge_text",
+      "label": "Challenge Description",
+      "default": "<p>In a 24/7 operational environment, the network backbone isn't just about speed; it is about <strong>Zero-Failure reliability.</strong> Our partners required an infrastructure that could handle massive data throughput without the \"Silent Sting\" of signal interference commonly found in high-density environments.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "overview_title_color",
+      "label": "Overview Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "overview_text_color",
+      "label": "Overview Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "challenge_title_color",
+      "label": "Challenge Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "challenge_text_color",
+      "label": "Challenge Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "overview_title_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Overview Title Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "overview_text_size_desktop",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Overview Text Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "challenge_title_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Challenge Title Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "challenge_text_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Challenge Text Size",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Typography (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "overview_title_size_mobile",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Overview Title Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "overview_text_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Overview Text Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "challenge_title_size_mobile",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Challenge Title Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "challenge_text_size_mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Challenge Text Size",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Study Overview",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %}
+

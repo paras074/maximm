@@ -1,0 +1,13 @@
+{% comment %}
+    Usage:
+
+    render 'wishlist-button', product: product
+{% endcomment %}
+
+<div class="wishlist-icon-wrapper">
+    
+    <button class='st-wishlist-button' data-type='details' data-handle='{{ product.handle }}'>
+        
+    </button>
+    {% comment %} {% render 'icon-heart' %} {% endcomment %}
+</div>

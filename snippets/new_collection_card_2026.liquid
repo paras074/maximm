@@ -1,0 +1,70 @@
+
+<div class="ncc-card">
+
+  <div class="ncc-image">
+    {%- if collection.metafields.custom.custom_collection_link != blank -%}
+      <a href="{{ collection.metafields.custom.custom_collection_link }}">
+    {%- else -%}
+      <a href="{{ collection.url }}">
+    {%- endif -%}
+
+      {%- if collection.featured_image != blank -%}
+        {{ collection.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      {%- elsif collection.image != blank -%}
+        {{ collection.image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="ncc-content">
+
+    <h5 class="ncc-title">
+      {%- if collection.metafields.custom.custom_collection_link != blank -%}
+        <a href="{{ collection.metafields.custom.custom_collection_link }}">
+      {%- else -%}
+        <a href="{{ collection.url }}">
+      {%- endif -%}
+
+        {%- if collection.metafields.custom.custom_collection_tittle != blank -%}
+          {{ collection.metafields.custom.custom_collection_tittle }}
+        {%- else -%}
+          {{ collection.title }}
+        {%- endif -%}
+      </a>
+    </h5>
+
+    {%- if collection.metafields.custom.categroy_collection_description != blank -%}
+      <p class="ncc-description">{{ collection.metafields.custom.categroy_collection_description }}</p>
+   
+    {%- endif -%}
+      {% assign tags = collection.metafields.custom.category_collection_tag.value %}
+
+    {% if tags != blank %}
+      <div class="category-tags">
+        {% for item in tags %}
+          <div
+            class="tag-item"
+            style="background-color: {{ item.color }};"
+          >
+            {{ item.label_tag }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  {%- if collection.metafields.custom.custom_collection_link != blank -%}
+    <a href="{{ collection.metafields.custom.custom_collection_link }}" class="ncc-arrow" aria-label="Shop now">
+  {%- else -%}
+    <a href="{{ collection.url }}" class="ncc-arrow" aria-label="Shop now">
+  {%- endif -%}
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <a href="{{ collection.url }}" class="ablut-link"> </a>
+
+</div>

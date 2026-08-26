@@ -1,0 +1,130 @@
+{{ 'section-extension-cords-360.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="extension-cords-360 section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="floating-element-1">
+    <img class="w-100 parallaxBlockUp" src="{{ 'maximm-logo-single-element-gradient-header.svg' | asset_url }}">
+  </div>
+  <div class="page-width">
+    <div class="inner-page-width">
+      <div class="content-holder">
+        <div class="top-fold gutters-end-0">
+          {{ section.settings.top_fold_content }}
+        </div>
+        <div class="footer-elements">
+          <div class="st-row st-align-items-center">
+            <div class="st-col-md footer-elements__left gutters-end-0">
+              <div class="inline-ethernet-cables-short-info st-row no-gutters">
+                <div class="item st-col-auto">
+                  <div class="form-row align-items-center">
+                    <div class="col-auto">
+                      <img class="ico" src="{{ 'unique-space-saving.svg' | asset_url }}">
+                    </div>
+                    <div class="col label">
+                      Unique<br>
+                      Space-Saving
+                    </div>
+                  </div>
+                </div>
+                <div class="item st-col-auto">
+                  <div class="form-row align-items-center">
+                    <div class="col-auto">
+                      <img class="ico" src="{{ 'rotating-flat-plug.svg' | asset_url }}">
+                    </div>
+                    <div class="col label">
+                      Rotating<br>
+                      Flat Plug
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="st-col-md-auto footer-elements__right">
+              <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+                {{ section.settings.btn_txt }}
+                <span class="ico-holder">
+                  <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Extension Cords 360",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "top_fold_content",
+      "label": "Top Fold Content"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 146
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

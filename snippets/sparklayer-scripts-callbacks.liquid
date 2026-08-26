@@ -1,0 +1,37 @@
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        function b2bUpdate() {
+            const checkPdpLoaded = setInterval(() => {
+                let pdpSpark = document.querySelectorAll("spark-pdp");
+                pdpSpark.forEach((item) =>{
+                    let pdp = item.shadowRoot.querySelector(".price-summary p"); 
+                    let pdpPriceTitle = item.shadowRoot.querySelectorAll(".spark-table-legacy-th")[2];
+                    if (pdp) {
+                        let productInfoWrapper = document.querySelector('.product__info-container');
+                        const pdpSpark = document.querySelector("spark-pdp")
+                        const getLowPrice = document.querySelector('.least-original-price');
+                        pdp.classList.remove('mr-5');
+    
+                        let heightInfo = productInfoWrapper.getBoundingClientRect().top;
+                        let heightspark = pdpSpark.getBoundingClientRect().top;
+    
+                        let originalPriceTop = heightspark - heightInfo;
+    
+                        getLowPrice.style.top = `${originalPriceTop}px`;
+                        getLowPrice.style.left = `${pdp.getBoundingClientRect().width + 8}px`;
+                        setTimeout(() => {
+                            getLowPrice.style.opacity = '1';
+                            getLowPrice.style.visibility = 'visible';
+                        }, 300);
+                        clearInterval(checkPdpLoaded);
+                    }
+                })
+            }, 1000);
+        }
+
+        b2bUpdate();
+
+        window.addEventListener("resize", b2bUpdate);
+    })
+</script>

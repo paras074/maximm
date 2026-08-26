@@ -1,0 +1,190 @@
+{{ 'section-product-cables.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="section-product-cables section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="section-heading">
+      <div class="title">
+        <div class="ico-holder">
+          <img class="w-100" src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+        </div>
+        <div class="gutters-end-0">
+          {{ section.settings.section_heading__content }}
+        </div>
+      </div>
+      <a class="btn btn-primary" href="{{ section.settings.section_heading_btn__url }}">
+        {{ section.settings.section_heading_btn__txt }}
+        <span class="ico-holder">
+          <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+        </span>
+      </a>
+    </div>
+    <div class="st-row card-product-items">
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="st-col-md-3 st-col-sm-6 card-product-item">
+        <div class="card">
+          <a class="card__link" href="#">
+            <div class="product-image">
+              <img src="{{ 'td-hdmi8k.jpg' | asset_url }}">
+            </div>
+            <div class="product-bottom">
+              <div class="heading">HDMI 8K Male-to-Female Extender</div>
+              <div class="icon-trigger">
+                {%- render 'icon-arrow-right-long' -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Cable Products",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "section_heading__content",
+      "label": "Section Heading: Content"
+    },
+    {
+      "type": "text",
+      "id": "section_heading_btn__txt",
+      "label": "Section Heading Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "section_heading_btn__url",
+      "label": "Section Heading Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

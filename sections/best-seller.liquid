@@ -1,0 +1,241 @@
+{%- style -%}
+  #bestSeller {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+    #bestSeller .bs-item {
+    flex: 0 0 calc((100% / {{ section.settings.slides_desktop }}) - (20px * ({{ section.settings.slides_desktop }} - 1) / {{ section.settings.slides_desktop }}));
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #FEFEFE;
+    border: 1px solid #FAFAF9;
+    border-radius: 10px;
+    padding: 10px;
+  }
+   @media (max-width: 991px) {
+  #bestSeller .bs-item {
+    flex: 0 0 calc(
+      (100% / {{ section.settings.slides_tablet }}) -
+      (12px * ({{ section.settings.slides_tablet }} - 1) / {{ section.settings.slides_tablet }})
+    );
+  }
+}
+  @media screen and (max-width: 749px) {
+    #bestSeller {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    #bestSeller .bs-item {
+      flex: 0 0 calc((100% / {{ section.settings.slides_mobile }}) - (12px * ({{ section.settings.slides_mobile }} - 1) / {{ section.settings.slides_mobile }}));
+    }
+  }
+{%- endstyle -%}
+
+<div id="bestSeller">
+  <div class="page-width">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- assign collection = section.settings.collection -%}
+
+    {%- if collection != blank -%}
+      <div class="bs-slider-outer">
+
+        <div class="bs-nav bs-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="bs-wrapper" id="bsWrapper">
+          {%- for product in collection.products limit: section.settings.product_limit -%}
+            <div class="bs-item">
+              <a href="{{ product.url }}">
+                {%- if product.featured_image != blank -%}
+                  <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+                {%- endif -%}
+              </a>
+
+              <h3 class="bs-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              <div style='{{ jm_style }}' class='jdgm-widget bs-rating jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+                {{ product.metafields.judgeme.badge }}
+             </div>
+              <div class="bs-price">
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="bs-compare">{{ product.compare_at_price | money }}</span>
+                  <span class="bs-sale">{{ product.price | money }}</span>
+                {%- else -%}
+                  <span>From {{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="bs-nav bs-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+      </div>
+    {%- else -%}
+      <p>Please select a collection</p>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var wrapper = document.getElementById('bsWrapper');
+    if (!wrapper) return;
+    var root = wrapper.closest('.bs-slider-outer');
+    var prevBtn = root.querySelector('.bs-prev');
+    var nextBtn = root.querySelector('.bs-next');
+
+    function scrollAmount() {
+      var item = wrapper.querySelector('.bs-item');
+      if (!item) return 300;
+      var gap = parseInt(getComputedStyle(wrapper).gap) || 0;
+      return item.getBoundingClientRect().width + gap;
+    }
+
+    prevBtn.addEventListener('click', function () {
+      wrapper.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function () {
+      wrapper.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Best Seller",
+  "tag": "section",
+  "class": "section-best-seller",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Seller"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choose collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "label": "Number of products to show",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Slides to show (Desktop)",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "slides_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Slides to show (Tablet)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slides_mobile",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Slides to show (Mobile)",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Seller"
+    }
+  ]
+}
+{% endschema %}

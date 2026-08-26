@@ -1,0 +1,118 @@
+{{ 'section-full-width-product-slider.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+{% if collection.metafields.custom.slider_products != blank %}
+<div class="full-width-products-slider section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="swiper js-full-width-products-slider ">
+    <div class="swiper-wrapper">
+      {% for block in collection.metafields.custom.slider_products.value %}
+        {% assign product = block %}
+        {% if product.available %}
+          <div class="swiper-slide product-item">
+            <div class="product-image">
+              <a class="link" href="{{ product.url }}">
+                {{ product.featured_media | image_url: width: 410 | image_tag }}
+              </a>
+            </div>
+            <div class="product-content">
+              <div class="product-cat">{{ product.collection }}</div>
+              <div class="product-title tests">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </div>
+                  <!-- Start Areviews Collection Rating Code -->
+                  <div class='areviews_product_item areviews_stars{{ card_product.id }}' data-product-id='{{ card_product.id }}'></div>
+                  <!-- End Areviews Collection Rating Code -->
+              <div class="product-footer mt-auto">
+                <div class="product-price">
+                  
+                  <span class="ico-holder">
+                    {% render 'icon-price-tag' %}
+                  </span>
+                  From {{ product.price_min | money_with_currency }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="floating-semicircle">
+      <img class="w-100" src="{{ 'semicircleslider.svg' | asset_url }}">
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Section: Full w slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "name": "product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

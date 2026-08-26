@@ -1,0 +1,97 @@
+/*
+* Mixin for easy media queries
+* @include bp(tablet-only) { SCSS here };
+* Default css is for mobile screens
+*/
+.ethernet-cable-banner {
+  position: relative;
+  z-index: 1;
+  min-height: 78rem;
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner {
+    min-height: 70rem;
+  }
+}
+.ethernet-cable-banner .floating-shape-1 {
+  position: absolute;
+  right: 0;
+  width: 75%;
+  max-width: 56.2rem;
+  transform: translate(11.5%, -53%);
+  top: 0;
+  z-index: -1;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner .floating-shape-1 {
+    max-width: 41.8rem;
+    width: 39%;
+  }
+}
+@media (min-width: 990px) {
+  .ethernet-cable-banner .inner-page-width {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 89.8%;
+  }
+}
+.ethernet-cable-banner .c-row {
+  --bs-gutter-x: 0;
+  justify-content: flex-end;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner .content-holder {
+    flex: 0 0 auto;
+    width: 49%;
+  }
+}
+.ethernet-cable-banner .content-holder h2 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.ethernet-cable-banner .content-holder .inline-ethernet-cables-short-info {
+  margin: 4rem 0 6.5rem;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner .content-holder .inline-ethernet-cables-short-info {
+    margin: 4rem 0 9rem;
+  }
+}
+@media (max-width: 767px) {
+  .ethernet-cable-banner--v2, .ethernet-cable-banner--industry {
+    min-height: 67.5rem;
+    justify-content: flex-end;
+    padding: 8.5rem 0;
+  }
+}
+.ethernet-cable-banner--v2 .content-holder h2, .ethernet-cable-banner--industry .content-holder h2 {
+  font-weight: 500;
+}
+.ethernet-cable-banner--v2 .content-holder .btn, .ethernet-cable-banner--industry .content-holder .btn {
+  margin-top: 1rem;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner--v2 .content-holder .btn, .ethernet-cable-banner--industry .content-holder .btn {
+    margin-top: 2rem;
+  }
+}
+.ethernet-cable-banner--industry {
+  font-size: 1.8rem;
+}
+@media (min-width: 750px) {
+  .ethernet-cable-banner--industry {
+    min-height: 55rem;
+  }
+}
+@media (max-width: 767px) {
+  .ethernet-cable-banner--industry {
+    min-height: 55.5rem;
+    padding: 7.5rem 0;
+  }
+}

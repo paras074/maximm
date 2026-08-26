@@ -1,0 +1,101 @@
+{{ 'section-sleek-cable.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="sleek-cable section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="section-heading">
+      <h3>{{ section.settings.section_heading__title }}</h3>
+    </div>
+    <div class="main-image">
+      {{ section.settings.main_image | image_url: width: 2000 | image_tag }}
+    </div>
+    <ul>
+      <li>
+        Same high quality cables with a new upgraded look! No need to hide your <strong>HDMI cables</strong> anymore.
+        Now's your chance to share your style with custom colors you won't find anywhere else.
+      </li>
+      <li>
+        The <strong>HDMI's</strong> braided exterior fortifies the cable's outside layer for a cable that is stronger
+        than the standard PVC HDMI cords.
+      </li>
+      <li>
+        This <strong>HDM 8K</strong> cable transmits <strong>48Gbps</strong> speeds for a better, lag-free, tear-free
+        experience in <strong>8k</strong>. You'll be shocked by the smooth, crystal clear advantage over 4k!
+      </li>
+      <li>
+        The gold plated connectors, pure copper interior, and advanced graphics processor come together for a cable made
+        with precious metal durability and future proof technology. UL listed for safe home use!
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Sleek Cable",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "section_heading__title",
+      "label": "Section Heading: Title"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

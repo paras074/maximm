@@ -1,0 +1,232 @@
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+
+  /* Full-width continuous solid borders */
+  #shopify-section-{{ section.id }} .ticker-section {
+    background-color: {{ section.settings.bg_color }};
+    border-top: 1px solid {{ section.settings.border_color }} !important;
+    border-bottom: 1px solid {{ section.settings.border_color }} !important;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  /* The scrolling track */
+  #shopify-section-{{ section.id }} .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-ticker 20s linear infinite;
+  }
+
+  /* Optional: Pause on hover */
+  #shopify-section-{{ section.id }} .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Content wrapper to handle the gaps */
+  #shopify-section-{{ section.id }} .ticker-content {
+    display: flex;
+    gap: 64px; /* Exactly 64px gap */
+    padding-right: 64px; /* Gap between the original and clone */
+  }
+
+  /* The 140px Logo Box */
+  #shopify-section-{{ section.id }} .ticker-item {
+    width: 140px; /* Exactly 140px width */
+    height: 60px;
+    padding: 10px 16px;
+    border: 1px solid {{ section.settings.logo_border_color }}1A;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 2px 3px 10px rgba(0,0,0,0.05);
+    background: #fff;
+    flex-shrink: 0;
+  }
+  
+  #shopify-section-{{ section.id }} .ticker-item img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  #shopify-section-{{ section.id }} .placeholder-svg {
+    height: 38px;
+    width: 100px;
+    fill: #ccc;
+  }
+
+  /* Smooth scroll animation */
+  @keyframes scroll-ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+{%- endstyle -%}
+
+<div class="ticker-section section-{{ section.id }}-padding section-{{ section.id }}-padding-mobile" id="Ticker-{{ section.id }}">
+  <div class="ticker-track">
+    <!-- Original Set -->
+    <div class="ticker-content">
+      {%- for block in section.blocks -%}
+        <div class="ticker-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="{{ block.settings.logo.alt | escape }}" loading="lazy">
+          {%- else -%}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        <!-- Placeholders if no blocks -->
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+      {%- endfor -%}
+    </div>
+    
+    <!-- Cloned Set for Seamless Infinite Scrolling -->
+    <div class="ticker-content" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        <div class="ticker-item">
+          {%- if block.settings.logo != blank -%}
+            <img src="{{ block.settings.logo | img_url: '200x' }}" alt="{{ block.settings.logo.alt | escape }}" loading="lazy">
+          {%- else -%}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        <!-- Placeholders if no blocks -->
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        <div class="ticker-item">{{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Logo Ticker",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Customizations"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Top/Bottom Border Color",
+      "default": "#d1d1d6"
+    },
+    {
+      "type": "color",
+      "id": "logo_border_color",
+      "label": "Logo Border Color (Base)",
+      "default": "#416bff",
+      "info": "This color will be rendered with 10% opacity automatically."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Mobile)",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Ticker",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

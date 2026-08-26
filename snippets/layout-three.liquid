@@ -1,0 +1,134 @@
+{% assign layout3 = product.metafields.custom.layout_three.value %}
+<div class="page-width layout-three">
+  {% if layout3.full_width_image_1 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout3.full_width_image_1
+        | image_url: width: 3840
+        | image_tag:
+          width: layout3.full_width_image_1.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout3.text_block_1 != blank %}
+    <div class="text-block">
+
+      {{
+        layout3.text_block_1 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+
+  {% if layout3.full_width_image_2 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout3.full_width_image_2
+        | image_url: width: 3840
+        | image_tag:
+          width: layout3.full_width_image_2.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+
+  {% if layout3.three_column_card_images != blank or layout3.three_column_card_titles != blank %}
+    <div class="three-col-card-wrapper">
+      {% if layout3.heading_for_3_column_section %}
+        <h2 class="three-col-card-section-heading row-heading">{{ layout3.heading_for_3_column_section }}</h2>
+      {% endif %}
+      <div class="three-col-card-wrapper-inner">
+        {% for item in layout3.three_column_card_images.value %}
+          <div class="three-col-card-item">
+            <div class="three-col-card-item-image">
+              {{ item | image_url: width: 750 | image_tag }}
+            </div>
+            
+            <h3 class="three-col-card-item-title col-heading">{{layout3.three_column_card_titles.value[forloop.index0 ] }}</h3>
+            <div class="three-col-card-item-desc col-description">{{layout3.three_column_card_descriptions.value[forloop.index0 ] }}</div>
+          </div> 
+        {% endfor %} 
+      </div>
+    </div>
+  {% endif %}
+  
+
+  {% if layout3.four_column_card_images != blank or layout3.four_column_card_titles != blank %}
+    <div class="four-col-card-wrapper">
+      {% if layout3.heading_for_4_column_section %}
+        <h2 class="four-col-card-section-heading row-heading">{{ layout3.heading_for_4_column_section }}</h2>
+      {% endif %}
+      <div class="four-col-card-wrapper-inner">
+        {% for item in layout3.four_column_card_images.value %}
+          <div class="four-col-card-item">
+            <div class="four-col-card-item-image">
+              {{ item | image_url: width: 750 | image_tag }}
+            </div>
+            
+            <h3 class="four-col-card-item-image col-heading">
+              {{ layout3.four_column_card_titles.value[forloop.index0] }}
+            </h3>
+            <div class="four-col-card-item-desc col-description">{{layout3.four_column_card_descriptions.value[forloop.index0 ] }}</div>
+          </div> 
+        {% endfor %} 
+      </div>
+    </div>
+  {% endif %}
+
+  {% if layout3.full_width_image_3 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout3.full_width_image_3
+        | image_url: width: 3840
+        | image_tag:
+          width: layout3.full_width_image_3.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout3.full_width_image_4 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout3.full_width_image_4
+        | image_url: width: 3840
+        | image_tag:
+          width: layout3.full_width_image_4.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout3.full_width_image_5 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout3.full_width_image_5
+        | image_url: width: 3840
+        | image_tag:
+          width: layout3.full_width_image_5.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout3.text_block_2 != blank %}
+    <div class="text-block">
+
+      {{
+        layout3.text_block_2 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+</div>

@@ -1,0 +1,50 @@
+<div class="default-product-card">
+  <div class="product-image">
+    <a class="link" href="{{ product.url }}">
+      {{ product.featured_media | image_url: width: 450 | image_tag: loading: 'lazy' }}
+    </a>
+  </div>
+  <div class="product-content">
+    <div class="subtitle">{{ product.collections[0].title }}</div>
+    <div class="product-title 1">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+      <!-- Start Areviews Collection Rating Code -->
+<div class='areviews_product_item areviews_stars{{ product.id }}' data-product-id='{{ product.id }}'></div>
+<!-- End Areviews Collection Rating Code -->
+    </div>
+              </h3>
+
+  </div>
+  <div class="product-footer">
+    <div class="product-footer__top">
+      <div class="st-row st-align-items-end st-justify-content-between">
+        <div class="st-col-auto">
+          <div class="product-price">
+            <span class="ico-holder">
+              {% render 'icon-price-tag' %}
+            </span>
+            {{ product.price_min | money_without_trailing_zeros }}
+          </div>
+        </div>
+        <div class="st-col-auto">
+          <div class="addtocartbtn">
+            {% comment %} {% render 'icon-cart' %} {% endcomment %}
+            {%- render 'buy-buttons-dynamic',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id
+            -%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stock_div">
+      {% if product.available %}
+        In Stock
+      {% else %}
+        Sold Out
+      {% endif %}
+    </div>
+  </div>
+</div>

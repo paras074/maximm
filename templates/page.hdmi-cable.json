@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cableProducts": {
+      "type": "section-product-cables",
+      "settings": {
+        "section_heading__content": "<h2>Shop Extension Cords</h2><p>Maximm Cable's are ensured to provide the highest quality products and customer care for over a decade.</p>",
+        "section_heading_btn__txt": "Explore All",
+        "section_heading_btn__url": "shopify://collections/extension-cords",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "buyNowProductsBanner": {
+      "type": "section-buy-now-products-banner",
+      "settings": {
+        "title_left": "",
+        "btn_txt_left": "",
+        "btn_url_left": "",
+        "title_right": "",
+        "btn_txt_right": "",
+        "btn_url_right": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "cableQuality": {
+      "type": "section-cable-quality",
+      "settings": {
+        "content": "<h3>Enjoy the <strong>best</strong> image quality!</h3><p>Multi Device Compatibility Compatible with Blu-ray players, Fire & Apple TV’s, gaming consoles, Pc’s, laptops and more. testing</p>",
+        "btn_txt": "Shop HDMI Cables",
+        "btn_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "sleekCable": {
+      "type": "section-sleek-cable",
+      "settings": {
+        "main_image": "shopify://shop_images/Group-HDMI-scaled-e1695218062577.jpg",
+        "section_heading__title": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "newsletter": {
+      "type": "section-newsletter",
+      "settings": {
+        "subtext": "TOP RATED PRODUCTS",
+        "title": "Extension Cords, Internet Cables, Hdmi, & More Buy In Bulk Wholesale Pricing.",
+        "show_form": true,
+        "padding_top": 70,
+        "padding_bottom": 100,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 66
+      }
+    }
+  },
+  "order": [
+    "cableProducts",
+    "buyNowProductsBanner",
+    "cableQuality",
+    "sleekCable",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,121 @@
+{% assign layout4 = product.metafields.custom.layout_four.value %}
+<div class="page-width layout-four">
+  {% if layout4.full_width_image_1 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout4.full_width_image_1
+        | image_url: width: 3840
+        | image_tag:
+          width: layout4.full_width_image_1.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout4.text_block_1 != blank %}
+    <div class="text-block">
+
+      {{
+        layout4.text_block_1 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+
+
+
+  {% if layout4.three_column_card_images_1 != blank or layout4.three_column_card_headings_1 != blank %}
+    <div class="three-col-card-wrapper">
+      {% if layout4.heading_for_3_column_section_1 %}
+        <h2 class="three-col-card-section-heading row-heading">{{ layout4.heading_for_3_column_section_1 }}</h2>
+      {% endif %}
+      <div class="three-col-card-wrapper-inner">
+        {% for item in layout4.three_column_card_images_1.value %}
+          <div class="three-col-card-item">
+            <div class="three-col-card-item-image">
+              {{ item | image_url: width: 750 | image_tag }}
+            </div>
+            
+            <h3 class="three-col-card-item-title col-heading">{{layout4.three_column_card_headings_1.value[forloop.index0 ] }}</h3>
+            <div class="three-col-card-item-desc col-description">{{layout4.three_column_card_descriptions_1.value[forloop.index0 ] }}</div>
+          </div> 
+        {% endfor %} 
+      </div>
+    </div>
+  {% endif %}
+
+
+  {% if layout4.three_column_card_images_2 != blank or layout4.three_column_card_headings_2 != blank %}
+    <div class="three-col-card-wrapper">
+      {% if layout4.heading_for_3_column_section_2 %}
+        <h2 class="three-col-card-section-heading row-heading">{{ layout4.heading_for_3_column_section_2 }}</h2>
+      {% endif %}
+      <div class="three-col-card-wrapper-inner">
+        {% for item in layout4.three_column_card_images_2.value %}
+          <div class="three-col-card-item">
+            <div class="three-col-card-item-image">
+              {{ item | image_url: width: 750 | image_tag }}
+            </div>
+            
+            <h3 class="three-col-card-item-title col-heading">{{layout4.three_column_card_headings_2.value[forloop.index0 ] }}</h3>
+           
+          </div> 
+        {% endfor %} 
+      </div>
+    </div>
+  {% endif %}
+
+  {% if layout4.full_width_image_2 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout4.full_width_image_2
+        | image_url: width: 3840
+        | image_tag:
+          width: layout4.full_width_image_2.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+  
+  {% if layout4.full_width_image_3 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout4.full_width_image_3
+        | image_url: width: 3840
+        | image_tag:
+          width: layout4.full_width_image_3.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout4.full_width_image_4 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout4.full_width_image_4
+        | image_url: width: 3840
+        | image_tag:
+          width: layout4.full_width_image_4.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+
+
+  {% if layout4.text_block_2 != blank %}
+    <div class="text-block">
+
+      {{
+        layout4.text_block_2 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}
+</div>

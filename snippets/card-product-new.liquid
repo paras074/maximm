@@ -1,0 +1,46 @@
+
+<div class="custom-product-card">
+
+  <div class="PwsColl_wrapper"> 
+    <a href="{{ card_product.url }}" class="custom-product-image">
+      {{
+        card_product.featured_image
+        | image_url: width: 600
+        | image_tag:
+        loading: 'lazy',
+        alt: card_product.title
+      }}
+    </a>
+
+    <div class="custom-product-info">
+
+      <h3 class="custom-product-title">
+        <a href="{{ card_product.url }}">
+          {{ card_product.title }}
+        </a>
+      </h3>
+
+      <!-- Judge.me Rating -->
+      <div class="custom-product-rating">
+        <div class="jdgm-widget jdgm-preview-badge" data-id="{{ card_product.id }}">
+          {{ card_product.metafields.judgeme.badge }}
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="custom-product-price">
+        {% render 'price', product: card_product %}
+      </div>
+    </div>
+  </div> 
+  <!-- Add To Cart -->
+  <div class="custom-product-cart">
+        {% assign product_form_id = 'product-form-' | append: section_id | append: card_product.id %}
+
+        {% render 'collection_buy_button',
+          product: card_product,
+          product_form_id: product_form_id,
+          show_pickup_availability: false
+        %}
+      </div>
+</div>

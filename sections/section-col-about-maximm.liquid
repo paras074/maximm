@@ -1,0 +1,99 @@
+{{ 'section-about-maximm.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="about-maximm section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="floatingBg">
+    <img class="w-100 anim-zoom-in-zoom-out on" src="{{ 'aboutBg.svg' | asset_url }}">
+  </div>
+  <div class="floating-shape-1 parallaxBlockUp custom-parallaxBlockUp">
+    <img class="w-100" src="{{ 'about-maximm-logo-element.svg' | asset_url }}">
+  </div>
+  <div class="page-width">
+    <div class="inner-page-width">
+      <h2>{{ section.settings.title }}</h2>
+      <div>
+        <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+          {{ section.settings.btn_txt }}
+          <span class="ico-holder">
+            {% render 'icon-button-art-white' %}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section: About Maximm",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 170
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 170
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ]
+}
+{% endschema %}

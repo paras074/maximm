@@ -1,0 +1,120 @@
+{{ 'section-customer-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+    .section-{{ section.id }}-padding-mobile {
+        padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+        padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+    }
+
+    @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+            padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+            padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+        }
+    }
+{%- endstyle -%}
+<div class="customer-review-section testimonials section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+    <div class="page-width">
+        <div class="section-heading">{{ section.settings.section_heading_richtext }}</div>
+        <div class="swiper js-customer-reviews">
+            <div class="swiper-buttons">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                <div class="swiper-slide single-testimonial">
+                    <img class="bg-image" src="https://cdn.shopify.com/s/files/1/0692/9583/3332/files/cust_review.png" alt="custom-review" width="100%" height="100%">
+                    <div class="backdrop">
+                        <div class="review">
+                            {{ block.settings.review }}
+                        </div>
+                        <div class="avatar-name">{{ block.settings.name }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Section: Customer Reviews",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "section_heading_richtext",
+            "label": "Section Header Richtext"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 100
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 100
+        },
+        {
+            "type": "range",
+            "id": "padding_top_mobile",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "label": "Mobile: Padding top",
+            "default": 60
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom_mobile",
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "label": "Mobile: Padding Bottom",
+            "default": 140
+        }
+    ],
+    "blocks": [
+        {
+            "type": "review",
+            "name": "Review",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Review"
+                },
+                {
+                    "type": "richtext",
+                    "id": "review",
+                    "label": "Review"
+                },
+                {
+                    "type": "text",
+                    "id": "name",
+                    "label": "Name"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Section: Customer Reviews"
+        }
+    ]
+  }
+{% endschema %}

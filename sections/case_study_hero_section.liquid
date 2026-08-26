@@ -1,0 +1,452 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+  
+
+  #shopify-section-{{ section.id }} .hero-content {
+    max-width: 600px;
+    z-index: 2;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .hero-bg-graphic {
+    position: absolute;
+    top: 30px;
+    left: -250px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hero-title {
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .hero-text {
+    font-size: {{ section.settings.text_size_mobile }}px;
+    line-height: 1.4;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 36px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary {
+    background-color: {{ section.settings.primary_btn_bg }};
+    color: {{ section.settings.primary_btn_text }};
+    font-weight: 500;
+    font-size: {{ section.settings.primary_btn_size }}px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow', sans-serif;
+    transition: opacity 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary:hover {
+    opacity: 0.9;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary .icon {
+    width: 24px;
+    height: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-text {
+    color: {{ section.settings.secondary_btn_text }};
+    font-weight: 500;
+    font-size: {{ section.settings.secondary_btn_size }}px;
+    text-decoration: underline;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow', sans-serif;
+    transition: opacity 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .btn-text:hover {
+    opacity: 0.7;
+  }
+
+  #shopify-section-{{ section.id }} .hero-image {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
+    margin-top: 40px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .hero-actions {
+      flex-direction: row;
+      align-items: center;
+      gap: 36px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    #shopify-section-{{ section.id }} .page-width {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+    #shopify-section-{{ section.id }} .hero-content {
+      width: 50%;
+      max-width: 600px;
+    }
+    #shopify-section-{{ section.id }} .hero-title {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .hero-text {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .hero-image {
+      position: relative;
+      width: 50%;
+      max-width: 762px;
+      height: auto;
+      margin-top: 0;
+      object-fit: contain;
+    }
+  }
+{% endstyle %}
+
+<div class="page-width">
+  <div class="hero-content">
+    <div class="breadcrumb" style="font-family: 'Barlow', sans-serif; font-size: 16px; margin-bottom: 24px; font-weight: 400;">
+      <a href="/" style="color: {{ section.settings.heading_color | default: '#212aff' }}; text-decoration: none;">Home</a> <span style="color: {{ section.settings.text_color | default: '#0d112c' }};">/ {{ page.title | default: 'Case Studies' }}</span>
+    </div>
+    {% if section.settings.bg_graphic != blank %}
+      <img src="{{ section.settings.bg_graphic | img_url: 'master' }}" alt="" class="hero-bg-graphic">
+    {% else %}
+      <svg class="hero-bg-graphic" width="237" height="171" viewBox="0 0 237 171" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="203.078" y="2.87555" width="36.3534" height="77.7107" rx="18.1767" transform="rotate(25 203.078 2.87555)" fill="url(#paint0_linear_{{ section.id }})"/>
+        <rect x="65.855" width="70.4487" height="155.827" rx="35.2244" transform="rotate(25 65.855 0)" fill="url(#paint1_linear_{{ section.id }})"/>
+        <path d="M193.144 26.3597C182.785 44.1329 152.4 83.5338 123.783 104.729C97.21 124.411 84.2988 131.687 80.9959 133.715" stroke="url(#paint2_linear_{{ section.id }})" stroke-width="1.56162"/>
+        <defs>
+          <linearGradient id="paint0_linear_{{ section.id }}" x1="229.864" y1="6.93188" x2="213.127" y2="77.9214" gradientUnits="userSpaceOnUse">
+            <stop offset="0.104167" stop-color="#F1DE2C"/>
+            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_{{ section.id }}" x1="117.765" y1="8.13381" x2="83.1642" y2="149.955" gradientUnits="userSpaceOnUse">
+            <stop offset="0.104167" stop-color="#F1DE2C"/>
+            <stop offset="1" stop-color="white" stop-opacity="0.28"/>
+          </linearGradient>
+          <linearGradient id="paint2_linear_{{ section.id }}" x1="150.356" y1="44.2522" x2="140.192" y2="136.504" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F1DE2C"/>
+            <stop offset="1" stop-color="#1A1DC9"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="hero-title">{{ section.settings.heading }}</h1>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <div class="hero-text">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.primary_btn_label != blank or section.settings.secondary_btn_label != blank %}
+      <div class="hero-actions">
+        {% if section.settings.primary_btn_label != blank %}
+          <a href="{{ section.settings.primary_btn_link }}" class="btn-primary">
+            {{ section.settings.primary_btn_label }}
+            <span class="ico-holder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none" class="icon">
+                <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0342 0)" fill="url(#paint0_linear_2373_63_{{ section.id }})"/>
+                <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.7281 6.1391)" fill="url(#paint1_linear_2373_63_{{ section.id }})"/>
+                <path d="M13.3454 5.95142C12.717 7.28067 10.8737 10.2275 9.13771 11.8126C7.52568 13.2846 6.74243 13.8288 6.54207 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                <defs>
+                  <linearGradient id="paint0_linear_2373_63_{{ section.id }}" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.104167" stop-color="#15086A"/>
+                    <stop offset="1" stop-color="#416BFF"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear_2373_63_{{ section.id }}" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.104167" stop-color="#15086A"/>
+                    <stop offset="1" stop-color="#416BFF"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+          </a>
+        {% endif %}
+
+        {% if section.settings.secondary_btn_label != blank %}
+          <a href="{{ section.settings.secondary_btn_link }}" class="btn-text">
+            {{ section.settings.secondary_btn_label }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if section.settings.hero_image != blank %}
+    <img src="{{ section.settings.hero_image | img_url: 'master' }}" alt="{{ section.settings.hero_image.alt | escape }}" class="hero-image">
+  {% else %}
+    <div class="hero-image" style="background-color: #f5f7fc; display: flex; align-items: center; justify-content: center; color: #5c6470; border-radius: 12px; height: 428px;">
+      Placeholder Image
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Page Hero Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tailored Connectivity.<br>Universal Reliability."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>High-performance infrastructure isn’t one-size-fits-all.<br>We’ve engineered specialized cabling solutions to meet<br>the unique interference, durability, and bandwidth<br>demands of the world's most critical sectors.<br>Select an industry to see our impact.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_graphic",
+      "label": "Background Graphic",
+      "info": "Leave blank to use the default yellow SVG."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_btn_label",
+      "label": "Primary Button Label",
+      "default": "View Our Impact"
+    },
+    {
+      "type": "url",
+      "id": "primary_btn_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_label",
+      "label": "Secondary Button Label",
+      "default": "Contact Sales"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "range",
+      "id": "primary_btn_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Primary Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "secondary_btn_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Secondary Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#212aff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_bg",
+      "label": "Primary Button Background",
+      "default": "#f1de2c"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text",
+      "label": "Primary Button Text",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_text",
+      "label": "Secondary Button Text",
+      "default": "#212aff"
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Desktop)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Typography (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Mobile)",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Hero Banner",
+      "category": "Hero",
+      "settings": {
+        "heading": "Tailored Connectivity.<br>Universal Reliability.",
+        "text": "<p>High-performance infrastructure isn’t one-size-fits-all.<br>We’ve engineered specialized cabling solutions to meet<br>the unique interference, durability, and bandwidth<br>demands of the world's most critical sectors.<br>Select an industry to see our impact.</p>",
+        "primary_btn_label": "View Our Impact",
+        "primary_btn_link": "shopify://collections/all",
+        "secondary_btn_label": "Contact Sales",
+        "secondary_btn_link": "/pages/contact"
+      }
+    }
+  ]
+}
+{% endschema %}
+

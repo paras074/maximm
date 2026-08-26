@@ -1,0 +1,175 @@
+
+.mega-menu-pack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    row-gap: 2px;
+    
+}
+
+a#HeaderMenu-blog {
+    display: none;
+}
+
+@media (max-width: 767px) {
+  a.link-new.Blogpws {
+    display: none;
+}
+a#HeaderMenu-blog {
+    display: block;
+}
+    .mobile-menu-pack{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+         column-gap: 10px;
+    }
+    .mobile-only .header__icon--cart {
+        height: 4rem;
+    }
+}
+.header__account-wrapper {
+  position: relative;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: 25px;
+  right: -10px;
+  width: 280px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.header__account-wrapper:hover .account-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.account-user {
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.account-avatar {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.account-name {
+  margin: 0;
+  font-size: 18px;
+  color: #777;
+}
+
+.account-signout {
+  display: inline-block;
+  margin-top: 8px;
+  text-decoration: none;
+  color: #777;
+  font-size: 12px;
+}
+.account-login p{
+  margin-bottom: 15px;
+}
+
+.account-menu {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.account-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+}
+
+.account-icon {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 8px;
+}
+
+.account-item span {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.account-login {
+  text-align: center;
+}
+
+
+.wish-text{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.st-row.st-align-items-md-end {
+    width: 100% !important;
+}
+@media (min-width: 750px) {
+    .top-rated-products .page-width>.st-row {
+         --bs-gutter-x: 0rem !important; 
+    }
+}
+
+
+
+
+/* Out of stock variant - strikethrough/hide effect */
+.Hidesoldout_variants .product-form__input--pill input[type="radio"].disabled + label,
+.Hidesoldout_variants .product-form__input--pill input[type="radio"]:disabled + label,
+.Hidesoldout_variants .product-form__input--pill label.disabled {
+  display: none;
+}
+/* #FacetsWrapperDesktop div.updated-details:nth-last-of-type(1),
+#FacetsWrapperDesktop div.updated-details:nth-last-of-type(2) {
+  display: none !important;
+}
+ */
+
+ .list-view .PwsColl_wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+ .commanpws_cl{
+  text-align:center !important;
+}
+@media (max-width: 480px) {
+	.head-tital .commanpws_cl.section-heading{
+		margin-bottom: 11px!important;
+	}
+}

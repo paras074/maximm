@@ -1,0 +1,106 @@
+{{ 'section-explore-cable.css' | asset_url | stylesheet_tag }}
+
+<div class="explore-cables">
+  <div class="page-width js-has-stretch">
+    <div class="section-heading ">
+      <h2>
+        {{ section.settings.title }}
+      </h2>
+    </div>
+    <div class="js-stretch-right position-relative outer-swiper ">
+      <div class="floating-shape-1">
+        <img class="w-100 parallaxBlockUp" src="{{ 'floating-single-element-1.svg' | asset_url }}">
+      </div>
+      <div class="swiper js-explore-cables-slider">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% assign product = block.settings.product %}
+            {% if product.available %}
+            <div class="swiper-slide">
+              <div class="product-image">
+                <a href="{{ product.url }}">
+                  {{ product.featured_media | image_url: width: 410 | image_tag }}
+                </a>
+              </div>
+              <div class="product-content">
+                <div class="st-row product-content__box">
+                  <div class="st-col-md">
+                    {% for col in product.collections %}
+                    <div class="product-cat">{{ col.title }}</div>
+                    {%  endfor %}
+                    <h5 class="product-title"><a href="{{ product.url }}">{{ product.title | truncatewords: 8, "..." }}</a></h5>
+                          <!-- Start Areviews Collection Rating Code -->
+<div class='areviews_product_item areviews_stars{{ product.id }}' data-product-id='{{ product.id }}'></div>
+<!-- End Areviews Collection Rating Code -->
+                  </div>
+                  
+                  <div class="st-col-md-auto">
+                    <div class="product-price">
+                      <span class="ico-holder">
+                        {% render 'icon-price-tag' %}
+                      </span>
+                      From: {{ product.price_min | money_with_currency }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="swiper-buttons">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <div class="btn-wrapper text-center ">
+      <a class="btn btn-warning" href="{{ section.settings.btn_url }}"
+        >{{ section.settings.btn_txt }}
+        <span class="ico-holder">
+          {% render 'icon-button-logo' %}
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="floating-digital-floor-pattern">
+    <img class="w-100" src="{{ 'digital_floor_pattern.webp' | asset_url }}">
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section: Explore Cable",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "We believe in quality, care, and creating <strong>unique products</strong> that everyone can enjoy."
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "Explore Maximm Cables"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

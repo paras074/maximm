@@ -1,0 +1,1074 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "case_study_hero_section",
+      "settings": {
+        "heading": "Tailored Connectivity.<br>Universal Reliability.",
+        "text": "<p>High-performance infrastructure isn’t one-size-fits-all.We’ve engineered specialized cabling solutions to meet the unique interference, durability, and bandwidth demands of the world's most critical sectors. Select an industry to see our impact.</p>",
+        "hero_image": "shopify://shop_images/708274355450765a34e38528821ce6e22adce6a4.70827435_1.png",
+        "bg_graphic": "shopify://shop_images/maximm_logo_element_-_yellow_gradient.svg",
+        "primary_btn_label": "View Our Impact",
+        "primary_btn_link": "",
+        "secondary_btn_label": "Contact Sales",
+        "secondary_btn_link": "",
+        "primary_btn_size": 16,
+        "secondary_btn_size": 16,
+        "bg_color": "#ffffff",
+        "heading_color": "#212aff",
+        "text_color": "#0d112c",
+        "primary_btn_bg": "#f1de2c",
+        "primary_btn_text": "#273cff",
+        "secondary_btn_text": "#212aff",
+        "heading_size_desktop": 48,
+        "text_size_desktop": 24,
+        "heading_size_mobile": 36,
+        "text_size_mobile": 18,
+        "padding_top": 60,
+        "padding_bottom": 120,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "case_grid": {
+      "type": "case_study_grid_section",
+      "blocks": {
+        "case_study_UizWwj": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "shopify://pages/case-study-details",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_jHXhKR": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_RMNghg": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_fdfVMM": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_Hf8ma4": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_9K7J9Y": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_PQJVV6": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_LKWwDU": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_MxYc7L": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_kHPFm6": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_DjxfkW": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_WQkPLc": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_FH4pxU": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_8w3LHK": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_aynyFY": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_7K8pcw": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/d3e738caa84e3d6b1db12304bfc1c9d0e784ed5f.d3e738ca.png",
+            "title": "Hilton Hotels",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_YBKMV4": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_LpVTHy": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cb3c05712aba597c2e5ef67646a4ff6038f2ec78.cb3c0571.png",
+            "title": "Fairmont Hotels & Resort",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_ELpn9E": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_4UYQgp": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_g8YXwi": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/87ed1157e1f28022cf35d3a52c0fe79b68000968.87ed1157.png",
+            "title": "IBM",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_D3ifin": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_THH6eL": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_XEpNnY": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_HgPkCi": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_L8rmHD": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_jcdxed": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_GwYbhA": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_eHF8Nz": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_i4gGhU": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_rA8JkE": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_mYBh6X": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_Hx67EY": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_98RdgG": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_Jy6nNB": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_8e7JAk": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_pqrJq8": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/2f1b0d7138a55774900d81755aad1871e4e5e921.2f1b0d71.png",
+            "title": "Ubisoft",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_9htNQx": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_nxKXbg": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_VxyiTy": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_twmbVx": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_arQAdm": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_GHKw9a": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/cc78102e353272815a18d1932c88dfeffc748ec5.cc78102e.png",
+            "title": "Ghost E-Sports",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        },
+        "case_study_DQm9Pz": {
+          "type": "case_study",
+          "settings": {
+            "badge_text": "15000+ SKUs Sold",
+            "logo": "shopify://shop_images/72b3d77f3846b541b7c0dd59eb8573733ea66a67.72b3d77f.png",
+            "title": "Grand Canyon University",
+            "subtitle": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity.",
+            "button_url": "",
+            "tag1_name": "Ethernet Cables",
+            "tag1_url": "",
+            "tag2_name": "Coaxial Cables",
+            "tag2_url": "",
+            "tag3_name": "HDMI Cables",
+            "tag3_url": "",
+            "tag4_name": "",
+            "tag4_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "case_study_UizWwj",
+        "case_study_jHXhKR",
+        "case_study_RMNghg",
+        "case_study_fdfVMM",
+        "case_study_Hf8ma4",
+        "case_study_9K7J9Y",
+        "case_study_PQJVV6",
+        "case_study_LKWwDU",
+        "case_study_MxYc7L",
+        "case_study_kHPFm6",
+        "case_study_DjxfkW",
+        "case_study_WQkPLc",
+        "case_study_FH4pxU",
+        "case_study_8w3LHK",
+        "case_study_aynyFY",
+        "case_study_7K8pcw",
+        "case_study_YBKMV4",
+        "case_study_LpVTHy",
+        "case_study_ELpn9E",
+        "case_study_4UYQgp",
+        "case_study_g8YXwi",
+        "case_study_D3ifin",
+        "case_study_THH6eL",
+        "case_study_XEpNnY",
+        "case_study_HgPkCi",
+        "case_study_L8rmHD",
+        "case_study_jcdxed",
+        "case_study_GwYbhA",
+        "case_study_eHF8Nz",
+        "case_study_i4gGhU",
+        "case_study_rA8JkE",
+        "case_study_mYBh6X",
+        "case_study_Hx67EY",
+        "case_study_98RdgG",
+        "case_study_Jy6nNB",
+        "case_study_8e7JAk",
+        "case_study_pqrJq8",
+        "case_study_9htNQx",
+        "case_study_nxKXbg",
+        "case_study_VxyiTy",
+        "case_study_twmbVx",
+        "case_study_arQAdm",
+        "case_study_GHKw9a",
+        "case_study_DQm9Pz"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "card_bg_color": "#f5f7fc",
+        "card_border_color": "#f1de2c",
+        "badge_bg_color": "linear-gradient(90deg, rgba(33, 42, 255, 1), rgba(24, 31, 194, 1) 50%, rgba(8, 9, 76, 1) 100%)",
+        "badge_text_color": "#ffffff",
+        "title_color": "#3f51ff",
+        "hover_text_color": "#181fc2",
+        "hover_link_color": "#4a4a4a",
+        "pagination_active_color": "#273cff",
+        "pagination_inactive_color": "#b1c2e9",
+        "title_size": 16,
+        "subtitle_size": 15,
+        "tag_size": 12,
+        "button_size": 12,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "stats_banner": {
+      "type": "case_study_stats_banner_section",
+      "settings": {
+        "text_before": "Powering <span class=\"highlight\">4,200,000+</span>",
+        "image": "shopify://shop_images/44d9d697541a218db8f45d193643541a6f9f927f.44d9d697.jpg",
+        "text_after": "nodes worldwide",
+        "bg_gradient": "linear-gradient(90deg, rgba(6, 0, 74, 1), rgba(17, 17, 176, 1) 50%, rgba(39, 60, 255, 1) 100%)",
+        "bg_color": "#06004a",
+        "text_color": "#ffffff",
+        "highlight_color": "#f1de2c",
+        "image_border_color": "#416bff",
+        "font_size_desktop": 42,
+        "font_size_mobile": 24,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24,
+        "margin_bottom_desktop": 120,
+        "margin_bottom_mobile": 80
+      }
+    },
+    "features": {
+      "type": "case_study_features_section",
+      "blocks": {
+        "feature_item_36WMxh": {
+          "type": "feature_item",
+          "settings": {
+            "title": "Mission Critical",
+            "text": "Beyond the Jack: Engineering Zero-Failure Networks for 24/7 Operations"
+          }
+        },
+        "feature_item_deRi9B": {
+          "type": "feature_item",
+          "settings": {
+            "title": "Future-Proofing",
+            "text": "Scaling for 10G and Beyond: How We Infrastructure Today for Tomorrow’s Bandwidth"
+          }
+        },
+        "feature_item_CdD83P": {
+          "type": "feature_item",
+          "settings": {
+            "title": "Problem-Solver",
+            "text": "The Invisible Shield: Solving Signal Interference in High-Density Medical Environments"
+          }
+        },
+        "feature_item_VpXFmx": {
+          "type": "feature_item",
+          "settings": {
+            "title": "Sustainability/Efficiency",
+            "text": "\"Architectural Integrity: Maximizing Airflow and Efficiency Through Precision Cable Management"
+          }
+        },
+        "feature_item_kbxB84": {
+          "type": "feature_item",
+          "settings": {
+            "title": "Global Scale",
+            "text": "From Blueprint to Backbone: Orchestrating Multi-Site Deployments Across Three Continents"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_36WMxh",
+        "feature_item_deRi9B",
+        "feature_item_CdD83P",
+        "feature_item_VpXFmx",
+        "feature_item_kbxB84"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/39d4e26b9fe1725449fa1f9a4a92ef80c9d2a229.39d4e26b.png",
+        "bg_color": "#ffffff",
+        "title_color": "#1a1a2e",
+        "text_color": "#5c6470",
+        "divider_color": "#212aff",
+        "image_border_color": "#f1de2c",
+        "title_size_desktop": 20,
+        "text_size_desktop": 14,
+        "title_size_mobile": 18,
+        "text_size_mobile": 14,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "margin_bottom_desktop": 120,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "margin_bottom_mobile": 80
+      }
+    },
+    "faq": {
+      "type": "case_study_faq_section",
+      "blocks": {
+        "faq_item_4UC8Ji": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What length of extension cord should I choose?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_GC4QCc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can extension cords be used outdoors?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_Y3dPUk": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know the extension cord can handle my devices?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_cz9gN7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store an extension cord?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_Xt3PJN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I plug one extension cord into another?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        "faq_item_zrRC37": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's the difference between light-duty and heavy-duty extension cords?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_4UC8Ji",
+        "faq_item_GC4QCc",
+        "faq_item_Y3dPUk",
+        "faq_item_cz9gN7",
+        "faq_item_Xt3PJN",
+        "faq_item_zrRC37"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "bg_color": "#f5f7fc",
+        "title_color": "#273cff",
+        "question_color": "#1a1a2e",
+        "answer_color": "#414448",
+        "border_color": "#d1d1d6",
+        "icon_color": "#273cff",
+        "title_size_desktop": 40,
+        "title_size_mobile": 32,
+        "question_size_desktop": 21,
+        "question_size_mobile": 16,
+        "answer_size_desktop": 15,
+        "answer_size_mobile": 15,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "margin_bottom_desktop": 0,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "margin_bottom_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "case_grid",
+    "stats_banner",
+    "features",
+    "faq"
+  ]
+}

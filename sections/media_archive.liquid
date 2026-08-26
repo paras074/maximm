@@ -1,0 +1,568 @@
+{%- style -%}
+  {{ section.settings.title_font | font_face: font_display: 'swap' }}
+  {{ section.settings.body_font | font_face: font_display: 'swap' }}
+
+  #shopify-section-{{ section.id }} .archive {
+    --primary: {{ section.settings.primary_color }};
+    --text-dark: {{ section.settings.text_color }};
+    --text-gray: {{ section.settings.text_gray }};
+    --bg-light: {{ section.settings.bg_color }};
+    
+    --badge-color: {{ section.settings.badge_text_color }};
+    --section-title-color: {{ section.settings.section_title_color }};
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-desc-color: {{ section.settings.card_desc_color }};
+    --meta-color: {{ section.settings.meta_color }};
+    --link-color: {{ section.settings.link_color }};
+
+    background-color: var(--bg-light);
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+    color: var(--text-dark);
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .archive {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .badge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--badge-color);
+    font-size: {{ section.settings.badge_font_size_desktop }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .section-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.section_title_font_size_desktop }}px;
+    font-weight: {{ section.settings.title_font.weight | default: 500 }};
+    color: var(--section-title-color);
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .archive-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .archive-grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 60px;
+      row-gap: 80px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .archive-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .archive-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.card_title_font_size_desktop }}px;
+    font-weight: 600;
+    color: var(--card-title-color);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .archive-desc {
+    font-size: {{ section.settings.card_desc_font_size_desktop }}px;
+    color: var(--card-desc-color);
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .archive-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  #shopify-section-{{ section.id }} .date-meta {
+    font-size: {{ section.settings.meta_font_size_desktop }}px;
+    font-weight: 500;
+    color: var(--meta-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+
+  #shopify-section-{{ section.id }} a {
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--link-color);
+    font-size: {{ section.settings.link_font_size_desktop }}px;
+    font-weight: 500;
+  }
+  
+  #shopify-section-{{ section.id }} .text-link svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .badge {
+      font-size: {{ section.settings.badge_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .section-title {
+      font-size: {{ section.settings.section_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .archive-title {
+      font-size: {{ section.settings.card_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .archive-desc {
+      font-size: {{ section.settings.card_desc_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .date-meta {
+      font-size: {{ section.settings.meta_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .text-link {
+      font-size: {{ section.settings.link_font_size_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="archive" id="Archive-{{ section.id }}">
+  <div class="container">
+    {%- if section.settings.badge_text != blank -%}
+      <div class="badge">{{ section.settings.badge_text | escape }}</div>
+    {%- endif -%}
+    
+    {%- if section.settings.section_title != blank -%}
+      <h2 class="section-title">{{ section.settings.section_title | escape }}</h2>
+    {%- endif -%}
+    
+    <div class="archive-grid">
+      {%- if section.settings.data_source == 'blog' and section.settings.blog != blank -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.max_items -%}
+          <div class="archive-card">
+            <h3 class="archive-title">{{ article.title | escape }}</h3>
+            <p class="archive-desc">{{ article.excerpt_or_content | strip_html | truncatewords: 25 }}</p>
+            <div class="archive-meta">
+              <span class="date-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {{ article.published_at | date: "%b %Y" }}
+              </span>
+              <a href="{{ article.url }}" class="text-link">
+                Read More
+                <svg viewBox="0 0 11 11" fill="none"><path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          <div class="archive-card" {{ block.shopify_attributes }}>
+            <h3 class="archive-title">{{ block.settings.title | escape }}</h3>
+            <p class="archive-desc">{{ block.settings.description | escape }}</p>
+            <div class="archive-meta">
+              <span class="date-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                {{ block.settings.date | escape }}
+              </span>
+              {%- if block.settings.link_text != blank -%}
+                <a href="{{ block.settings.link }}" class="text-link">
+                  {{ block.settings.link_text | escape }}
+                  <svg viewBox="0 0 11 11" fill="none"><path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Archive",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "The Archive"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Written features & archives"
+    },
+    {
+      "type": "radio",
+      "id": "data_source",
+      "label": "Data Source",
+      "options": [
+        {
+          "value": "blocks",
+          "label": "Manual Blocks"
+        },
+        {
+          "value": "blog",
+          "label": "Blog Category"
+        }
+      ],
+      "default": "blocks"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Used if Data Source is set to Blog Category"
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "label": "Maximum articles to show",
+      "default": 4,
+      "info": "Only applies when pulling from a Blog Category"
+    },
+    {
+      "type": "header",
+      "content": "Color Customizations"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fafbff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Section Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Article Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Article Description Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Date/Meta Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "header",
+      "content": "Font Customizations"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "barlow_n5"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body Font",
+      "default": "barlow_n4"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Article Title Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_desktop",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Article Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Meta Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Mobile Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_mobile",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Article Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Article Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Meta Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Link Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "archive_post",
+      "name": "Archive Post",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Maximm's 360° Rotating Extension Cord Set Sells Out on QVC"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "How a single rotating outlet design became one of QVC's fastest-selling home essentials..."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Mar 2026"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Archive",
+      "blocks": [
+        {
+          "type": "archive_post"
+        },
+        {
+          "type": "archive_post"
+        },
+        {
+          "type": "archive_post"
+        },
+        {
+          "type": "archive_post"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

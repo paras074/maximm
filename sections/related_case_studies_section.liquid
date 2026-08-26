@@ -1,0 +1,761 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #shopify-section-{{ section.id }} .section-title {
+    font-size: {{ section.settings.section_title_size_mobile }}px;
+    color: {{ section.settings.section_title_color }};
+    font-weight: 500;
+    margin-bottom: 32px;
+    padding-left: 15px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .case-grid {
+    display: flex;
+    gap: 31px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 15px 15px 30px 15px; /* shadow space */
+    scroll-padding-left: 15px;
+    scroll-padding-right: 15px;
+  }
+  #shopify-section-{{ section.id }} .case-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .case-card {
+    flex: 0 0 calc(100% - 31px);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .case-card {
+      flex: 0 0 calc(50% - 15.5px);
+    }
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} .case-card {
+      flex: 0 0 calc(33.333% - 20.66px);
+    }
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    #shopify-section-{{ section.id }} .section-title {
+      font-size: {{ section.settings.section_title_size }}px;
+      margin-bottom: 48px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .card-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: {{ section.settings.card_bg_color }};
+    border: 1px solid {{ section.settings.card_border_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  #shopify-section-{{ section.id }} .card-tag {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_text_color }};
+    font-size: {{ section.settings.tag_size_mobile }}px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 0 0 16px 16px;
+    text-transform: capitalize;
+    z-index: 2;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .card-tag {
+      font-size: {{ section.settings.tag_size }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .card-image {
+    width: 220px;
+    height: 160px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-image {
+    transform: translateY(-20px);
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-box {
+    border: 1px solid {{ section.settings.card_border_color }};
+    box-shadow: 3px 6px 4px 0 rgba(0,0,0,0.1), 0 0 0 9px {{ section.settings.card_border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .card-hover-content {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    padding: 0 24px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-hover-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .hover-text {
+    color: {{ section.settings.hover_text_color }};
+    font-size: {{ section.settings.subtitle_size_mobile }}px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .hover-text {
+      font-size: {{ section.settings.subtitle_size }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .hover-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .hover-link {
+    color: {{ section.settings.hover_link_color }};
+    text-decoration: none;
+    border-bottom: 1px solid #d1d1d6;
+    padding-bottom: 2px;
+    transition: all 0.2s;
+    font-size: {{ section.settings.hover_tag_size_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .hover-link {
+      font-size: {{ section.settings.hover_tag_size }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .hover-link:hover {
+    color: {{ section.settings.hover_text_color }};
+    border-bottom-color: {{ section.settings.hover_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hover-tags .divider {
+    width: 1px;
+    height: 10px;
+    background-color: #d1d1d6;
+  }
+
+  #shopify-section-{{ section.id }} .card-title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.title_color }};
+    margin-bottom: 14px;
+    z-index: 2;
+    font-family: 'Barlow', sans-serif;
+  }
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .card-title {
+      font-size: {{ section.settings.title_size }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary {
+    background-color: #ffffff;
+    border: 1px solid #c9d5f7;
+    color: #1a1a1a;
+    font-size: {{ section.settings.button_size_mobile }}px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    transition: all 0.2s;
+    font-family: 'Barlow', sans-serif;
+  }
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .btn-secondary {
+      font-size: {{ section.settings.button_size }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary:hover {
+    background-color: #15086A;
+    color: #ffffff;
+    border-color: #15086A;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary svg {
+    color: {{ section.settings.title_color }};
+    transition: color 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary:hover svg {
+    color: #ffffff;
+  }
+
+  /* Slider Arrows */
+  #shopify-section-{{ section.id }} .slider-arrow {
+    position: absolute;
+    top: calc(50% - 20px - 20px); /* Adjusting for card text below box */
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+  }
+  #shopify-section-{{ section.id }} .slider-arrow.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  #shopify-section-{{ section.id }} .slider-arrow-left {
+    left: -35px;
+  }
+  #shopify-section-{{ section.id }} .slider-arrow-right {
+    right: -35px;
+  }
+  
+  #shopify-section-{{ section.id }} .slider-arrow svg .arrow-bg {
+    fill: {{ section.settings.pagination_inactive_color }};
+    transition: fill 0.3s;
+  }
+  #shopify-section-{{ section.id }} .slider-arrow svg .arrow-icon {
+    fill: #000;
+    stroke: #000;
+    transition: all 0.3s;
+  }
+  #shopify-section-{{ section.id }} .slider-arrow:hover svg .arrow-bg {
+    fill: {{ section.settings.pagination_active_color }};
+  }
+  #shopify-section-{{ section.id }} .slider-arrow:hover svg .arrow-icon {
+    fill: #fff;
+    stroke: #fff;
+  }
+
+  @media (max-width: 1540px) {
+    #shopify-section-{{ section.id }} .slider-arrow-left {
+      left: 10px;
+    }
+    #shopify-section-{{ section.id }} .slider-arrow-right {
+      right: 10px;
+    }
+  }
+
+{% endstyle %}
+
+<div class="page-width" style="position: relative; max-width: 1440px; margin: 0 auto; padding: 0 20px;">
+  {% if section.settings.section_title != blank %}
+    <h2 class="section-title">{{ section.settings.section_title }}</h2>
+  {% endif %}
+  
+  <div class="slider-wrapper">
+    <div class="slider-arrow slider-arrow-left disabled" id="prev-{{ section.id }}">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" rx="20" class="arrow-bg"/>
+      <path d="M22.7586 25.4253C22.9324 25.2515 22.9324 24.9706 22.7586 24.7968L18.184 20.2222L22.7586 15.6477C22.9324 15.4739 22.9324 15.193 22.7586 15.0192C22.5848 14.8455 22.3039 14.8455 22.1302 15.0192L17.2414 19.908C17.1547 19.9947 17.1111 20.1085 17.1111 20.2223C17.1111 20.336 17.1547 20.4498 17.2414 20.5365L22.1302 25.4253C22.3039 25.599 22.5848 25.599 22.7586 25.4253Z" class="arrow-icon"/>
+      </svg>
+    </div>
+
+    <div class="case-grid" id="grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="case-card" {{ block.shopify_attributes }}>
+          <div class="card-box">
+            {% if block.settings.badge_text != blank %}
+              <div class="card-tag">{{ block.settings.badge_text }}</div>
+            {% endif %}
+
+            {% if block.settings.logo != blank %}
+              <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ block.settings.title | escape }}" class="card-image">
+            {% else %}
+              <div class="card-image" style="background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 8px;">Logo</div>
+            {% endif %}
+
+            <div class="card-hover-content">
+              {% if block.settings.subtitle != blank %}
+                <p class="hover-text">{{ block.settings.subtitle }}</p>
+              {% endif %}
+              
+              <div class="hover-tags">
+                {% assign tag_count = 0 %}
+                {% for i in (1..4) %}
+                  {% assign tag_name_key = 'tag' | append: i | append: '_name' %}
+                  {% assign tag_url_key = 'tag' | append: i | append: '_url' %}
+                  
+                  {% if block.settings[tag_name_key] != blank %}
+                    {% if tag_count > 0 %}
+                      <span class="divider"></span>
+                    {% endif %}
+                    <a href="{{ block.settings[tag_url_key] | default: '#' }}" class="hover-link">{{ block.settings[tag_name_key] }}</a>
+                    {% assign tag_count = tag_count | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card-info">
+            <h3 class="card-title">{{ block.settings.title }}</h3>
+            <a href="{{ block.settings.button_url | default: '#' }}" class="btn-secondary">
+              View Case Study
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="slider-arrow slider-arrow-right" id="next-{{ section.id }}">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+      <rect width="40" height="40" rx="20" class="arrow-bg"/>
+      <path d="M22.7586 25.4253C22.9324 25.2515 22.9324 24.9706 22.7586 24.7968L18.184 20.2222L22.7586 15.6477C22.9324 15.4739 22.9324 15.193 22.7586 15.0192C22.5848 14.8455 22.3039 14.8455 22.1302 15.0192L17.2414 19.908C17.1547 19.9947 17.1111 20.1085 17.1111 20.2223C17.1111 20.336 17.1547 20.4498 17.2414 20.5365L22.1302 25.4253C22.3039 25.599 22.5848 25.599 22.7586 25.4253Z" class="arrow-icon"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('grid-{{ section.id }}');
+    const prevBtn = document.getElementById('prev-{{ section.id }}');
+    const nextBtn = document.getElementById('next-{{ section.id }}');
+
+    function updateArrowStates() {
+      const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+      if (grid.scrollLeft <= 0) {
+        prevBtn.classList.add('disabled');
+      } else {
+        prevBtn.classList.remove('disabled');
+      }
+
+      if (grid.scrollLeft >= maxScrollLeft - 10) {
+        nextBtn.classList.add('disabled');
+      } else {
+        nextBtn.classList.remove('disabled');
+      }
+    }
+
+    grid.addEventListener('scroll', updateArrowStates);
+    window.addEventListener('resize', updateArrowStates);
+
+    prevBtn.addEventListener('click', () => {
+      const cardWidth = grid.querySelector('.case-card').offsetWidth + 31; // 31px is the gap
+      grid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const cardWidth = grid.querySelector('.case-card').offsetWidth + 31;
+      grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+
+    // Initial check
+    setTimeout(updateArrowStates, 100);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Related Case Studies",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Related Case Studies"
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "section_title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Size (Desktop)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_title_size_mobile",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background",
+      "default": "#f5f7fc"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border (and Hover)",
+      "default": "#f1de2c"
+    },
+    {
+      "type": "color_background",
+      "id": "badge_bg_color",
+      "label": "Badge Background Gradient",
+      "default": "linear-gradient(90deg, #212AFF 0%, #181FC2 0%, #08094C 100%)"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#3f51ff"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Hover Subtitle",
+      "default": "#181fc2"
+    },
+    {
+      "type": "color",
+      "id": "hover_link_color",
+      "label": "Hover Tags",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_color",
+      "label": "Slider Arrow Hover",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "pagination_inactive_color",
+      "label": "Slider Arrow Inactive",
+      "default": "#b1c2e9"
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Subtitle Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tag_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Tag Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "hover_tag_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Link Tag Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Typography (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Title Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Subtitle Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tag_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Tag Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "hover_tag_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Link Tag Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case Study Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "15000+ SKUs Sold"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Hilton Hotels"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Hover Subtitle",
+          "default": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity."
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "View Case Study Link"
+        },
+        {
+          "type": "header",
+          "content": "Hover Tags"
+        },
+        {
+          "type": "text",
+          "id": "tag1_name",
+          "label": "Tag 1 Name",
+          "default": "Ethernet Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag1_url",
+          "label": "Tag 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag2_name",
+          "label": "Tag 2 Name",
+          "default": "Coaxial Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag2_url",
+          "label": "Tag 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag3_name",
+          "label": "Tag 3 Name",
+          "default": "HDMI Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag3_url",
+          "label": "Tag 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag4_name",
+          "label": "Tag 4 Name"
+        },
+        {
+          "type": "url",
+          "id": "tag4_url",
+          "label": "Tag 4 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Case Studies",
+      "category": "Grid",
+      "blocks": [
+        { "type": "case_study", "settings": { "title": "Hilton Hotels" } },
+        { "type": "case_study", "settings": { "title": "IBM" } },
+        { "type": "case_study", "settings": { "title": "Fairmont Hotels & Resort" } },
+        { "type": "case_study", "settings": { "title": "Other Client" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

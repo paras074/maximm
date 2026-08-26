@@ -1,0 +1,215 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "secondarBannerMaximm360": {
+      "type": "section-secondary-banner-maximm-360",
+      "settings": {
+        "main_banner_bg_image": "shopify://shop_images/360-banner.jpg",
+        "bottom_floating_image": "shopify://shop_images/360_cable.png",
+        "content": "<h1>MAXIMM 360° Flat Plug Extension Cord</h1><p><em><strong>The 180</strong></em> for your Extension Cord troubles</p>",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "maximmDiscover": {
+      "type": "section-maximm-discover",
+      "settings": {
+        "content": "<p>MAXIMM 360 is an innovative extension cord solution with a slim, 360-degree-rotating plug, allowing you to <strong>reach any outlet without compromise.</strong></p>",
+        "btn_txt": "Discover",
+        "btn_url": "",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "extensionCords360": {
+      "type": "section-extension-cords-360",
+      "settings": {
+        "top_fold_content": "<h2>Extend All Your Outlets With Maximm</h2><p>Ensured to provide the highest quality products and customer care for over a decade.</p>",
+        "btn_txt": "See All 360 Extension Cords",
+        "btn_url": "shopify://collections/360-rotating-plug-extension-cords",
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "padding_top_mobile": 146,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "bestSellingProducts": {
+      "type": "section-best-selling-products",
+      "blocks": {
+        "product_3WELTW": {
+          "type": "product",
+          "settings": {
+            "product": "cat-6-ethernet-cable-100-pure-copper-cat6-cable-lan-cable-internet-cable-patch-cable-and-network-cable-utp"
+          }
+        },
+        "product_x4CmRj": {
+          "type": "product",
+          "settings": {
+            "product": "4-outlet-outdoor-extension-cord-with-multiple-outlets-10-gauge-etl-listed"
+          }
+        },
+        "product_a7wmmD": {
+          "type": "product",
+          "settings": {
+            "product": "extension-cord-with-3-outlets-14-gauge-indoor-outdoor"
+          }
+        },
+        "product_NG7HMQ": {
+          "type": "product",
+          "settings": {
+            "product": "cat8-outdoor-ethernet-cable-40gbps-2000mhz-high-speed-waterproof-lan-network-cable"
+          }
+        },
+        "product_LJ7An7": {
+          "type": "product",
+          "settings": {
+            "product": "extension-cord-outdoor-extension-cord-with-multiple-outlets-and-lit-ends-16-gauge-etl-listed"
+          }
+        },
+        "product_MihnyY": {
+          "type": "product",
+          "settings": {
+            "product": "extension-cord-with-lighted-power-indicator-single-outlet-16-gauge-sjtw-heavy-duty-outdoor-extension-cord"
+          }
+        }
+      },
+      "block_order": [
+        "product_3WELTW",
+        "product_x4CmRj",
+        "product_a7wmmD",
+        "product_NG7HMQ",
+        "product_LJ7An7",
+        "product_MihnyY"
+      ],
+      "settings": {
+        "section_heading": "<h2>Best Selling</h2><p>Ensured to provide the highest quality products and customer care for over a decade.</p>",
+        "btm_btn_txt": "",
+        "btm_btn_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "convenienceHome": {
+      "type": "section-convenience-home",
+      "blocks": {
+        "image_txt_slide_V6AKcL": {
+          "type": "image-txt-slide",
+          "settings": {
+            "image": "shopify://shop_images/td-use-with-kitchen-appliances.png",
+            "title": "360° ROTATING PLUG",
+            "content": "<p>The high-quality product features a plug that can rotate 360 degrees so that every outlet is within reach.</p>"
+          }
+        },
+        "image_txt_slide_KDrian": {
+          "type": "image-txt-slide",
+          "settings": {
+            "image": "shopify://shop_images/td-use-with-kitchen-appliances.png",
+            "title": "MULTIPLE OUTLETS",
+            "content": "<p>The female receptacle comes with 3 outlets allowing you to power multiple devices.</p>"
+          }
+        },
+        "image_txt_slide_qer4Nj": {
+          "type": "image-txt-slide",
+          "settings": {
+            "image": "shopify://shop_images/td-use-with-kitchen-appliances.png",
+            "title": "Space Saver",
+            "content": "<p>Angular flexibility ensures access to other outlets and that extension cord remains flush with the                      wall.</p>"
+          }
+        },
+        "image_txt_slide_bLKWtx": {
+          "type": "image-txt-slide",
+          "settings": {
+            "image": "shopify://shop_images/td-use-with-kitchen-appliances.png",
+            "title": "FLAT PLUG",
+            "content": "<p>Perfect for tight spaces, such as behind furniture, bookshelves, desks or home devices.</p>"
+          }
+        },
+        "image_txt_slide_YGL3yg": {
+          "type": "image-txt-slide",
+          "settings": {
+            "image": "shopify://shop_images/td-use-with-kitchen-appliances.png",
+            "title": "High Quality-UL Listed",
+            "content": "<ul><li>UL Listed</li><li>13 AMPS</li><li>125 Volt</li><li>1625 Watts</li><li>16 Gauge copper conductors and PVC insulator</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "image_txt_slide_V6AKcL",
+        "image_txt_slide_KDrian",
+        "image_txt_slide_qer4Nj",
+        "image_txt_slide_bLKWtx",
+        "image_txt_slide_YGL3yg"
+      ],
+      "settings": {
+        "subtxt": "",
+        "sectionHeadingTitle": "",
+        "sectionHeadingShortText": "",
+        "padding_top": 96,
+        "padding_bottom": 0,
+        "padding_top_mobile": 52,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "makeMaximm360": {
+      "type": "section-make-maximm-360",
+      "settings": {
+        "floating_image": "shopify://shop_images/make-maximm-360.png",
+        "content": "<h2>Make Maximm 360 a part of your life</h2><p>Free shipping and free returns on eligible items.</p>",
+        "btn_txt": "Order Now",
+        "btn_url": "",
+        "padding_top": 90,
+        "padding_bottom": 90,
+        "padding_top_mobile": 42,
+        "padding_bottom_mobile": 98
+      }
+    },
+    "imageWithContentGrid": {
+      "type": "section-image-with-content-grid",
+      "settings": {
+        "main_image": "shopify://shop_images/explore-porducts.png",
+        "content": "<h2>Maximm's 360 Flat Plug Extension Cord With 3 Outlet Design.</h2><p>Are you in need of a slim design extension cord that can fit through tight spaces? The Maximm's 360 Extension cord is your solution!</p>",
+        "btn_txt": "Explore Products",
+        "btn_url": "",
+        "padding_top": 130,
+        "padding_bottom": 130,
+        "padding_top_mobile": 66,
+        "padding_bottom_mobile": 66
+      }
+    },
+    "bgImageWithOverlayContent": {
+      "type": "section-bg-image-with-overlay-content",
+      "settings": {
+        "main_background_image": "shopify://shop_images/flat-plug-2-Yellow-1.png",
+        "content": "<h2>Maximum <strong>Efficiency.</strong><br/>Minimal <strong>Hassle.</strong></h2><p>Get behind kitchen appliances, home furniture and couches, and connect multiple devices seamlessly and inconspicuously.<br/><br/><strong>Include hook to hang up cord for ease-of-use</strong></p>",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    }
+  },
+  "order": [
+    "secondarBannerMaximm360",
+    "maximmDiscover",
+    "extensionCords360",
+    "bestSellingProducts",
+    "convenienceHome",
+    "makeMaximm360",
+    "imageWithContentGrid",
+    "bgImageWithOverlayContent"
+  ]
+}

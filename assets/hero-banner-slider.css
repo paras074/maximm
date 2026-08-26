@@ -1,0 +1,137 @@
+/*
+* Mixin for easy media queries
+* @include bp(tablet-only) { SCSS here };
+* Default css is for mobile screens
+*/
+.hero-banner {
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+.hero-banner:after {
+  content: "";
+  height: 4.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  position: absolute;
+  background: linear-gradient(180deg, #0c093f 0%, rgba(12, 9, 66, 0) 60.22%);
+  transform: rotate(-180deg);
+  pointer-events: none;
+}
+@media (min-width: 750px) {
+  .hero-banner:after {
+    height: 8.7rem;
+  }
+}
+.hero-banner .js-banner-image-slider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.hero-banner .js-banner-image-slider .swiper-slide {
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 990px) {
+  .hero-banner .inner-container {
+    max-width: 87.7%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.hero-banner .js-banner-content-slider {
+  min-height: calc(100vh - 2rem);
+  padding: 10.5rem 0;
+}
+@media (min-width: 750px) {
+  .hero-banner .js-banner-content-slider {
+    min-height: 74.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 0;
+  }
+}
+.hero-banner .js-banner-content-slider .swiper-slide {
+  height: auto;
+}
+.hero-banner .js-banner-content-slider .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0 !important;
+}
+.hero-banner .js-banner-content-slider .swiper-slide .content-holder {
+  max-width: 81rem;
+}
+@media (min-width: 750px) {
+  .hero-banner .js-banner-content-slider .swiper-slide .content-holder {
+    padding-top: 9rem;
+  }
+}
+.hero-banner .js-banner-content-slider .swiper-slide .content-holder .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 750px) {
+  .hero-banner .js-banner-content-slider .swiper-slide .content-holder .subtitle {
+    font-size: 2.1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+.hero-banner .js-banner-content-slider .swiper-slide .content-holder h1 {
+  color: inherit;
+  margin-bottom: 3.5rem;
+  font-size: 5.5rem;
+}
+@media (max-width: 767px) {
+  .hero-banner .js-banner-content-slider .swiper-slide .content-holder h1 {
+    font-size: 3rem;
+    line-height: 1.167;
+    margin-bottom: 5.5rem;
+  }
+}
+.hero-banner .js-banner-content-slider .swiper-slide .content-holder h1 strong {
+  color: #ffb800;
+  display: block;
+}
+.hero-banner .js-banner-content-slider .swiper-pagination {
+  position: static;
+  text-align: initial;
+  width: auto;
+  display: inline-block;
+}
+.hero-banner .banner-pagination-with-fraction {
+  position: relative;
+  padding: 0 2.5rem 0 2rem;
+  top: 5.2rem;
+  display: inline-block;
+  line-height: 1;
+}
+@media (min-width: 990px) {
+  .hero-banner .banner-pagination-with-fraction {
+    top: 10rem;
+  }
+}
+.hero-banner .banner-pagination-with-fraction .swiper-pagination-fraction-custom {
+  visibility: hidden;
+  display: block;
+}
+.hero-banner .banner-pagination-with-fraction .swiper-pagination-fraction-custom .swiper-pagination-current,
+.hero-banner .banner-pagination-with-fraction .swiper-pagination-fraction-custom .swiper-pagination-total {
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  font-size: 1.4rem;
+  list-style: none;
+}
+.hero-banner .banner-pagination-with-fraction .swiper-pagination-fraction-custom .swiper-pagination-current {
+  left: 0;
+  color: #f1de2c;
+}
+.hero-banner .banner-pagination-with-fraction .swiper-pagination-fraction-custom .swiper-pagination-total {
+  right: 0;
+}

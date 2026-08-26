@@ -1,0 +1,689 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #shopify-section-{{ section.id }} .case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px 31px;
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #shopify-section-{{ section.id }} .case-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    display: none; /* Hidden by default, shown by JS or if <= 9 items */
+  }
+
+  #shopify-section-{{ section.id }} .case-card.active-page {
+    display: flex;
+  }
+
+  #shopify-section-{{ section.id }} .card-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: {{ section.settings.card_bg_color }};
+    border: 1px solid {{ section.settings.card_border_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  #shopify-section-{{ section.id }} .card-tag {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_text_color }};
+    font-size: 10px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 0 0 16px 16px;
+    text-transform: capitalize;
+    z-index: 2;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .card-image {
+    width: 220px;
+    height: 160px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-image {
+    transform: translateY(-20px);
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-box {
+    border: 1px solid {{ section.settings.card_border_color }};
+    box-shadow: 3px 6px 4px 0 rgba(0,0,0,0.1), 0 0 0 9px {{ section.settings.card_border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .card-hover-content {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    padding: 0 24px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .case-card:hover .card-hover-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .hover-text {
+    color: {{ section.settings.hover_text_color }};
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .hover-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .hover-link {
+    color: {{ section.settings.hover_link_color }};
+    text-decoration: none;
+    border-bottom: 1px solid #d1d1d6;
+    padding-bottom: 2px;
+    transition: all 0.2s;
+    font-size: {{ section.settings.tag_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .hover-link:hover {
+    color: {{ section.settings.hover_text_color }};
+    border-bottom-color: {{ section.settings.hover_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .hover-tags .divider {
+    width: 1px;
+    height: 10px;
+    background-color: #d1d1d6;
+  }
+
+  #shopify-section-{{ section.id }} .card-title {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: 500;
+    color: {{ section.settings.title_color }};
+    margin-bottom: 14px;
+    z-index: 2;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary {
+    background-color: #ffffff;
+    border: 1px solid #c9d5f7;
+    color: #1a1a1a;
+    font-size: {{ section.settings.button_size }}px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    transition: all 0.2s;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary:hover {
+    background-color: #273CFF;
+    color: #ffffff;
+    border-color: #273CFF;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary svg {
+    color: {{ section.settings.title_color }};
+    transition: color 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary:hover svg {
+    color: #ffffff;
+  }
+
+  /* --- Controls Navigation --- */
+  #shopify-section-{{ section.id }} .controls {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+  #shopify-section-{{ section.id }} .controls .arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: {{ section.settings.pagination_inactive_color }};
+    transition: all 0.2s;
+  }
+  #shopify-section-{{ section.id }} .controls .arrow.active {
+    background-color: {{ section.settings.pagination_active_color }};
+  }
+  #shopify-section-{{ section.id }} .controls .arrow.active svg {
+    color: {{ section.settings.card_border_color }};
+  }
+  #shopify-section-{{ section.id }} .controls .arrow.disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  #shopify-section-{{ section.id }} .controls .pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  #shopify-section-{{ section.id }} .controls .pagination span {
+    opacity: 0.2;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+  }
+  #shopify-section-{{ section.id }} .controls .pagination span.active-num {
+    opacity: 0.9;
+    cursor: default;
+  }
+  #shopify-section-{{ section.id }} .controls .pagination span.ellipsis {
+    cursor: default;
+    opacity: 0.2;
+  }
+  #shopify-section-{{ section.id }} .controls .pagination .divider {
+    width: 1px;
+    height: 19px;
+    background: linear-gradient(to bottom, #212aff, #d8d9ff);
+    opacity: 0.3;
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+   
+  }
+  
+  @media (max-width: 992px) and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .case-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      padding: 0 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .case-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<div id="case-grid-wrapper-{{ section.id }}">
+  <div class="case-grid page-width">
+    {% for block in section.blocks %}
+      <div class="case-card" data-index="{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <div class="card-box">
+          {% if block.settings.badge_text != blank %}
+            <div class="card-tag">{{ block.settings.badge_text }}</div>
+          {% endif %}
+
+          {% if block.settings.logo != blank %}
+            <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ block.settings.title | escape }}" class="card-image">
+          {% else %}
+            <div class="card-image" style="background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 8px;">Logo</div>
+          {% endif %}
+
+          <div class="card-hover-content">
+            {% if block.settings.subtitle != blank %}
+              <p class="hover-text">{{ block.settings.subtitle }}</p>
+            {% endif %}
+            
+            <div class="hover-tags">
+              {% assign tag_count = 0 %}
+              {% for i in (1..4) %}
+                {% assign tag_name_key = 'tag' | append: i | append: '_name' %}
+                {% assign tag_url_key = 'tag' | append: i | append: '_url' %}
+                
+                {% if block.settings[tag_name_key] != blank %}
+                  {% if tag_count > 0 %}
+                    <span class="divider"></span>
+                  {% endif %}
+                  <a href="{{ block.settings[tag_url_key] | default: '#' }}" class="hover-link">{{ block.settings[tag_name_key] }}</a>
+                  {% assign tag_count = tag_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-info">
+          <h3 class="card-title">{{ block.settings.title }}</h3>
+          <a href="{{ block.settings.button_url | default: '#' }}" class="btn-secondary">
+            View Case Study
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 9 %}
+    <!-- Navigation Controls -->
+    <div class="controls" id="controls-{{ section.id }}">
+      <div class="arrow prev disabled" id="prev-{{ section.id }}">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 19l-7-7 7-7"/>
+        </svg>
+      </div>
+      <div class="pagination" id="pagination-{{ section.id }}">
+        <!-- Pagination items will be generated by JS -->
+      </div>
+      <div class="arrow next active" id="next-{{ section.id }}">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const wrapperId = 'case-grid-wrapper-{{ section.id }}';
+        const cards = document.querySelectorAll(`#${wrapperId} .case-card`);
+        const paginationContainer = document.getElementById(`pagination-{{ section.id }}`);
+        const prevBtn = document.getElementById(`prev-{{ section.id }}`);
+        const nextBtn = document.getElementById(`next-{{ section.id }}`);
+        
+        const itemsPerPage = 9;
+        const totalItems = cards.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        let currentPage = 1;
+
+        function renderPagination() {
+          paginationContainer.innerHTML = '';
+          for (let i = 1; i <= totalPages; i++) {
+            // Logic to show 1, 2, ..., last, etc or just all if small
+            if (totalPages <= 5 || i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+              
+              if (paginationContainer.children.length > 0) {
+                 const prevElementText = paginationContainer.lastChild.textContent;
+                 // If there's a jump, add dots
+                 if (prevElementText !== '...' && parseInt(prevElementText) < i - 1) {
+                    const divider = document.createElement('div');
+                    divider.classList.add('divider');
+                    paginationContainer.appendChild(divider);
+
+                    const dots = document.createElement('span');
+                    dots.classList.add('ellipsis');
+                    dots.textContent = '...';
+                    paginationContainer.appendChild(dots);
+                 }
+                 const divider2 = document.createElement('div');
+                 divider2.classList.add('divider');
+                 paginationContainer.appendChild(divider2);
+              }
+
+              const span = document.createElement('span');
+              span.textContent = i < 10 ? '0' + i : i;
+              if (i === currentPage) span.classList.add('active-num');
+              span.addEventListener('click', () => {
+                currentPage = i;
+                updateView();
+              });
+              paginationContainer.appendChild(span);
+            }
+          }
+        }
+
+        function updateView() {
+          cards.forEach((card, index) => {
+            const itemIndex = index + 1;
+            if (itemIndex > (currentPage - 1) * itemsPerPage && itemIndex <= currentPage * itemsPerPage) {
+              card.classList.add('active-page');
+            } else {
+              card.classList.remove('active-page');
+            }
+          });
+          
+          if (currentPage === 1) {
+            prevBtn.classList.add('disabled');
+            prevBtn.classList.remove('active');
+          } else {
+            prevBtn.classList.remove('disabled');
+            prevBtn.classList.add('active');
+          }
+
+          if (currentPage === totalPages) {
+            nextBtn.classList.add('disabled');
+            nextBtn.classList.remove('active');
+          } else {
+            nextBtn.classList.remove('disabled');
+            nextBtn.classList.add('active');
+          }
+
+          renderPagination();
+        }
+
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            updateView();
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updateView();
+          }
+        });
+
+        updateView();
+      });
+    </script>
+  {% else %}
+    <style>
+      #shopify-section-{{ section.id }} .case-card {
+        display: flex !important; /* Force show all if <= 9 */
+      }
+    </style>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Case Study Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background",
+      "default": "#f5f7fc"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border (and Hover)",
+      "default": "#f1de2c"
+    },
+    {
+      "type": "color_background",
+      "id": "badge_bg_color",
+      "label": "Badge Background Gradient",
+      "default": "linear-gradient(90deg, #212AFF 0%, #181FC2 0%, #08094C 100%)"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#3f51ff"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Hover Subtitle",
+      "default": "#181fc2"
+    },
+    {
+      "type": "color",
+      "id": "hover_link_color",
+      "label": "Hover Tags",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "color",
+      "id": "pagination_active_color",
+      "label": "Pagination Arrow Active",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "pagination_inactive_color",
+      "label": "Pagination Arrow Inactive",
+      "default": "#b1c2e9"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Subtitle Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tag_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Hover Tag Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case Study Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "15000+ SKUs Sold"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Hilton Hotels"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Hover Subtitle",
+          "default": "Powering Ghost eSports stages with shielded precision and flicker-free connectivity."
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "View Case Study Link"
+        },
+        {
+          "type": "header",
+          "content": "Hover Tags"
+        },
+        {
+          "type": "text",
+          "id": "tag1_name",
+          "label": "Tag 1 Name",
+          "default": "Ethernet Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag1_url",
+          "label": "Tag 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag2_name",
+          "label": "Tag 2 Name",
+          "default": "Coaxial Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag2_url",
+          "label": "Tag 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag3_name",
+          "label": "Tag 3 Name",
+          "default": "HDMI Cables"
+        },
+        {
+          "type": "url",
+          "id": "tag3_url",
+          "label": "Tag 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "tag4_name",
+          "label": "Tag 4 Name"
+        },
+        {
+          "type": "url",
+          "id": "tag4_url",
+          "label": "Tag 4 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Study Grid",
+      "category": "Grid",
+      "blocks": [
+        { "type": "case_study", "settings": { "title": "Hilton Hotels" } },
+        { "type": "case_study", "settings": { "title": "IBM" } },
+        { "type": "case_study", "settings": { "title": "Fairmont Hotels & Resort" } },
+        { "type": "case_study", "settings": { "title": "Ubisoft" } },
+        { "type": "case_study", "settings": { "title": "Grand Canyon University" } },
+        { "type": "case_study", "settings": { "title": "Ghost E-Sports" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

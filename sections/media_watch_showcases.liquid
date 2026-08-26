@@ -1,0 +1,818 @@
+{%- style -%}
+  {{ section.settings.title_font | font_face: font_display: 'swap' }}
+  {{ section.settings.body_font | font_face: font_display: 'swap' }}
+
+  #shopify-section-{{ section.id }} .showcases {
+    --primary: {{ section.settings.primary_color }};
+    --primary-dark: {{ section.settings.primary_dark }};
+    --text-dark: {{ section.settings.text_color }};
+    --text-gray: {{ section.settings.text_gray }};
+    --bg-light: {{ section.settings.bg_color }};
+    --border-color: {{ section.settings.border_color }};
+    
+    --badge-color: {{ section.settings.badge_text_color }};
+    --section-title-color: {{ section.settings.section_title_color }};
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-desc-color: {{ section.settings.card_desc_color }};
+    --meta-color: {{ section.settings.meta_color }};
+
+    background-color: var(--bg-light);
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+    color: var(--text-dark);
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .showcases {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Container */
+  #shopify-section-{{ section.id }} .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .badge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--badge-color);
+    font-size: {{ section.settings.badge_font_size_desktop }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .section-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.section_title_font_size_desktop }}px;
+    font-weight: {{ section.settings.title_font.weight | default: 500 }};
+    color: var(--section-title-color);
+    margin-bottom: 40px;
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .video-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  #shopify-section-{{ section.id }} .video-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .video-thumb-wrapper {
+    position: relative;
+    width: 100%;
+    height: 247px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #shopify-section-{{ section.id }} .video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .placeholder-svg {
+    background-color: #f4f4f4;
+    color: #ccc;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+  }
+
+  #shopify-section-{{ section.id }} .video-thumb-wrapper:hover .video-thumb,
+  #shopify-section-{{ section.id }} .video-thumb-wrapper:hover .placeholder-svg {
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ section.id }} .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36.31px;
+    height: 36.31px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(1.88px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .play-btn svg {
+    width: 37px;
+    height: 37px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-info {
+    display: flex;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .platform-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: white;
+    position: relative;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .platform-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  #shopify-section-{{ section.id }} .video-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .video-title {
+    font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+    font-size: {{ section.settings.card_title_font_size_desktop }}px;
+    color: var(--card-title-color);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-desc {
+    font-size: {{ section.settings.card_desc_font_size_desktop }}px;
+    color: var(--card-desc-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-stats {
+    font-size: {{ section.settings.meta_font_size_desktop }}px;
+    color: var(--meta-color);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-stats span {
+    font-weight: 400;
+  }
+
+  /* Video Modal CSS */
+  #shopify-section-{{ section.id }} .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .video-modal.active {
+    display: flex;
+  }
+  #shopify-section-{{ section.id }} .video-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    cursor: pointer;
+  }
+  #shopify-section-{{ section.id }} .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 2;
+    aspect-ratio: 16/9;
+  }
+  #shopify-section-{{ section.id }} .video-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #shopify-section-{{ section.id }} .video-container {
+    width: 100%;
+    height: 100%;
+  }
+  #shopify-section-{{ section.id }} .video-container iframe,
+  #shopify-section-{{ section.id }} .video-container video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    border: none;
+  }
+  .video-stats span{
+    padding-right:2px;
+  }
+
+  @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .badge {
+      font-size: {{ section.settings.badge_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .section-title {
+      font-size: {{ section.settings.section_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .video-title {
+      font-size: {{ section.settings.card_title_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .video-desc {
+      font-size: {{ section.settings.card_desc_font_size_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .video-stats {
+      font-size: {{ section.settings.meta_font_size_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="showcases" id="WatchShowcases-{{ section.id }}">
+  <div class="container">
+    {%- if section.settings.badge_text != blank -%}
+      <div class="badge">{{ section.settings.badge_text | escape }}</div>
+    {%- endif -%}
+    
+    {%- if section.settings.section_title != blank -%}
+      <h2 class="section-title">{{ section.settings.section_title | escape }}</h2>
+    {%- endif -%}
+
+    <div class="video-grid">
+      {%- if section.settings.data_source == 'blog' and section.settings.blog != blank -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.max_items -%}
+          <div class="video-card">
+            <div class="video-thumb-wrapper">
+              {%- if article.image -%}
+                <img src="{{ article.image | img_url: '600x' }}" alt="{{ article.title | escape }}" class="video-thumb" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'video-thumb placeholder-svg' }}
+              {%- endif -%}
+              <div class="play-btn" data-video-url="{{ article.metafields.custom.video_url | default: '' }}" data-html5-video="{{ article.metafields.custom.html5_video.value.url | default: '' }}">
+                <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M29.1426 18.1542L12.6603 27.6703L12.6603 8.63816L29.1426 18.1542Z" fill="#1111B0"/>
+                </svg>
+              </div>
+            </div>
+            {%- assign article_link = article.metafields.custom.external_link | default: article.url -%}
+            {%- if article_link != blank -%}
+              <a href="{{ article_link }}" style="text-decoration: none; color: inherit; display: block;">
+            {%- endif -%}
+            <div class="video-info">
+              <div class="platform-icon">
+                {%- if section.settings.fallback_platform_icon != blank -%}
+                  <img src="{{ section.settings.fallback_platform_icon | img_url: '100x' }}" alt="Platform" loading="lazy">
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                {%- endif -%}
+              </div>
+              <div class="video-details">
+                <h3 class="video-title">{{ article.title | escape }}</h3>
+                <p class="video-desc">{{ article.excerpt_or_content | strip_html | truncatewords: 15 }}</p>
+                <p class="video-stats">
+                  <span>{{ article.published_at | date: "%b %d, %Y" }}</span>
+                </p>
+              </div>
+            </div>
+            {%- if article_link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          <div class="video-card" {{ block.shopify_attributes }}>
+            <div class="video-thumb-wrapper">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.title | escape }}" class="video-thumb" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'video-thumb placeholder-svg' }}
+              {%- endif -%}
+              <div class="play-btn" data-video-url="{{ block.settings.video_url | escape }}" data-html5-video="{{ block.settings.html5_video.sources[1].url | default: block.settings.html5_video.sources[0].url }}">
+                <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M29.1426 18.1542L12.6603 27.6703L12.6603 8.63816L29.1426 18.1542Z" fill="#1111B0"/>
+                </svg>
+              </div>
+            </div>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" style="text-decoration: none; color: inherit; display: block;">
+            {%- endif -%}
+            <div class="video-info">
+              <div class="platform-icon" {%- if block.settings.hide_platform_border %} style="border: none;"{% endif -%}>
+                {%- if block.settings.platform_icon != blank -%}
+                  <img src="{{ block.settings.platform_icon | img_url: '100x' }}" alt="Platform" loading="lazy">
+                {%- else -%}
+                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                {%- endif -%}
+              </div>
+              <div class="video-details">
+                <h3 class="video-title">{{ block.settings.title | escape }}</h3>
+                <p class="video-desc">{{ block.settings.description | escape }}</p>
+                <p class="video-stats">
+                  <span>{{ block.settings.date | escape }}</span>
+                  {%- if block.settings.views != blank -%}
+                    • {{ block.settings.views | escape }}
+                  {%- endif -%}
+                </p>
+              </div>
+            </div>
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<!-- Video Modal -->
+<div class="video-modal" id="VideoModal-{{ section.id }}">
+  <div class="video-modal-overlay"></div>
+  <div class="video-modal-content">
+    <button class="video-modal-close">&times;</button>
+    <div class="video-container" id="VideoContainer-{{ section.id }}"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const playButtons = document.querySelectorAll('#WatchShowcases-{{ section.id }} .play-btn');
+    const modal = document.getElementById('VideoModal-{{ section.id }}');
+    const overlay = modal.querySelector('.video-modal-overlay');
+    const closeBtn = modal.querySelector('.video-modal-close');
+    const container = document.getElementById('VideoContainer-{{ section.id }}');
+
+    function openModal(videoUrl, html5Video) {
+      let iframeHtml = '';
+      if (html5Video && html5Video !== '') {
+        iframeHtml = `<video controls autoplay playsinline><source src="${html5Video}" type="video/mp4">Your browser does not support the video tag.</video>`;
+      } else if (videoUrl && videoUrl !== '') {
+        let embedUrl = videoUrl;
+        if (videoUrl.includes('youtube.com/watch?v=')) {
+          embedUrl = videoUrl.replace('watch?v=', 'embed/') + '?autoplay=1';
+        } else if (videoUrl.includes('youtu.be/')) {
+          embedUrl = videoUrl.replace('youtu.be/', 'www.youtube.com/embed/') + '?autoplay=1';
+        }
+        iframeHtml = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      } else {
+        iframeHtml = `<p style="color: white; padding: 20px;">No video configured.</p>`;
+      }
+      
+      container.innerHTML = iframeHtml;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      container.innerHTML = '';
+    }
+
+    playButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const videoUrl = this.getAttribute('data-video-url');
+        const html5Video = this.getAttribute('data-html5-video');
+        openModal(videoUrl, html5Video);
+      });
+    });
+
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Watch Showcases",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "As Seen On"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Watch the showcases"
+    },
+    {
+      "type": "radio",
+      "id": "data_source",
+      "label": "Data Source",
+      "options": [
+        {
+          "value": "blocks",
+          "label": "Manual Blocks"
+        },
+        {
+          "value": "blog",
+          "label": "Blog Category"
+        }
+      ],
+      "default": "blocks"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog",
+      "info": "Used if Data Source is set to Blog Category"
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "label": "Maximum articles to show",
+      "default": 6,
+      "info": "Only applies when pulling from a Blog Category"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_platform_icon",
+      "label": "Fallback Platform Icon",
+      "info": "Icon used for all posts when pulling from a blog"
+    },
+    {
+      "type": "header",
+      "content": "Color Customizations"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "text_gray",
+      "label": "Text Gray (Description)",
+      "default": "#4e505b"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#273cff"
+    },
+    {
+      "type": "color",
+      "id": "primary_dark",
+      "label": "Primary Dark Color",
+      "default": "#1111b0"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#d1d1d6"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Section Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Video Title Color",
+      "default": "#0d112c"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Video Description Color",
+      "default": "#4e505b"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Date/Stats Color",
+      "default": "#4e505b"
+    },
+    {
+      "type": "header",
+      "content": "Font Customizations"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title Font",
+      "default": "barlow_n5"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body Font",
+      "default": "barlow_n4"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Video Title Font Size",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_desktop",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Video Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Stats Font Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile Font Sizes"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "section_title_font_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Section Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_title_font_size_mobile",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Video Title Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_desc_font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Video Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Date/Stats Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_card",
+      "name": "Video Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Video Thumbnail"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "YouTube/Vimeo URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "video",
+          "id": "html5_video",
+          "label": "HTML5 Video (MP4)"
+        },
+        {
+          "type": "image_picker",
+          "id": "platform_icon",
+          "label": "Platform Icon"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_platform_border",
+          "label": "Hide Platform Icon Border",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "QVC Live: 360° Rotating Extension Cord Debut"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card Link (Optional)"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Maximm joins QVC's morning showcase to unveil the 360° Rotating Extension Cord Set..."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Mar 14, 2026"
+        },
+        {
+          "type": "text",
+          "id": "views",
+          "label": "Views (Optional)",
+          "default": "248K views"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Watch Showcases",
+      "blocks": [
+        {
+          "type": "video_card"
+        },
+        {
+          "type": "video_card"
+        },
+        {
+          "type": "video_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

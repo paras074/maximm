@@ -1,0 +1,26 @@
+
+{% if product.metafields.spec.title != blank %}
+  <ul class="specs-list">
+    {% for title in product.metafields.spec.title %}
+      {% if forloop.index == 6 %}
+        <li> 
+          <a href="javascript:void(0);"  class="more-specifications">
+            {% render 'icon-plus' %} view more
+          </a>
+        </li> 
+        {% break %}
+      {% else %}
+        <li>
+          <span class="spec-title">{{ title }}</span>
+          <span class="spec-value">{{ product.metafields.spec.answer[forloop.index0] }}</span>
+        </li>
+
+      {% endif %}  
+
+    {% endfor %}
+   
+  </ul>
+{% endif %}
+
+
+

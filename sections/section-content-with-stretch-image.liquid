@@ -1,0 +1,59 @@
+{{ 'section-content-with-stretch-image.css' | asset_url | stylesheet_tag }}
+
+<div class="content-with-stretch-image">
+  <div class="page-width js-has-stretch">
+    <div class="st-row no-gutters">
+      <div class="st-col-md-6 content-holder">
+        <div class="gutters-end-0">
+          <div class="subtitle-filled">{{ section.settings.subtxt }}</div>
+          <h2>
+            {{ section.settings.title }}
+          </h2>
+          <p>
+            {{ section.settings.description }}
+          </p>
+        </div>
+        <div class="content-holder__footer mt-auto">
+          <div class="st-row st-align-items-center">
+            <div class="st-col">&nbsp</div>
+            <div class="st-col-auto">
+              <img class="ico" src="{{ 'maximm-logo-single-element-white.svg' | asset_url }}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="st-col-md-6 image-holder">
+        <div class="js-stretch-right js-stretch-left h-100">
+          {{ section.settings.main_image | image_url: width: 1000 | image_tag }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section: Cnt Wt Strch Img",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtxt",
+      "label": "Sub Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ]
+}
+{% endschema %}

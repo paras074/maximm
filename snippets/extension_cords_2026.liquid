@@ -1,0 +1,50 @@
+
+<div class="collection-extension-card ">
+
+  <div class="collection-extension-image">
+    {%- if collection.metafields.custom.custom_collection_link != blank -%}
+      <a href="{{ collection.metafields.custom.custom_collection_link }}">
+    {%- else -%}
+      <a href="{{ collection.url }}">
+    {%- endif -%}
+
+      {%- if collection.featured_image != blank -%}
+        {{ collection.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      {%- elsif collection.image != blank -%}
+        {{ collection.image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="collection-extension-content">
+
+    <h5 class="collection-extension-title">
+      {%- if collection.metafields.custom.custom_collection_link != blank -%}
+        <a href="{{ collection.metafields.custom.custom_collection_link }}">
+      {%- else -%}
+        <a href="{{ collection.url }}">
+      {%- endif -%}
+
+        {%- if collection.metafields.custom.custom_collection_tittle != blank -%}
+          {{ collection.metafields.custom.custom_collection_tittle }}
+        {%- else -%}
+          {{ collection.title }}
+        {%- endif -%}
+      </a>
+    </h5>
+
+    {%- if collection.metafields.custom.custom_collection_link != blank -%}
+      <a href="{{ collection.metafields.custom.custom_collection_link }}" class="collection-extension-btn">
+    {%- else -%}
+      <a href="{{ collection.url }}" class="collection-extension-btn">
+    {%- endif -%}
+      View Products <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+  </div>
+
+</div>

@@ -1,0 +1,177 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "banner_slideshow_v2_4itRpH": {
+      "type": "banner-slideshow-v2",
+      "blocks": {
+        "image_dHdnkq": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/blog-banner.png",
+            "image_mobile": "shopify://shop_images/blog-banner.png",
+            "content_width": "small",
+            "hide_gradient": false,
+            "subtitle": "",
+            "title": "Maximize Your Learning",
+            "desc": "Welcome to the Maximm Cables blog, where we share insights on cable technology, industry trends, product applications, and best practices. Whether you’re selecting the right cable or staying current with evolving standards, our goal is to keep you informed and connected.",
+            "foot_note": "",
+            "btn_text": "",
+            "btn_url": "",
+            "btn_2_text": "",
+            "btn_2_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_dHdnkq"
+      ],
+      "disabled": true,
+      "name": "Banner: Slideshow v2",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "image_banner_JHEKyW": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_nkF9tW": {
+          "type": "heading",
+          "settings": {
+            "heading": "Maximize Your Learning",
+            "heading_size": "h0"
+          }
+        },
+        "text_cdhDwb": {
+          "type": "text",
+          "settings": {
+            "text": "Welcome to the Maximm Cables blog, where we share insights on cable technology, industry trends, product applications, and best practices. Whether you’re selecting the right cable or staying current with evolving standards, our goal is to keep you informed and connected.",
+            "text_style": "body"
+          }
+        },
+        "buttons_WLMhTB": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_nkF9tW",
+        "text_cdhDwb",
+        "buttons_WLMhTB"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/blog-banner.png",
+        "image_overlay_opacity": 0,
+        "show_blue_gradient": true,
+        "show_floating_icon": true,
+        "show_articles_searchbar": true,
+        "image_height": "large",
+        "desktop_content_position": "bottom-left",
+        "show_text_box": true,
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-cc2fc651-8691-46b9-80c9-4810f3c8cac7",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "tags_fjaRGG": {
+          "type": "tags",
+          "settings": {
+            "title": "Featured"
+          }
+        },
+        "tags_hzf9UT": {
+          "type": "tags",
+          "settings": {
+            "title": "Buying Guide"
+          }
+        },
+        "tags_AURrGD": {
+          "type": "tags",
+          "settings": {
+            "title": "Others"
+          }
+        }
+      },
+      "block_order": [
+        "tags_fjaRGG",
+        "tags_hzf9UT",
+        "tags_AURrGD"
+      ],
+      "settings": {
+        "heading": "<strong>Cable Installation</strong> Made Easy",
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_blog_L84wh7": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "heading": "Product Guides",
+        "heading_size": "h1",
+        "blog": "product-guides",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_video_list_XeypXn": {
+      "type": "section-video-list",
+      "name": "Section: Video List",
+      "settings": {
+        "total_text": "20+ Tutorials",
+        "title": "Tutorials & Demos",
+        "blog": "tutorials-demos",
+        "btn_txt": "",
+        "btn_url": "",
+        "padding_top": 0,
+        "padding_bottom": 120,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 50
+      }
+    }
+  },
+  "order": [
+    "banner_slideshow_v2_4itRpH",
+    "image_banner_JHEKyW",
+    "main",
+    "featured_blog_L84wh7",
+    "section_video_list_XeypXn"
+  ]
+}

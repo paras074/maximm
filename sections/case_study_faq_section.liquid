@@ -1,0 +1,492 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    font-family: 'Barlow', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .faq-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .faq-title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .faq-left-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-bg-element {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .faq-bg-element img,
+  #shopify-section-{{ section.id }} .faq-bg-element svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .faq-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item {
+    border-top: 0.5px solid {{ section.settings.border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .faq-item:last-child {
+    border-bottom: 0.5px solid {{ section.settings.border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .faq-item-header {
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .faq-question {
+    font-size: {{ section.settings.question_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.question_color }};
+    margin: 0;
+    transition: color 0.3s ease;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .faq-answer {
+    font-size: {{ section.settings.answer_size_mobile }}px;
+    color: {{ section.settings.answer_color }};
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    padding-right: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-answer p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item.open .faq-answer {
+    max-height: 500px; /* Safe upper limit for animations */
+    opacity: 1;
+    padding-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-icon svg {
+    transition: transform 0.3s ease;
+    color: {{ section.settings.icon_color }};
+  }
+
+  #shopify-section-{{ section.id }} .faq-item.open .faq-icon svg {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .faq-container {
+      padding: 0 40px;
+    }
+    #shopify-section-{{ section.id }} .faq-title {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .faq-question {
+      font-size: {{ section.settings.question_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .faq-answer {
+      font-size: {{ section.settings.answer_size_desktop }}px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .faq-list {
+      width: 608px;
+    }
+    #shopify-section-{{ section.id }} .faq-bg-element {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    #shopify-section-{{ section.id }} .faq-container {
+      padding: 0 104px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    #shopify-section-{{ section.id }} .faq-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+{% endstyle %}
+
+<div class="faq-bg-element">
+  {% if section.settings.bg_image != blank %}
+    <img src="{{ section.settings.bg_image | img_url: 'master' }}" alt="{{ section.settings.bg_image.alt | default: 'FAQ background element' }}">
+  {% else %}
+    <svg width="267" height="264" viewBox="0 0 267 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3.67127" width="108.763" height="240.575" rx="54.3815" transform="rotate(25 3.67127 0)" fill="url(#paint0_linear_1_512)"/>
+    <path d="M200.187 40.6953C184.194 68.1347 137.284 128.964 93.1039 161.686C52.0786 192.072 32.1455 203.306 27.0463 206.437" stroke="url(#paint1_linear_1_512)" stroke-width="1.47983"/>
+    <rect opacity="0.6" x="215.372" y="4.43945" width="56.1246" height="119.974" rx="28.0623" transform="rotate(25 215.372 4.43945)" fill="url(#paint2_linear_1_512)"/>
+    <defs>
+    <linearGradient id="paint0_linear_1_512" x1="25.381" y1="255.617" x2="119.037" y2="28.9883" gradientUnits="userSpaceOnUse">
+    <stop offset="0.104167" stop-color="#15086A"/>
+    <stop offset="1" stop-color="#416BFF"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_1_512" x1="134.129" y1="68.3189" x2="118.437" y2="210.742" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#1F1FB4"/>
+    <stop offset="1" stop-color="#1A1DC9"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear_1_512" x1="256.727" y1="10.7019" x2="230.886" y2="120.3" gradientUnits="userSpaceOnUse">
+    <stop offset="0.104167" stop-color="#1D10E7"/>
+    <stop offset="1" stop-color="#416BFF"/>
+    </linearGradient>
+    </defs>
+    </svg>
+  {% endif %}
+</div>
+
+<div class="faq-container" id="faq-section-{{ section.id }}">
+  <div class="faq-left-content">
+    <h2 class="faq-title">{{ section.settings.title }}</h2>
+  </div>
+  
+  <div class="faq-list">
+    {% for block in section.blocks %}
+      <div class="faq-item {% if forloop.first %}open{% endif %}" {{ block.shopify_attributes }}>
+        <div class="faq-item-header">
+          <h4 class="faq-question">{{ block.settings.question }}</h4>
+          <div class="faq-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+              <path d="M10.5363 0.130325C10.3626 -0.0434418 10.0817 -0.0434418 9.90791 0.130325L5.33332 4.7049L0.75875 0.130325C0.584983 -0.0434418 0.304093 -0.0434418 0.130325 0.130325C-0.0434418 0.304093 -0.0434418 0.584983 0.130325 0.75875L5.01912 5.64754C5.10578 5.73421 5.21955 5.77777 5.33334 5.77777C5.44713 5.77777 5.5609 5.73421 5.64757 5.64754L10.5364 0.75875C10.7101 0.584983 10.7101 0.304093 10.5363 0.130325Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionContainer = document.getElementById('faq-section-{{ section.id }}');
+    if (!sectionContainer) return;
+    
+    const headers = sectionContainer.querySelectorAll('.faq-item-header');
+    headers.forEach(header => {
+      // remove old listeners if re-rendered by customizer
+      const newHeader = header.cloneNode(true);
+      header.parentNode.replaceChild(newHeader, header);
+      
+      newHeader.addEventListener('click', () => {
+        const item = newHeader.parentElement;
+        const isOpen = item.classList.contains('open');
+        if (!isOpen) {
+          item.classList.add('open');
+        } else {
+          item.classList.remove('open');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Case Study FAQ",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Left Graphic Image (Optional)",
+      "info": "Upload an image to override the default SVG graphic."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5f7fc"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#273CFF"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "Answer Color",
+      "default": "#5c6470"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Divider Border Color",
+      "default": "#D1D1D6"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Chevron Icon Color",
+      "default": "#273CFF"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Size (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Size (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "question_size_desktop",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Question Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "question_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Question Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "answer_size_desktop",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Answer Size (Desktop)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "answer_size_mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Answer Size (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What length of extension cord should I choose?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Study FAQ",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What length of extension cord should I choose?",
+            "answer": "<p>Choose a length that suits your setup while minimizing excess cord. Shorter cords reduce power loss, while longer cords provide flexibility for distant connections.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can extension cords be used outdoors?",
+            "answer": "<p>Yes, but ensure they are specifically rated for outdoor use to withstand weather conditions and provide proper insulation.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know the extension cord can handle my devices?",
+            "answer": "<p>Check the wattage rating of the cord and compare it to the total wattage of the devices you plan to connect.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store an extension cord?",
+            "answer": "<p>Coil it loosely to avoid kinks and store it in a dry, cool place away from direct sunlight.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I plug one extension cord into another?",
+            "answer": "<p>No, \"daisy-chaining\" extension cords can lead to overheating and fire hazards. Use a single cord of appropriate length.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's the difference between light-duty and heavy-duty extension cords?",
+            "answer": "<p>Light-duty cords are for small electronics (lamps, chargers), while heavy-duty cords have thicker wires to handle tools and large appliances.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

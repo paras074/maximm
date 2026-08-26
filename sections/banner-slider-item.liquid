@@ -1,0 +1,118 @@
+{{ 'banner-slide-item.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+    .section-{{ section.id }}-padding-mobile {
+        padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+        padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+    }
+  
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+        padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+      }
+    }
+{%- endstyle -%}
+
+<div class="hero-banner-item section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+    <div class="page-width js-has-stretch">
+        <div class="js-stretch-right">
+            <div class="swiper js-banner-slider-item">
+                <div class="swiper-wrapper">
+                    {% for block in  section.blocks %}
+                    <div class="swiper-slide">
+                        <div class="slide-item">
+                            <h2 class="title">{{ block.settings.title }}</h2>
+                            <div class="pill-svg">{% render 'icon-yellow-pill' %}</div>
+                            <div class="subtitle">{{ block.settings.subtext }}</div>
+                            <div class="liner">
+                                <svg width="121" height="2" viewBox="0 0 121 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.0458984 0.772949L120.046 0.772949" stroke="url(#paint0_linear_280_7759)"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear_280_7759" x1="0.0458984" y1="0.272949" x2="120.046" y2="0.272949" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#212AFF"/>
+                                    <stop offset="1" stop-color="#D8D9FF"/>
+                                    </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+      "name": "Banner Slider Item",
+      "class": "section",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_top_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Mobile: Padding top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Mobile: Padding Bottom",
+          "default": 0
+        }
+      ],
+      "blocks": [
+        {
+          "type": "slide",
+          "name": "Slide Item",
+          "settings": [
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title"
+            },
+            {
+              "type": "text",
+              "id": "subtext",
+              "label": "Subtitle"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Banner Slider Item"
+        }
+      ]
+    }
+{% endschema %}

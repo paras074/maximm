@@ -1,0 +1,366 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+
+  #shopify-section-{{ section.id }} .features-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .features-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .feature-item {
+    padding: 28px 0;
+    border-bottom: 1px solid {{ section.settings.divider_color }};
+  }
+
+  #shopify-section-{{ section.id }} .feature-item:first-child {
+    padding-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .feature-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .feature-item h3 {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: 600;
+    color: {{ section.settings.title_color }};
+    margin-bottom: 8px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .feature-item p {
+    font-size: {{ section.settings.text_size_mobile }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.6;
+    margin: 0;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .feature-image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    border: 12px solid {{ section.settings.image_border_color }};
+    background-color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .feature-image-wrap img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .features-section {
+      padding: 0 40px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .features-section {
+      flex-direction: row;
+      gap: 40px;
+    }
+    #shopify-section-{{ section.id }} .features-list {
+      width: 520px;
+    }
+    #shopify-section-{{ section.id }} .feature-image-wrap {
+      width: 460px;
+      max-width: 460px;
+      height: 540px;
+    }
+    #shopify-section-{{ section.id }} .feature-item h3 {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .feature-item p {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    #shopify-section-{{ section.id }} .features-section {
+      padding: 0 104px; /* matches .container from original */
+    }
+  }
+
+  @media (max-width: 992px) {
+    #shopify-section-{{ section.id }} .features-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 60px;
+    }
+  }
+{% endstyle %}
+
+<div class="features-section">
+  <div class="features-list">
+    {% for block in section.blocks %}
+      <div class="feature-item" {{ block.shopify_attributes }}>
+        {% if block.settings.title != blank %}
+          <h3>{{ block.settings.title }}</h3>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <p>{{ block.settings.text }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div class="feature-image-wrap">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | escape }}">
+    {% else %}
+      <div style="position: absolute; bottom: 0; right: 0; width: calc(100% - 40px); height: calc(100% - 40px); background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #888;">Placeholder Image</div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Features List & Image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature Image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Feature Title Color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Feature Text Color",
+      "default": "#5c6470"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Line Color",
+      "default": "#212aff"
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image Border Color",
+      "default": "#f1de2c"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size (Mobile)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Mission Critical"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Feature Description",
+          "default": "Beyond the Jack: Engineering Zero-Failure Networks for 24/7 Operations"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features List & Image",
+      "category": "Features",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Mission Critical",
+            "text": "Beyond the Jack: Engineering Zero-Failure Networks for 24/7 Operations"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Future-Proofing",
+            "text": "Scaling for 10G and Beyond: How We Infrastructure Today for Tomorrow’s Bandwidth"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Problem-Solver",
+            "text": "The Invisible Shield: Solving Signal Interference in High-Density Medical Environments"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Sustainability/Efficiency",
+            "text": "\"Architectural Integrity: Maximizing Airflow and Efficiency Through Precision Cable Management\""
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Global Scale",
+            "text": "From Blueprint to Backbone: Orchestrating Multi-Site Deployments Across Three Continents"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

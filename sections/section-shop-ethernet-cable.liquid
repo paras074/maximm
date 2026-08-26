@@ -1,0 +1,123 @@
+{{ 'section-shop-ethernet-cable.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="brand-shop-ethernet-cable section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="inner-page-width">
+        <div class="image-holder d-none d-md-block">
+            {{ section.settings.main_image_desktop | image_url: width: 1000 | image_tag: class: 'w-100 fadeIn' }}
+        </div>
+        <div class="floating-box parallaxBlockUp">
+            <div class="box">
+                <div class="image-holder d-md-none">
+                  {{ section.settings.main_image_mobile | image_url: width: 1000 | image_tag: class: 'w-100 fadeIn' }}
+                </div>
+                <div class="content-holder">
+                    {{ section.settings.content }}
+                </div>
+            </div>
+            <div class="cat-title-with-trigger-btn">
+                <div class="st-row no-gutters">
+                    <div class="st-col">
+                        <h5 class="product-cat-title">
+                          <a href="{{ section.settings.btn_url }}">{{ section.settings.btn_txt }}</a>
+                        </h5>
+                    </div>
+                    <div class="st-col-auto">
+                        <div class="product-cat-trigger-btn-wrapper">
+                            <a class="product-cat-trigger-btn" href="{{ section.settings.btn_url }}">
+                              {%- render 'icon-arrow-right-long' -%}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section: Ethernet Cable",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image_desktop",
+      "label": "Desktop: Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_mobile",
+      "label": "Mobile: Main Image"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },    
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 170
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 120
+    }
+  ]
+}
+{% endschema %}

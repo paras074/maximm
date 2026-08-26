@@ -1,0 +1,442 @@
+{{ 'section-full-width-product-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding.full-width-products-slider {
+    background: transparent;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+
+
+{%- for current_variant in product.variants -%}
+  {% if current_variant.metafields.custom.similar_variants_list %}
+    <modal-dialog id="PopupModal-{{ current_variant.id }}" class="product-popup-modal similarvariants-popup-modal" {{ block.shopify_attributes }}>
+      <div
+        role="dialog"
+        aria-label="{{ block.settings.text }}"
+        aria-modal="true"
+        class="product-popup-modal__content"
+        tabindex="-1"
+      >
+        <button
+          id="ModalClose-{{ current_variant.id }}"
+          type="button"
+          class="product-popup-modal__toggle"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
+        <div class="product-popup-modal__content-info">
+
+          <h2 class="similar-variants__heading inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+          <div
+              class="similar-variants-slider-wrapper related-product-slider-wrapper full-width-products-slider section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
+              data-section-id="{{ section.id }}"
+              data-product-id="{{ product.id }}"
+            >
+            <div class="slider-items__main">
+              <div class="swiper js-full-width-products-slider">
+                <div class="swiper-wrapper">
+                  {% for similar_variant in current_variant.metafields.custom.similar_variants_list.value %}
+                    {% if similar_variant.available %}
+                      <div class="swiper-slide product-item">
+                        <div class="product-image">
+                          <a class="link" href="{{ similar_variant.product.url }}?variant={{ similar_variant.id }}">
+                            {%- if similar_variant.image -%}
+                              {{ similar_variant.image | image_url: width: 410 | image_tag }}
+                            {%- else -%}
+                              {{ similar_variant.product.featured_image | image_url: width: 410 | image_tag }}
+                            {%- endif -%}
+                          </a>
+                        </div>
+                        <div class="product-content">
+                          <div class="product-cat">{{ similar_variant.product.type }}</div>
+                          <div class="product-title clamp" style="--lines: 2">
+                            <a href="{{ similar_variant.product.url }}?variant={{ similar_variant.id }}">{{ similar_variant.product.title }}</a>
+                          </div>
+                          <div class="variant-options">
+                            <ul>
+                              {%- for option in similar_variant.product.options_with_values -%}
+                                <li>
+                                  <span class="option-name">{{ option.name }}</span><span class="option-value">{{ similar_variant.options[forloop.index0] }}</span>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                            <a href="{{ similar_variant.product.url }}" class="product-link">+ View all options</a>
+                          </div>
+                          <div class="product-footer">
+                            {%- assign product_form_id = 'product-form-' | append: similar_variant.id  -%}
+                            <div class="product-price">
+
+                              {{ similar_variant.price | money_without_trailing_zeros }}
+                            </div>
+                            {%- assign cart_qty = cart | item_count_for_variant: similar_variant.id -%}
+                            <div class="price-per-item__container">
+                              <quantity-input class="quantity">
+                                <button class="quantity__button" name="minus" type="button">
+                                  <span class="visually-hidden">
+                                    {{- 'products.product.quantity.decrease' | t: product: similar_variant.product.title | escape -}}
+                                  </span>
+                                  {% render 'icon-minus' %}
+                                </button>
+                                <input
+                                  class="quantity__input"
+                                  type="number"
+                                  name="quantity"
+                                  id="Quantity-{{ similar_variant.id }}"
+                                  data-cart-quantity="{{ cart_qty }}"
+                                  data-min="{{ similar_variant.quantity_rule.min }}"
+                                  min="{{ similar_variant.quantity_rule.min }}"
+                                  {% if similar_variant.quantity_rule.max != null %}
+                                    data-max="{{ similar_variant.quantity_rule.max }}"
+                                    max="{{ similar_variant.quantity_rule.max }}"
+                                  {% endif %}
+                                  step="{{ similar_variant.quantity_rule.increment }}"
+                                  value="{{ similar_variant.quantity_rule.min }}"
+                                  form="{{ product_form_id }}"
+                                >
+                                <button class="quantity__button" name="plus" type="button">
+                                  <span class="visually-hidden">
+                                    {{- 'products.product.quantity.increase' | t: product: similar_variant.product.title | escape -}}
+                                  </span>
+                                  {% render 'icon-plus' %}
+                                </button>
+                              </quantity-input>
+                              {%- liquid
+                                assign volume_pricing_array = similar_variant.quantity_price_breaks | sort: 'quantity' | reverse
+                                assign current_qty_for_volume_pricing = cart_qty | plus: similar_variant.quantity_rule.min
+                                if cart_qty > 0
+                                  assign current_qty_for_volume_pricing = cart_qty | plus: similar_variant.quantity_rule.increment
+                                endif
+                              -%}
+                              {%- if similar_variant.product.quantity_price_breaks_configured? -%}
+                                <price-per-item
+                                  id="Price-Per-Item-{{ similar_variant.id }}"
+                                  data-section-id="{{ section.id }}"
+                                  data-variant-id="{{ similar_variant.id }}"
+                                >
+                                  {%- if similar_variant.quantity_price_breaks.size > 0 -%}
+                                    {%- assign variant_price_compare = similar_variant.compare_at_price -%}
+                                    <div class="price-per-item">
+                                      {%- if variant_price_compare -%}
+                                        <dl class="price-per-item--current">
+                                          <dt class="visually-hidden">
+                                            {{ 'products.product.price.regular_price' | t }}
+                                          </dt>
+                                          <dd>
+                                            <s class="variant-item__old-price">
+                                              {{ variant_price_compare | money_with_currency }}
+                                            </s>
+                                          </dd>
+                                        </dl>
+                                      {%- endif -%}
+                                      {%- if current_qty_for_volume_pricing < volume_pricing_array.last.minimum_quantity -%}
+                                        {%- assign variant_price = similar_variant.price
+                                          | money_with_currency
+                                        -%}
+                                        <span class="price-per-item--current">
+                                          {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                                        </span>
+                                      {%- else -%}
+                                        {%- for price_break in volume_pricing_array -%}
+                                          {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
+                                            {%- assign price_break_price = price_break.price | money_with_currency -%}
+                                            <span class="price-per-item--current">
+                                              {{-
+                                                'products.product.volume_pricing.price_at_each'
+                                                | t: price: price_break_price
+                                              -}}
+                                            </span>
+                                            {%- break -%}
+                                          {%- endif -%}
+                                        {%- endfor -%}
+                                      {%- endif -%}
+                                    </div>
+                                  {%- else -%}
+                                    {%- assign variant_price = similar_variant.price
+                                      | money_with_currency
+                                    -%}
+                                    {%- assign variant_price_compare = similar_variant.compare_at_price -%}
+                                    <div class="price-per-item">
+                                      {%- if variant_price_compare -%}
+                                        <dl class="price-per-item--current">
+                                          <dt class="visually-hidden">
+                                            {{ 'products.product.price.regular_price' | t }}
+                                          </dt>
+                                          <dd>
+                                            <s class="variant-item__old-price">
+                                              {{ variant_price_compare | money_with_currency }}
+                                            </s>
+                                          </dd>
+                                          <dt class="visually-hidden">
+                                            {{ 'products.product.price.sale_price' | t }}
+                                          </dt>
+                                          <dd>
+                                            <span class="price-per-item--current">
+                                              {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                                            </span>
+                                          </dd>
+                                        </dl>
+                                      {%- else -%}
+                                        <span class="price-per-item--current">
+                                          {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                                        </span>
+                                      {%- endif -%}
+                                    </div>
+                                  {%- endif -%}
+                                </price-per-item>
+                              {%- endif -%}
+                            </div>
+                            <div class="product-cart">
+                              {% render 'buy-variant', variant: similar_variant, product_form_id: product_form_id, section_id: section.id %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+      
+                </div>
+              </div>
+      
+              <div class="page-width">
+                <div class="browse-product-nav-wrapper">
+                  <div class="progress-nav">
+                      <div class="swiper-pagination-wrapper">
+                        <div class="swiper-pagination"></div>
+                      </div>
+                      <div class="button-wrapper">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+       
+          </div>
+          
+        </div>
+      </div>
+  </modal-dialog>
+  {% endif %}  
+  
+{%- endfor -%}
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Similar Variants Modal",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "t:sections.related-products.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.related-products.settings.products_to_show.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.related-products.settings.columns_desktop.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.related-products.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.related-products.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label",
+      "info": "t:sections.all.image_shape.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.related-products.settings.show_rating.label",
+      "info": "t:sections.related-products.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.related-products.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.related-products.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.related-products.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.related-products.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,180 @@
+{{ 'section-product-browse.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="browse-products section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width js-has-stretch">
+    <div class="inner-page-width">
+      <div class="st-row">
+        <div class="st-col-md-3 column-left">
+          <div class="box h-100">
+            <h2>
+              {{ section.settings.title }}
+            </h2>
+            <div class="total-products">{{ section.settings.total_text }}</div>
+            <div class="mt-auto hidden d-md-block">
+              {% if section.settings.btn_url %}
+              <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+                {{ section.settings.btn_txt }}
+                <span class="ico-holder">
+                  {% render 'icon-button-art-blue' %}
+                </span>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="st-col-md-9 column-right">
+          <div class="js-stretch-right">
+            <div class="swiper js-browse-products-slider">
+              <div class="swiper-wrapper">
+
+                {% for article in section.settings.blog.articles  %}
+                  <a class="swiper-slide" href="{{article.url}}">
+                    <div class="product-image article-image">
+                      <span class="link">
+                        {{ article.image | image_url: width: 450 | image_tag: loading: 'lazy', class: 'w-100' }}
+                      </span>
+                      <span class="play-btn"> {% render 'icon-play' %}</span>
+                    </div>
+                    <div class=" product-content">
+                      <div class="article-card__info caption-with-letter-spacing h5">
+                          <span class="circle-divider">{% render 'icon-calendar' %}{{ article.published_at | time_tag: format: 'date' }}</span>
+                      </div>
+                      <h5 class="product-title">
+                        <span>{{ article.title  }}</span>  
+                      </h5>
+                      <p class="article-card__excerpt rte-width">
+                        {%- if article.excerpt.size > 0 -%}
+                          {{ article.excerpt | strip_html | truncatewords: 7 }}
+                        {%- else -%}
+                          {{ article.content | strip_html | truncatewords: 7 }}
+                        {%- endif -%}
+                      </p>
+                    </div>
+                  </a>
+                {% endfor %}
+
+              </div>
+
+            </div>
+          </div>
+          <div class="browse-product-nav-wrapper">
+            <div class="progress-nav">
+              <div class="swiper-pagination-wrapper">
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="button-wrapper">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
+            </div>
+            <div class="mt-auto d-none">
+              {% if section.settings.btn_url  %}  
+                <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+                  {{ section.settings.btn_txt }}
+                  <span class="ico-holder">
+                    {% render 'icon-button-art-blue' %}
+                  </span>
+                </a>
+              {% endif  %}  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section: Video List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "total_text",
+      "label": "Short Desc",
+      "default": "Short desc"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured-blog.settings.blog.label"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "Read more"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+
+  "presets":[
+    {
+      "name" : "Section: Video List"
+    } 
+  ]
+}
+{% endschema %}

@@ -1,0 +1,121 @@
+{% assign layout5 = product.metafields.custom.layout_five.value %}
+<div class="page-width">
+
+  {% if layout5.full_width_image_1 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_1
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_1.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout5.full_width_image_2 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_2
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_2.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+  
+  {% if layout5.text_block_1 != blank %}
+    <div class="text-block">
+
+      {{
+        layout5.text_block_1 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+
+
+  {% if layout5.full_width_image_3 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_3
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_3.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout5.text_block_2 != blank %}
+    <div class="text-block">
+
+      {{
+        layout5.text_block_2 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+
+  {% if layout5.full_width_image_4 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_4
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_4.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout5.text_block_3 != blank %}
+    <div class="text-block">
+
+      {{
+        layout5.text_block_3 |  metafield_tag
+      }}        
+    </div>
+  {% endif %}  
+
+  {% if layout5.full_width_image_5 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_5
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_5.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+  {% if layout5.full_width_image_6 != blank %}
+    <div class="full-width-img">
+
+      {{
+        layout5.full_width_image_6
+        | image_url: width: 3840
+        | image_tag:
+          width: layout5.full_width_image_6.width,
+          sizes: full_width,
+          widths: widths
+      }}        
+    </div>
+  {% endif %}
+
+
+
+
+  
+
+</div>

@@ -1,0 +1,263 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'header-dropdown-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      
+      {% assign upperlink = link.title | handleize %}
+      {% assign currentmenu = '' %}
+      {% liquid 
+        assign positionalmenu = false
+        for block in section.blocks
+          assign currentmenucheck = block.settings.title | handleize
+          if upperlink == currentmenucheck
+            assign positionalmenu = true
+            break
+          endif
+        endfor
+      %}
+    <li class="{% if link.links != blank %}has-mega-menu{% endif %}{% unless positionalmenu %} position-relative{% endunless %}">
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+                onclick="window.location.href='{{ shop.url }}{{ link.url }}'"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+                {% render 'icon-caret' %}
+              </summary>
+
+              {% if positionalmenu %}
+                  {% for block in section.blocks %}
+                    {% assign menuitem = block.settings.title | handleize %}
+                    {% if upperlink != menuitem %}
+                      {% continue %}
+                    {% endif %}
+                    {% case block.type %}
+                      {% when 'megamenu_large' %}
+                        <div class="mega-menu mega-menu--primary page-width">
+                          <div class="st-row">
+                            <div class="st-col-md mega-menu-left">
+                              {% for childlink in link.links %}
+                            <div class="column">
+                                <h6 class="title">
+                                  <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                                </h6>
+
+                                {% if childlink.links != blank %}
+                                  
+                                  <ul class="{% if childlink.title contains 'Bulk' %} mega-menu-pack{% endif %}">
+                                    {% for grandchildlink in childlink.links %}
+                                      <li>
+                                        <a href="{{ grandchildlink.url }}">{{ grandchildlink.title }}</a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+
+                                {% endif %}
+                              </div>
+                              {% endfor %}
+                              <div class="st-col-12 link-holder">
+                                <a href="{{link.url}}" class="btn btn-primary">
+                                  <span class="btn-text">Shop all </span> {{- link.title | escape -}}
+                                  <span class="ico-holder">
+                                    {% render 'icon-button-art-white' %}
+                                  </span>
+                                </a>
+                              </div>
+                            </div>
+                            {% for block in section.blocks %}
+                              {% if block.type == 'megamenu_large' and upperlink == block.settings.title %}
+                                <div class="st-col-md mega-menu-right">
+                                  <div class="mega-menu-right__box">
+                                    <a href="{{ block.settings.large_banner_url }}">
+                                      <div class="image-holder">
+                                        {{ block.settings.large_banner_image | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                      </div>
+                                    </a>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+                            
+                          </div>
+                        </div>
+                      {% when 'megamenu_list' %}
+                        <div class="mega-menu mega-menu--secondary page-width">
+                          <div class="section-heading">
+                            <div class="st-row align-items-center">
+                              <div class="st-col-md-auto">
+                                <div class="floating-logo-element">
+                                  <img class="w-100" src="{{ 'about-maximm-logo-element.svg' | asset_url }}">
+                                </div>
+                              </div>
+                              <div class="st-col-md-auto gutters-end-0">
+                                <h5 class="title">{{ block.settings.list_title }}</h5>
+                              </div>
+                              <div class="st-col-md description gutters-end-0">
+                                <p>
+                                  {{ block.settings.desc }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-items st-row gutters-55">
+                            <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                              <div class="image-holder">
+                                <a class="d-block" href="{{ block.settings.list_url_one }}">
+                                  {{ block.settings.list_image_one | image_url: width: 400 | image_tag }}
+                                </a>
+                              </div>
+                              <h6 class="title">
+                                <a href="{{ block.settings.list_url_one }}">
+                                  <span class="ico">
+                                    <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                  </span>
+                                  {{ block.settings.list_title_one }}
+                                </a>
+                              </h6>
+                            </div>
+                            <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                              <div class="image-holder">
+                                <a class="d-block" href="{{ block.settings.list_url_two }}">
+                                  {{ block.settings.list_image_two | image_url: width: 400 | image_tag: class: 'w-100' }}
+                                </a>
+                              </div>
+                              <h6 class="title">
+                                <a href="{{ block.settings.list_url_two }}">
+                                  <span class="ico">
+                                    <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                  </span>
+                                  {{ block.settings.list_title_two }}
+                                </a>
+                              </h6>
+                            </div>
+                            <div class="{% if block.settings.list_image_four != blank %}st-col-md-3{% else %}st-col-md-4{% endif %} card-item">
+                              <div class="image-holder">
+                                <a class="d-block" href="{{ block.settings.list_url_three }}">
+                                  {{ block.settings.list_image_three | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                </a>
+                              </div>
+                              <h6 class="title">
+                                <a href="{{ block.settings.list_url_three }}">
+                                  <span class="ico">
+                                    <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                  </span>
+                                  {{ block.settings.list_title_three }}
+                                </a>
+                              </h6>
+                            </div>
+                            {% if block.settings.list_image_four != blank %}
+                            <div class="st-col-md-3 card-item">
+                              <div class="image-holder">
+                                <a class="d-block" href="{{ block.settings.list_url_four }}">
+                                  {{ block.settings.list_image_four | image_url: width: 400  | image_tag: class: 'w-100' }}
+                                </a>
+                              </div>
+                              <h6 class="title">
+                                <a href="{{ block.settings.list_url_four }}">
+                                  <span class="ico">
+                                    <img src="{{ 'maximm-logo-single-element-blue-2.svg' | asset_url }}">
+                                  </span>
+                                  {{ block.settings.list_title_four }}
+                                </a>
+                              </h6>
+                            </div>  
+                            {% endif %}                          
+                          </div>
+                        </div>
+                    {% endcase %}
+                  {% endfor %}
+              {% else %}
+                <ul
+                  id="HeaderMenu-MenuList-{{ forloop.index }}"
+                  class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                  role="list"
+                  tabindex="-1"
+                >
+                  {%- for childlink in link.links -%}
+                    <li>
+                      {%- if childlink.links == blank -%}
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{ childlink.title | escape }}
+                        </a>
+                      {%- else -%}
+                        <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
+                          <summary
+                            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                            class="header__menu-item link link--text list-menu__item focus-inset caption-large"
+                          >
+                            <span>{{ childlink.title | escape }}</span>
+                            {% render 'icon-caret' %}
+                          </summary>
+                          <ul
+                            id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                            class="header__submenu list-menu motion-reduce"
+                          >
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </details>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {% endif %}
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+      {% assign blocktype = '' %}
+      {% assign currentmenu = '' %}
+    {%- endfor -%}
+  </ul>
+</nav>

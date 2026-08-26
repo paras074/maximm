@@ -1,0 +1,110 @@
+{% stylesheet %}
+    .table-of-content {
+        padding: 36px 0 0;
+        /* background-color: rgba(244, 246, 254, 0.8); */
+        margin-top: 50px!important;
+    }
+    .table-of-content h3{
+        display: inline-flex;
+        background-color: #273CFF;
+        color: #FFF;
+        padding: 0.8rem 0.4rem 0.8rem 0.9rem;
+        border-radius: 0.4rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.5rem;
+        line-height: 1.4285;
+    }
+    .table-of-content li{
+        list-style-type: decimal;
+        padding-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    .table-of-content li::marker{
+        color: #0D112C;
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+    .table-of-content li a{
+        color: #0D112C;
+        font-size: 1.61rem;
+        font-weight: 500;
+        text-decoration: underline;
+        transition: color   0.3s ease;
+    }
+    .table-of-content li:hover a{
+        color: #273CFF;
+    }
+
+    
+{% endstylesheet %}
+
+<div class=" page-width">
+    <div class="table-of-content">
+        <div class="table-wrapper"> 
+            <div class="table-title">
+                <h3>In this page</h3>
+            </div>  
+            <div class="content-list">
+                <ul>
+                    <li><a href="#shopify-section-template--21167119040756__image_with_text_NTC9V4">Extension Cords Safety and Codes</a></li>
+                    <li><a href="/pages/extension-cord-safety#key-organizations">Key Organizations</a></li>
+                    <li><a href="/pages/extension-cord-safety#product-certification">Product Certification and Testing</a></li>
+                    <li><a href="/pages/extension-cord-safety#understanding-NEMA">Understanding NEMA</a></li>
+                    <li><a href="/pages/extension-cord-safety#letter-codes">Extension Cord and Letter Codes</a></li>
+                    <li><a href="/pages/extension-cord-safety#extension-cord-usage">Extension Cord Usage</a></li>
+                    <li><a href="/pages/extension-cord-safety#key-factors">Key Factors to Consider</a></li>
+                    <li><a href="/pages/extension-cord-safety#cord-types">Types of Extension Cords</a></li>
+                    <li><a href="/pages/extension-cord-safety#key-takeaways">Key Takeaways</a></li>
+                    <li><a href="/pages/extension-cord-safety#usage-guidelines">Safety Usage Guidelines</a></li>
+                    <li><a href="#shopify-section-template--21167119040756__section_full_width_product_slider_AVaJtC">Shop Extension Cords</a></li>
+                </ul>
+            </div>     
+               
+        </div>
+    </div>
+
+</div>
+
+
+{% schema %}
+    {
+        "name" : "Table of Content",
+        "class": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "title",
+                "default":"Title"
+            }
+
+        ],
+        "blocks": [
+            {
+                "type": "buttons",
+                "name": "product-button",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "product_button",
+                        "label": "Product Name",
+                        "default": "Click Here"
+                    },
+                    {
+                        "type": "url",
+                        "id": "product_url",
+                        "label": "Product Link"
+                    }
+
+                ]
+            }
+        ],
+        
+        "presets": [
+            {
+            "name": "Table of Content"
+            }
+        ]
+    }
+{% endschema %}

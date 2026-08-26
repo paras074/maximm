@@ -1,0 +1,345 @@
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'collapsible-content.css' | asset_url | stylesheet_tag }}
+
+{% liquid 
+  assign block_title = collection.metafields.title.custom
+  assign block_desc_left = collection.metafields.description_left.custom
+  assign block_desc_right = collection.metafields.description_right.custom
+  assign block_image_one = collection.metafields.image_one.custom
+  assign block_image_two = collection.metafields.image_two.custom
+  assign block_image_three = collection.metafields.image_three.custom
+%}
+
+
+<style>
+  #shopify-section-{{ section.id }} {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    /* Images wrapper styling */
+    .images-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .images-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+
+    @media screen and (min-width: 750px) {
+      .images-wrapper {
+        gap: 4.6rem;
+      }
+
+      /* Single image - full width */
+      .images-wrapper > div:only-child {
+        flex: 1 1 100%;
+      }
+
+      /* Two images */
+      .images-wrapper > div:first-child:nth-last-child(2),
+      .images-wrapper > div:first-child:nth-last-child(2) ~ div {
+        flex: 1 1 calc(50% - 2.3rem);
+      }
+
+      /* Three images */
+      .images-wrapper > div:first-child:nth-last-child(3),
+      .images-wrapper > div:first-child:nth-last-child(3) ~ div {
+        flex: 1 1 calc(33.333% - 3.067rem);
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      .images-wrapper {
+        gap: 2rem;
+        flex-direction: column;
+      }
+
+      .images-wrapper > div {
+        flex: 1 1 100%;
+        width: 100%;
+      }
+    }
+
+    /* Description wrapper styling */
+    .description-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    @media screen and (min-width: 750px) {
+      .description-wrapper {
+        gap: 18rem;
+      }
+
+      /* Single description - full width */
+      .description-wrapper > div:only-child {
+        flex: 1 1 100%;
+      }
+
+      /* Two descriptions */
+      .description-wrapper > div:first-child:nth-last-child(2),
+      .description-wrapper > div:first-child:nth-last-child(2) ~ div {
+        flex: 1 1 calc(50% - 9rem);
+      }
+    }
+
+    @media screen and (max-width: 749px) {
+      .description-wrapper {
+        gap: 2rem;
+        flex-direction: column;
+      }
+
+      .description-wrapper > div {
+        flex: 1 1 100%;
+        width: 100%;
+      }
+    }
+
+    /* Accordion styling */
+    .accordion {
+      margin-bottom: 7.8rem;
+      border: none !important;
+    }
+
+    .accordion:last-child {
+      margin-bottom: 0;
+    }
+
+    .accordion summary {
+      align-items: center;
+    }
+
+    .accordion summary h3{
+      font-size: 4rem;
+      color: #273cff;
+      margin-right: 2.5rem;
+      max-width: max-content;
+    }
+    .accordion summary .title-wrapper {
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+    .accordion summary svg{
+      position: static;
+      margin-bottom: 0.6rem;
+      width: 2rem;
+      height: 1rem;
+    }
+    .accordion .accordion__content {
+      padding-right: 0;
+    }
+
+    .accordion summary .svg-wrapper {
+      padding-left: 4rem;
+      flex: auto;
+      display: flex;
+      align-items: center;
+    }
+    .accordion summary .svg-wrapper svg {
+      height: auto;
+      width: 3.5rem;
+    }
+    .accordion summary .svg-wrapper .line {
+      position: relative;
+      width: 100%;
+      display: block !important;
+
+    }
+    .accordion summary .svg-wrapper .line:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 1px;
+      width: 100%;
+      background: #212AFF;
+      background: linear-gradient(90deg,rgba(33, 42, 255, 1) 0%, rgba(216, 217, 255, 1) 100%);
+    }
+    @media screen and (max-width: 1200px){
+      .accordion summary .svg-wrapper {
+        display: none !important;
+      }
+    }
+  }
+</style>
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="collapsible-content page-width collapsible-{{ section.settings.layout }}-layout isolate{% if section.settings.layout == 'section' %} page-width{% elsif section.settings.layout == 'none' %} content-container content-container--full-width{% endif %}">
+    <div class="collapsible-content__wrapper section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile {% if section.settings.layout == 'section' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}">
+        <div class="grid grid--1-col grid--2-col-tablet collapsible-content__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="grid__item">
+            {%- for item in block_title -%}
+              <div
+                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}">
+                <details id="Details-item{{ forloop.index }}-{{ section.id }}" open>
+                  <summary id="Summary-item{{ forloop.index }}-{{ section.id }}">
+                    <div class="title-wrapper">
+                      <h2 style = "font-size: 4rem; color: #273cff; margin-right: 2.5rem; max-width: max-content;" class="accordion__title inline-richtext h4">
+                        {{ item | strip_html }}
+                      </h2>
+                      {% render 'icon-caret' %}
+                    </div>
+                    <div class="svg-wrapper">
+                      {% render 'icon-yellow-pill' %}
+                      <div class="line"></div>
+                    </div>
+                  </summary>
+                  <div
+                    class="accordion__content rte"
+                    id="CollapsibleAccordion-item{{ forloop.index }}-{{ section.id }}"
+                    role="region"
+                    aria-labelledby="Summary-item{{ forloop.index }}-{{ section.id }}"
+                  >
+                    {% if block_desc_left[forloop.index0] != blank or block_desc_right[forloop.index0] != blank %}
+                    <div class="description-wrapper">
+                      {% if block_desc_left[forloop.index0] != blank %}
+                        <div class="description-left">{{ block_desc_left[forloop.index0] }}</div>
+                      {%  endif %}
+                      {% if block_desc_right[forloop.index0] != blank %}
+                        <div class="description-right">{{ block_desc_right[forloop.index0] }}</div>
+                      {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if block_image_one[forloop.index0] != blank or block_image_two[forloop.index0] != blank or block_image_three[forloop.index0] != blank %}
+                    <div class="images-wrapper">
+                      {% if block_image_one[forloop.index0] != blank %}
+                        <div class="image-one"><img src="{{ block_image_one[forloop.index0] }}" alt="Image 1" loading="lazy"></div>
+                      {%  endif %}
+                      {% if block_image_two[forloop.index0] != blank %}
+                        <div class="image-two"><img src="{{ block_image_two[forloop.index0] }}" alt="Image 2" loading="lazy"></div>
+                      {%  endif %}
+                      {% if block_image_three[forloop.index0] != blank %}
+                        <div class="image-three"><img src="{{ block_image_three[forloop.index0] }}" alt="Image 3" loading="lazy"></div>
+                      {%  endif %}
+                    </div>
+                    {% endif %}
+                  </div>
+                </details>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection: Block Info",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.collapsible_content.settings.layout.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.collapsible_content.settings.layout.options__1.label"
+        },
+        {
+          "value": "row",
+          "label": "t:sections.collapsible_content.settings.layout.options__2.label"
+        },
+        {
+          "value": "section",
+          "label": "t:sections.collapsible_content.settings.layout.options__3.label"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "container_color_scheme",
+      "label": "t:sections.collapsible_content.settings.container_color_scheme.label",
+      "info": "t:sections.collapsible_content.settings.container_color_scheme.info",
+      "default": "scheme-2"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_collapsible_row",
+      "default": false,
+      "label": "t:sections.collapsible_content.settings.open_first_collapsible_row.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection: Block Info"
+    }
+  ]
+}
+{% endschema %}

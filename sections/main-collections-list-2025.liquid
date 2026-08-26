@@ -1,0 +1,164 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+
+{% render 'breadcrumb' %}
+<div class="page-width">
+  <div class="title-with-button">
+    <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <span class="svg">
+        <svg width="48" height="40" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M29.2495 7.37965C31.1897 3.30398 36.091 1.52034 40.1969 3.39578C44.3028 5.27121 46.0584 10.0955 44.1182 14.1712L35.3356 32.6203C33.3953 36.696 28.494 38.4797 24.3881 36.6042C20.2823 34.7288 18.5266 29.9045 20.4669 25.8288L29.2495 7.37965Z" fill="url(#paint0_linear_2006_16816)"/>
+          <path d="M7.46509 17.1564C8.67772 14.6091 11.741 13.4943 14.3072 14.6665C16.8734 15.8386 17.9707 18.8538 16.758 21.4011L11.4884 32.4706C10.2758 35.0179 7.21249 36.1327 4.64632 34.9605C2.08015 33.7884 0.982883 30.7732 2.19551 28.2259L7.46509 17.1564Z" fill="url(#paint1_linear_2006_16816)"/>
+          <path d="M27.2684 12.1605C25.9843 14.8766 22.218 20.8977 18.6709 24.1367C15.377 27.1444 13.7766 28.2564 13.3672 28.5663" stroke="#2A36AF" stroke-width="0.560438"/>
+          <defs>
+          <linearGradient id="paint0_linear_2006_16816" x1="18.9332" y1="36.6405" x2="46.6503" y2="11.2286" gradientUnits="userSpaceOnUse">
+          <stop offset="0.104167" stop-color="#15086A"/>
+          <stop offset="1" stop-color="#416BFF"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_2006_16816" x1="1.25071" y1="34.9544" x2="18.1175" y2="19.2384" gradientUnits="userSpaceOnUse">
+          <stop offset="0.104167" stop-color="#15086A"/>
+          <stop offset="1" stop-color="#416BFF"/>
+          </linearGradient>
+          </defs>
+        </svg>          
+      </span>
+      {{ section.settings.title }}
+    </h1>
+    <a class="btn btn-primary" href="/collections/all-{{ collection.title | downcase | handleize }}">
+      Explore Products
+      <span class="ico-holder">
+        <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+      </span>
+    </a>
+  </div>  
+  {%- liquid
+    case section.settings.sort
+      when 'products_high', 'products_low'
+        assign collections = collections | sort: 'all_products_count'
+      when 'date', 'date_reversed'
+        assign collections = collections | sort: 'published_at'
+    endcase
+
+    if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
+      assign collections = collections | reverse
+    endif
+
+    assign moduloResult = 28 | modulo: section.settings.columns_desktop
+    assign paginate_by = 30
+    if moduloResult == 0
+      assign paginate_by = 28
+    endif
+  -%}
+
+  {%- paginate collections by paginate_by -%}
+    <div
+      class="st-row card-product-items"
+      role="list"
+    >
+      {% assign colletion_num = 0 | plus: 0 %}
+      {%- for collection in collection.metafields.custom.collection_list.value -%}
+          {% render 'collection-card-new', collection: collection %}
+          {% assign collection_num = forloop.index %}
+      {%- endfor -%}
+    </div>
+    {% if collection_num > paginate_by  %}
+    {% render 'pagination', paginate: paginate %}
+    {% endif %}
+  {%- endpaginate -%}
+</div>
+{% schema %}
+{
+  "name": "t:sections.main-list-collections.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.main-list-collections.settings.title.label",
+      "default": "Collections"
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "options": [
+        {
+          "value": "alphabetical",
+          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+        },
+        {
+          "value": "alphabetical_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+        },
+        {
+          "value": "date_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+        },
+        {
+          "value": "date",
+          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+        },
+        {
+          "value": "products_high",
+          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+        },
+        {
+          "value": "products_low",
+          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+        }
+      ],
+      "default": "alphabetical",
+      "label": "t:sections.main-list-collections.settings.sort.label"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-list-collections.settings.image_ratio.label",
+      "info": "t:sections.main-list-collections.settings.image_ratio.info"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-list-collections.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    }
+  ]
+}
+{% endschema %}

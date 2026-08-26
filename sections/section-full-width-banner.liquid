@@ -1,0 +1,21 @@
+{{ 'section-full-width-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="full-width-banner">
+  <div
+    class="js-parallax-image"
+    style="background-image:url({{ section.settings.main_bg_image | image_url: width: 2000 }})"
+  ></div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Full Width Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_bg_image",
+      "label": "Main Image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page-breadcrumb",
+      "settings": {}
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "",
+        "contact_title": "",
+        "address": "",
+        "email_sales": "",
+        "email_support": "",
+        "phone": "",
+        "phone_ext": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 144
+      }
+    },
+    "collapsible_content_Tmk6C9": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_7xPw8z": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long is it from the tip of the plug to the tip of the receptacle?",
+            "icon": "maximm",
+            "row_content": "<p>The entire (1 foot cord) is 17 3/4 inches long from tip-to-tip. The length of the \"cord\" portion is only 11 3/4 inches, not 12 inches on the one I measured. I bought a pack of 5 but only have one available to measure.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_wYig3e": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is the wire between the plug for the wall & the other end with the three AC outlets one foot or is the entire thing one foot?",
+            "icon": "maximm",
+            "row_content": "<p>The entire (1 foot cord) is 17 3/4 inches long from tip-to-tip. The length of the \"cord\" portion is only 11 3/4 inches, not 12 inches on the one I measured. I bought a pack of 5 but only have one available to measure.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_fjf8pA": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can i use extension for a mini fridge, without the risk of a fire?",
+            "icon": "maximm",
+            "row_content": "<p>The entire (1 foot cord) is 17 3/4 inches long from tip-to-tip. The length of the \"cord\" portion is only 11 3/4 inches, not 12 inches on the one I measured. I bought a pack of 5 but only have one available to measure.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_6kHVMd": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do you have to unplug it when not using it?",
+            "icon": "maximm",
+            "row_content": "<p>The entire (1 foot cord) is 17 3/4 inches long from tip-to-tip. The length of the \"cord\" portion is only 11 3/4 inches, not 12 inches on the one I measured. I bought a pack of 5 but only have one available to measure.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_7xPw8z",
+        "collapsible_row_wYig3e",
+        "collapsible_row_fjf8pA",
+        "collapsible_row_6kHVMd"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "FAQ",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 250,
+        "padding_bottom_mobile": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "collapsible_content_Tmk6C9"
+  ]
+}

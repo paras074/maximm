@@ -1,0 +1,176 @@
+
+{{ 'b2b-banner.css' | asset_url | stylesheet_tag }}
+
+
+<div class="b2b-banner">    
+    <div
+        class="banner-bg"
+        {% if section.settings.bg_image != blank %}
+            style="background-image: url('{{ section.settings.bg_image | image_url: width: 1200 }}');"
+        {% endif %}
+    >
+    </div> 
+    <div class="floating-logo parallaxBlockUp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="277" height="245" viewBox="0 0 277 245" fill="none">
+            <path d="M58.207 27.7206C52.129 14.6862 36.6353 9.04699 23.601 15.125C10.5666 21.2031 4.92736 36.6967 11.0054 49.7311L36.0455 103.43C42.1236 116.464 57.6172 122.103 70.6516 116.025C83.686 109.947 89.3252 94.4537 83.2472 81.4194L58.207 27.7206Z" fill="url(#paint0_linear_2_1150)"/>
+            <path d="M264.98 45.7358C253.201 20.4767 223.176 9.5485 197.917 21.327C172.658 33.1055 161.73 63.1305 173.508 88.3896L225.201 199.245C236.98 224.504 267.005 235.433 292.264 223.654C317.523 211.876 328.451 181.851 316.673 156.591L264.98 45.7358Z" fill="url(#paint1_linear_2_1150)"/>
+            <path d="M61.2943 37.7641C76.135 63.2267 119.666 119.674 160.663 150.039C198.732 178.236 217.229 188.66 221.961 191.565" stroke="#273CFF" stroke-width="1.1254"/>
+            <defs>
+            <linearGradient id="paint0_linear_2_1150" x1="87.7726" y1="115.723" x2="4.6877" y2="37.6209" gradientUnits="userSpaceOnUse">
+            <stop offset="0.104167" stop-color="#15086A" stop-opacity="0"/>
+            <stop offset="1" stop-color="#416BFF"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_2_1150" x1="325.641" y1="223.492" x2="157.997" y2="69.6228" gradientUnits="userSpaceOnUse">
+            <stop offset="0.104167" stop-color="#15086A" stop-opacity="0"/>
+            <stop offset="1" stop-color="#416BFF"/>
+            </linearGradient>
+            </defs>
+        </svg>
+    </div>  
+    <div class="banner-content page-width">
+        <div class="content-wrapper">
+            <div class="top-content">
+                <div class="banner-title">
+                    {% if section.settings.title %}
+                        <h1>{{section.settings.title}}</h1>
+                    {% endif %}
+                </div>
+                <div class="banner-text-with-button">
+                    <div class="banner-desc">
+                        {% if section.settings.para %}
+                            <p>{{ section.settings.para }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="banner-btn-holder">
+                        {% if section.settings.btn_title %}
+                            <a href="{{section.settings.btn_url}}" class="banner-btn btn btn-white">
+                                {{section.settings.btn_title}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                                    <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0343 0)" fill="url(#paint0_linear_247_10)"/>
+                                    <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.72815 6.13913)" fill="url(#paint1_linear_247_10)"/>
+                                    <path d="M13.3454 5.95139C12.717 7.28064 10.8737 10.2274 9.13775 11.8126C7.52572 13.2846 6.74248 13.8288 6.54211 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear_247_10" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.104167" stop-color="#15086A"/>
+                                    <stop offset="1" stop-color="#416BFF"/>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_247_10" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.104167" stop-color="#15086A"/>
+                                    <stop offset="1" stop-color="#416BFF"/>
+                                    </linearGradient>
+                                    </defs>
+                                </svg>
+                            </a>
+                        {% endif %}
+                        {% if section.settings.btn_title_1 %}
+                            <a href="{{section.settings.btn_url_1}}" class="banner-btn btn btn-warning">
+                                {{section.settings.btn_title_1}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+                                    <rect width="8" height="18" rx="4" transform="matrix(0.909603 0.415478 -0.429827 0.902911 16.0343 0)" fill="url(#paint0_linear_247_10)"/>
+                                    <rect width="5" height="11" rx="2.5" transform="matrix(0.909603 0.415478 -0.429827 0.902911 4.72815 6.13913)" fill="url(#paint1_linear_247_10)"/>
+                                    <path d="M13.3454 5.95139C12.717 7.28064 10.8737 10.2274 9.13775 11.8126C7.52572 13.2846 6.74248 13.8288 6.54211 13.9805" stroke="#273CFF" stroke-width="0.274281"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear_247_10" x1="1.59685" y1="19.1255" x2="8.68896" y2="2.2544" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.104167" stop-color="#15086A"/>
+                                    <stop offset="1" stop-color="#416BFF"/>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_247_10" x1="0.998029" y1="11.6878" x2="5.26394" y2="1.30919" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.104167" stop-color="#15086A"/>
+                                    <stop offset="1" stop-color="#416BFF"/>
+                                    </linearGradient>
+                                    </defs>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="bottom-content">
+                {% for block in section.blocks %}            
+                    {% if block.settings.section_button %}
+                        <div class="section-link">
+                            <a href="{{block.settings.section_url}}"> {{block.settings.section_button}}</a>
+                        </div>  
+                    {% endif %}             
+                {% endfor %}   
+            </div>
+        </div>
+    </div>       
+</div>
+
+
+{% schema %}
+{
+    "name" : "B2B Banner",
+    "class": "section b2b-banner-section",
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "title",
+            "default": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "para",
+            "label": "Description"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image",
+            "label": "Background Image"
+        },        
+        {
+            "type": "url",
+            "id": "btn_url",
+            "label": "Button link"
+        },
+        {
+        "type": "text",
+        "id": "btn_title",
+        "label": "Button Title",
+        "default": "Button"
+        },
+        {
+            "type": "url",
+            "id": "btn_url_1",
+            "label": "Button link"
+        },
+        {
+        "type": "text",
+        "id": "btn_title_1",
+        "label": "Button Title",
+        "default": "Button"
+        }
+        
+
+    ],
+    "blocks": [
+        {
+            "type": "buttons",
+            "name": "button-links",
+            "settings":[
+                {
+                    "type": "text",
+                    "id": "section_button",
+                    "label": "Section Name",
+                    "default": "Click Here"
+                },
+                {
+                    "type": "url",
+                    "id": "section_url",
+                    "label": "Section Link"
+                }
+            ]
+        }
+    ],
+    
+    "presets": [
+        {
+        "name": "B2B Banner"
+        }
+    ]
+}
+
+{% endschema %}

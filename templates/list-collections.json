@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Collections",
+        "sort": "alphabetical",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "columns_mobile": "1"
+      }
+    },
+    "fullSlider": {
+      "type": "section-full-width-product-slider",
+      "blocks": {
+        "product_FMyp9f": {
+          "type": "product",
+          "settings": {
+            "button_txt": "Trending",
+            "product": [
+              "2-in-1-outlet-power-extension-cord-splitter-with-lock-feature-12-gauge-power-cord-splitter-outlet-saver",
+              "3-outlet-power-extension-cord-splitter-16-gauge-power-cord-splitter-outlet-saver",
+              "360-c5-cable",
+              "4-outlet-outdoor-extension-cord-with-multiple-outlets-12-gauge-etl-listed",
+              "cat8-outdoor-ethernet-cable-40gbps-2000mhz-high-speed-waterproof-lan-network-cable",
+              "extension-cord-3-outlet-3-prong-angled-plug-extension-cord-etl-listed",
+              "extension-cord-3-outlet-2-prong-with-safety-cover",
+              "extension-cord-heavy-duty-14-3-wire-for-air-conditions-and-major-appliances-flat-plug-14-gauge-power-cords-etl-listed",
+              "extension-cord-indoor-outdoor-extension-cord-with-3-outlets-and-lit-end-16-gauge-etl-listed",
+              "extension-cord-outdoor-extension-cord-with-multiple-outlets-14-gauge-etl-listed",
+              "extension-cord-power-cords-indoor-16-gauge-1-outlet-etl-listed",
+              "extension-cord-power-cords-indoor-outdoor-16-gauge-wire-heavy-duty-etl-listed-3-tone"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "product_FMyp9f"
+      ],
+      "settings": {
+        "heading": "Best Selling Products",
+        "description": "<ul><li>Ensured to provide the highest quality products and customer care for over a decade.</li><li>An innovative extension cord solution with a slim, 360-degree-rotating plug</li></ul>",
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "fullSlider"
+  ]
+}

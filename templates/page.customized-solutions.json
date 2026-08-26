@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner_slideshow_JBndMA": {
+      "type": "banner-slideshow",
+      "blocks": {
+        "image_Q8CEeV": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Group_19594.png",
+            "image_mobile": "shopify://shop_images/M_-_maximm_cable_-_customised_solutions_aa348c89-1f95-41df-954e-1339a22fea95.png",
+            "subtitle": "",
+            "title": "CUSTOMIZED SOLUTIONS",
+            "desc": "At Maximm Cable, we specialize in providing high-quality cable solutions tailored to your specific needs.",
+            "btn_text": "contact us",
+            "btn_url": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "image_Q8CEeV"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "aboutMaximm": {
+      "type": "section-about-maximm",
+      "settings": {
+        "title": "Whether you require custom lengths, specific amperage, preferred colors, or unique voltage requirements, <strong>we've got you covered.</strong>",
+        "btn_txt": "",
+        "btn_url": "",
+        "padding_top": 250,
+        "padding_bottom": 250,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "customizedSolutions": {
+      "type": "section-customized-services",
+      "blocks": {
+        "product_q8gn7U": {
+          "type": "product",
+          "settings": {
+            "title": "Electricians",
+            "service_image": "shopify://shop_images/electrician_2-1.png"
+          }
+        },
+        "product_hmR4Mf": {
+          "type": "product",
+          "settings": {
+            "title": "Hospitals",
+            "service_image": "shopify://shop_images/Hospital_1.png"
+          }
+        },
+        "product_CQiLQH": {
+          "type": "product",
+          "settings": {
+            "title": "Mechanics",
+            "service_image": "shopify://shop_images/Mechanic_1.png"
+          }
+        },
+        "product_KPJ9VK": {
+          "type": "product",
+          "settings": {
+            "title": "Plumbers",
+            "service_image": "shopify://shop_images/Plumber_3.jpg"
+          }
+        },
+        "product_RcHxtL": {
+          "type": "product",
+          "settings": {
+            "title": "Photographers",
+            "service_image": "shopify://shop_images/Photographers.jpg"
+          }
+        },
+        "product_4yhh3Y": {
+          "type": "product",
+          "settings": {
+            "title": "Business Multitasking",
+            "service_image": "shopify://shop_images/Business_Mulit_Tasking.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "product_q8gn7U",
+        "product_hmR4Mf",
+        "product_CQiLQH",
+        "product_KPJ9VK",
+        "product_RcHxtL",
+        "product_4yhh3Y"
+      ],
+      "settings": {
+        "description": "We also offer a wide range of plug and connector options to ensure compatibility with your systems.",
+        "padding_top": 0,
+        "padding_bottom": 120,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "brandContactUs": {
+      "type": "section-brand-contactus",
+      "settings": {
+        "title": "Our team is dedicated to delivering precisely what you need, ensuring that your custom cable order meets all your specifications. <strong>Let us know your requirements, and we’ll take care of the rest</strong>",
+        "btn_txt": "Contact Us",
+        "btn_url": "shopify://pages/contact",
+        "padding_top": 150,
+        "padding_bottom": 100,
+        "padding_top_mobile": 110,
+        "padding_bottom_mobile": 70
+      }
+    }
+  },
+  "order": [
+    "banner_slideshow_JBndMA",
+    "aboutMaximm",
+    "customizedSolutions",
+    "brandContactUs"
+  ]
+}

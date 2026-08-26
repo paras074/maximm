@@ -1,0 +1,110 @@
+{{ 'section-complete-customer-experience.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="complete-customer-experience section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile" id="more-than-wires">
+  <div class="floating-logo-element">
+    <img class="w-100 parallaxBlockUp" src="{{ 'about-maximm-logo-element.svg' | asset_url }}">
+  </div>
+  <div class="page-width">
+    <div class="st-row">
+      <div class="st-col-md-6 content-holder ">
+        <div class="subtitle-filled">More than Just wires</div>
+        {{ section.settings.content }}
+        <a class="btn btn-dark" href="{{ section.settings.btn_url }}">
+          {{ section.settings.btn_txt }}
+          <span class="ico-holder">
+            <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-floating-image">
+    {{ section.settings.main_image_bottom | image_url: width: 2000 | image_tag: class: 'w-100 parallaxBlockUp' }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Customer Experience",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtxt",
+      "label": "Sub Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_bottom",
+      "label": "Main Image Bottom"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

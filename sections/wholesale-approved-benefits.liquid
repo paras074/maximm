@@ -1,0 +1,333 @@
+
+{% style %}
+  #shopify-section-{{ section.id }} .wholesale-approved {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+   :root {
+    /* ============================
+       BRAND COLORS
+       ============================ */
+    --b2b-brand-color: #1a56db;              
+    --b2b-brand-color-hover: #1543ab;        
+    --b2b-brand-font: Inter, sans-serif;      
+    --b2b-brand-font-heading: Inter, sans-serif;
+
+    /* ============================
+       CORE COLORS
+       ============================ */
+    --spark-default-body-color: #1a1a1a;      
+    --spark-primary-color: #000000;          
+    --spark-secondary-color: var(--b2b-brand-color);
+    --spark-link-color: var(--b2b-brand-color);
+
+    /* ============================
+       TYPEFACES
+       ============================ */
+    --spark-font-default: var(--b2b-brand-font);
+    --spark-font-highlight: var(--b2b-brand-font-heading);
+    --spark-font-weight-default: 400;
+    --spark-font-weight-medium: 500;
+    --spark-font-weight-heavy: 600;
+
+    /* ============================
+       GENERAL / SHAPE
+       ============================ */
+    --spark-border-radius-default: 8px;     
+    --spark-drawer-max-width: 700px;
+    --spark-drawer-max-width-wide: 1000px;
+
+    /* ============================
+       FONT SIZES
+       ============================ */
+    --spark-font-default-size: 15px;
+    --spark-font-default-size-small: 14px;
+    --spark-header-font: var(--b2b-brand-font-heading);
+    --spark-header-font-weight: 500;
+    --spark-h1-fontsize: 20px;
+    --spark-h2-fontsize: 22px;
+    --spark-h3-fontsize: 20px;
+    --spark-h4-fontsize: 16px;
+    --spark-h5-fontsize: 15px;
+    --spark-h6-fontsize: 14px;
+
+    --spark-pricing-fontsize: 22px;
+    --spark-pricing-font-weight: 500;
+    --spark-pricing-fontsize-small: 14px;
+
+    --spark-product-code-fontsize: 16px;
+    --spark-product-code-font-weight: 500;
+    --spark-product-code-fontsize-small: 14px;
+    --spark-product-stockstatus-align: flex-start;
+
+    /* ============================
+       BUTTONS
+       ============================ */
+    --spark-button-font-family: var(--b2b-brand-font-heading);
+    --spark-button-color: var(--b2b-brand-color);
+    --spark-button-color-highlight: var(--b2b-brand-color-hover);
+    --spark-button-large-color: var(--b2b-brand-color);
+    --spark-button-large-color-highlight: var(--b2b-brand-color-hover);
+    --spark-border-radius-button: 8px;        /* Subtle rounded, not full pill — matches target design */
+    --spark-button-font-weight: 500;
+    --spark-button-text-transform: none;
+    --spark-button-text-letter-spacing: 0;
+    --spark-button-padding: 1em 2.75em;
+    --spark-button-small-font-size: 16px;
+
+    /* ============================
+       TABLES
+       ============================ */
+    --spark-table-border-color: #CCCCCC;
+    --spark-table-header-background-color: #F1F1F1;
+    --spark-table-header-text-color: #222222;
+    --spark-table-header-font-weight: 500;
+
+    /* ============================
+       PRODUCT CARD
+       ============================ */
+    --spark-product-card-button-radius: 8px;
+    --spark-product-card-button-padding: 0.75em 1em;
+    --spark-product-card-pricing-font-size: 15px;
+    --spark-product-card-pricing-font-size-small: 14px;
+    --spark-product-card-select-min-height: 0;
+  }
+  spark-form {
+      display: block;
+      border: 1px solid #E0E0E0;
+      border-radius: 12px;
+      padding: 24px;
+      box-sizing: border-box;
+      max-width: 710px;
+      margin: 30px auto;
+  }
+
+  /* Optional: tighten up on mobile */
+  @media (max-width: 749px) {
+    spark-form {
+      padding: 16px;
+    }
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .wholesale-approved {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<section class="wholesale-approved" style="background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+
+
+    <spark-form form-id="28778d79-c08d-4a9f-b91e-ac2d72f4ca4e" site-id="maximmcable"></spark-form>
+    <script src="https://cdn.sparklayer.io/spark-form.v1.js"></script>
+
+    <div class="wholesale-approved__box">
+
+      {% if section.settings.heading != blank %}
+        <h2 class="wholesale-approved__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      <div class="wholesale-approved__row">
+        {% for block in section.blocks %}
+          {% if block.type == 'benefit' %}
+            <div class="wholesale-approved__item" {{ block.shopify_attributes }}>
+              <div class="wholesale-approved__icon">
+                {% case block.settings.icon %}
+                  {% when 'pricing' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 3.83A2 2 0 0 0 9.59 3.24L3 3v6.59a2 2 0 0 0 .59 1.41l9.58 9.58a2 2 0 0 0 2.82 0l4.6-4.6a2 2 0 0 0 0-2.83Z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg>
+                  {% when 'reorder' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                  {% when 'history' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H3v10h6V11z"></path><path d="M21 3h-6v18h6V3z"></path><path d="M15 7H9v14h6V7z"></path></svg>
+                  {% when 'location' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  {% when 'heart' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  {% when 'shield' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  {% when 'support' %}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                {% endcase %}
+              </div>
+              <div class="wholesale-approved__content">
+                <h3 class="wholesale-approved__title">{{ block.settings.title }}</h3>
+                <p class="wholesale-approved__text">{{ block.settings.text }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+ 
+</section>
+
+ {% schema %}
+{
+  "name": "After Approval Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "After Approval – Wholesale Account Benefits"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "pricing", "label": "Tag / Pricing" },
+            { "value": "reorder", "label": "Cart / Reorder" },
+            { "value": "history", "label": "Clipboard / History" },
+            { "value": "location", "label": "Location" },
+            { "value": "heart", "label": "Heart / Saved" },
+            { "value": "shield", "label": "Shield / Tax Exempt" },
+            { "value": "support", "label": "Support" }
+          ],
+          "default": "pricing"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Wholesale Pricing"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Access exclusive business pricing."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "After Approval Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "pricing",
+            "title": "Wholesale Pricing",
+            "text": "Access exclusive business pricing."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "reorder",
+            "title": "Quick Reorder",
+            "text": "Reorder products in just a few clicks."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "history",
+            "title": "Order History",
+            "text": "View all your orders and invoices."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "location",
+            "title": "Multiple Addresses",
+            "text": "Ship to multiple locations."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "title": "Saved Carts & Lists",
+            "text": "Save products for later purchase."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Tax Exempt",
+            "text": "Upload your certificate for tax-exempt orders."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "support",
+            "title": "Priority Support",
+            "text": "Get dedicated support for your business."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

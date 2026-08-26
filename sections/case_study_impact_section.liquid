@@ -1,0 +1,541 @@
+{% style %}
+  #shopify-section-{{ section.id }} .impact-section {
+    background: {{ section.settings.bg_gradient }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: calc({{ section.settings.padding_bottom_mobile }}px + {{ section.settings.bottom_image_margin_mobile | abs }}px);
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .impact-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .impact-header h2 {
+    font-size: {{ section.settings.title_size_mobile }}px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .impact-header h2 span.highlight {
+    color: {{ section.settings.title_highlight_color }};
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .impact-header h2 span.light {
+    font-weight: 300;
+    color: {{ section.settings.title_light_color }};
+  }
+
+  #shopify-section-{{ section.id }} .impact-header .impact-subtext {
+    font-size: {{ section.settings.text_size_mobile }}px;
+    font-weight: 300;
+    color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .impact-header .impact-subtext p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .impact-item {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .impact-title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .slash-icon.yellow {
+    display: block;
+    width: 10px;
+    height: 21px;
+    background: linear-gradient(195deg, #416bff 16%, #fff 94%);
+    border-radius: 80px;
+    transform: rotate(25deg);
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .impact-title {
+    font-size: {{ section.settings.item_title_size_mobile }}px;
+    font-weight: 500;
+    color: {{ section.settings.item_title_color }};
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .impact-desc {
+    font-size: {{ section.settings.item_desc_size_mobile }}px;
+    font-weight: 400;
+    padding-left: 0;
+    opacity: 0.9;
+    color: {{ section.settings.item_desc_color }};
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .footer-image {
+    width: 100%;
+    position: relative;
+    margin-top: {{ section.settings.bottom_image_margin_mobile }}px;
+    z-index: 10;
+    pointer-events: none;
+    line-height: 0;
+    font-size: 0;
+  }
+
+  #shopify-section-{{ section.id }} .footer-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .impact-desc{
+    max-width:250px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .impact-section {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: calc({{ section.settings.padding_bottom }}px + {{ section.settings.bottom_image_margin | abs }}px);
+    }
+    #shopify-section-{{ section.id }} .impact-header {
+      margin-bottom: 80px;
+    }
+    #shopify-section-{{ section.id }} .impact-header h2 {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .impact-header .impact-subtext {
+      font-size: {{ section.settings.text_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .impact-title {
+      font-size: {{ section.settings.item_title_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .impact-desc {
+      font-size: {{ section.settings.item_desc_size_desktop }}px;
+    }
+    #shopify-section-{{ section.id }} .impact-grid {
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #shopify-section-{{ section.id }} .impact-item:nth-child(3n+1) {
+      padding-right: 20px;
+    }
+    #shopify-section-{{ section.id }} .impact-item:nth-child(3n+2) {
+      padding: 0 20px;
+    }
+    #shopify-section-{{ section.id }} .impact-item:nth-child(3n+3) {
+      padding-left: 20px;
+    }
+    #shopify-section-{{ section.id }} .impact-item:nth-child(3n+2)::before,
+    #shopify-section-{{ section.id }} .impact-item:nth-child(3n+3)::before {
+      content: "";
+      position: absolute;
+      left: -50px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 57px;
+      background-color: {{ section.settings.grid_border_color }};
+    }
+    #shopify-section-{{ section.id }} .footer-image {
+      margin-top: {{ section.settings.bottom_image_margin }}px;
+    }
+  }
+
+  @media screen and (max-width:767px){
+    .impact-section .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.impact-desc {
+    max-width: 100%;
+}
+  }
+{% endstyle %}
+
+<div class="impact-section">
+  <div class="container" style="max-width: 100%; margin: 0 auto; padding: 0 00px;">
+    <div class="impact-header">
+      <h2>
+        {% if section.settings.title_highlight != blank %}
+          <span class="highlight">{{ section.settings.title_highlight }}</span>
+        {% endif %}
+        {% if section.settings.title_separator != blank %}
+          {{ section.settings.title_separator }}
+        {% endif %}
+        {% if section.settings.title_light != blank %}
+          <span class="light">{{ section.settings.title_light }}</span>
+        {% endif %}
+      </h2>
+      {% if section.settings.subtext != blank %}
+        <div class="impact-subtext">
+          {{ section.settings.subtext }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="impact-grid">
+      {% for block in section.blocks %}
+        <div class="impact-item" {{ block.shopify_attributes }}>
+          <div class="impact-title-row">
+            <div class="slash-icon yellow"></div>
+            {% if block.settings.title != blank %}
+              <h3 class="impact-title">{{ block.settings.title }}</h3>
+            {% endif %}
+          </div>
+          {% if block.settings.description != blank %}
+            <p class="impact-desc">{{ block.settings.description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% if section.settings.show_bottom_image %}
+  <div class="footer-image">
+    {% if section.settings.bottom_image != blank %}
+      <img src="{{ section.settings.bottom_image | img_url: 'master' }}" alt="Footer Image">
+    {% elsif section.settings.bottom_image_url != blank %}
+      <img src="{{ section.settings.bottom_image_url }}" alt="Footer Image">
+    {% else %}
+      <img src="https://lock-cotton-75222594.figma.site/_components/v2/de14127a5882bf86a0327109f7ecf495ed27b9a8/87f33e1747aeacbd2cb2653e86019093384859ce.87f33e17.png" alt="Abstract Background Wires">
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Case Study Impact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Colors"
+    },
+    {
+      "type": "text",
+      "id": "bg_gradient",
+      "label": "Background Gradient",
+      "default": "linear-gradient(190deg, rgb(6, 0, 74) 10%, rgb(17, 17, 176) 110%)"
+    },
+    {
+      "type": "color",
+      "id": "grid_border_color",
+      "label": "Grid Border Color",
+      "default": "rgba(255, 255, 255, 0.15)"
+    },
+    {
+      "type": "header",
+      "content": "Header Text"
+    },
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title (Highlighted)",
+      "default": "The Impact"
+    },
+    {
+      "type": "color",
+      "id": "title_highlight_color",
+      "label": "Highlight Color",
+      "default": "#efc900"
+    },
+    {
+      "type": "text",
+      "id": "title_separator",
+      "label": "Title Separator",
+      "default": "-"
+    },
+    {
+      "type": "text",
+      "id": "title_light",
+      "label": "Title (Light)",
+      "default": "Universal Reliability"
+    },
+    {
+      "type": "color",
+      "id": "title_light_color",
+      "label": "Light Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>Through precision cable management and superior shielding, we eliminated<br>the flicker and latency that disrupt global operations.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Subtext Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Item Colors"
+    },
+    {
+      "type": "color",
+      "id": "item_title_color",
+      "label": "Item Title Color",
+      "default": "#efc900"
+    },
+    {
+      "type": "color",
+      "id": "item_desc_color",
+      "label": "Item Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_image",
+      "label": "Show Bottom Image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_image",
+      "label": "Upload Bottom Image"
+    },
+    {
+      "type": "text",
+      "id": "bottom_image_url",
+      "label": "Or use Image URL",
+      "default": "https://lock-cotton-75222594.figma.site/_components/v2/de14127a5882bf86a0327109f7ecf495ed27b9a8/87f33e1747aeacbd2cb2653e86019093384859ce.87f33e17.png"
+    },
+    {
+      "type": "range",
+      "id": "bottom_image_margin",
+      "min": -200,
+      "max": 0,
+      "step": 4,
+      "unit": "px",
+      "label": "Overlap Margin (Desktop)",
+      "default": -100
+    },
+    {
+      "type": "range",
+      "id": "bottom_image_margin_mobile",
+      "min": -100,
+      "max": 0,
+      "step": 4,
+      "unit": "px",
+      "label": "Overlap Margin (Mobile)",
+      "default": -40
+    },
+    {
+      "type": "header",
+      "content": "Typography (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Main Title Size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "item_title_size_desktop",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Title Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "item_desc_size_desktop",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Description Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Typography (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Main Title Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "item_title_size_mobile",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Title Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_desc_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Description Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "impact_item",
+      "name": "Impact Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Title",
+          "default": "Future-Ready"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Item Description",
+          "default": "Infrastructure is now fully prepared to scale for 100G and beyond without requiring physical cable replacement."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Case Study Impact",
+      "category": "Custom Content",
+      "blocks": [
+        {
+          "type": "impact_item",
+          "settings": {
+            "title": "Future-Ready",
+            "description": "Infrastructure is now fully prepared to scale for 100G and beyond without requiring physical cable replacement."
+          }
+        },
+        {
+          "type": "impact_item",
+          "settings": {
+            "title": "Operational Continuity",
+            "description": "Achieved a zero-failure rating for 24/7 network operations in high-stress environments"
+          }
+        },
+        {
+          "type": "impact_item",
+          "settings": {
+            "title": "Problem-Solver",
+            "description": "The Invisible Shield: Solving Signal Interference in High-Density Medical Environments"
+          }
+        },
+        {
+          "type": "impact_item",
+          "settings": {
+            "title": "Optimized Airflow",
+            "description": "Improved server cooling efficiency by 18% through precision cable routing and management"
+          }
+        },
+        {
+          "type": "impact_item",
+          "settings": {
+            "title": "Interference Neutralization",
+            "description": "Successfully eliminated signal degradation caused by high-density EMI (Electromagnetic Interference)."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

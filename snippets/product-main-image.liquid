@@ -1,0 +1,146 @@
+{% assign color_names = 'Color, Colour, color, colour, Collor' | split: ', ' %}
+
+{% comment %} Determine which option is the color option {% endcomment %}
+{% assign color_option_position = nil %}
+{% for option in product.options_with_values %}
+  {% for color_name in color_names %}
+    {% if option.name == color_name %}
+      {% assign color_option_position = option.position %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if color_option_position %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Get the selected variant's color value {% endcomment %}
+{% assign selected_color = nil %}
+{% if color_option_position %}
+  {% case color_option_position %}
+    {% when 1 %}
+      {% assign selected_color = product.selected_or_first_available_variant.option1 %}
+    {% when 2 %}
+      {% assign selected_color = product.selected_or_first_available_variant.option2 %}
+    {% when 3 %}
+      {% assign selected_color = product.selected_or_first_available_variant.option3 %}
+  {% endcase %}
+{% endif %}
+
+{% comment %} Find first variant with same color {% endcomment %}
+{% assign first_variant_with_color = nil %}
+{% assign first_variant_found = false %}
+{% if selected_color %}
+  {% for variant in product.variants %}
+    {% assign variant_color = nil %}
+    {% case color_option_position %}
+      {% when 1 %}
+        {% assign variant_color = variant.option1 %}
+      {% when 2 %}
+        {% assign variant_color = variant.option2 %}
+      {% when 3 %}
+        {% assign variant_color = variant.option3 %}
+    {% endcase %}
+
+    {% if variant_color == selected_color and first_variant_found == false %}
+      {% assign first_variant_found = true %}
+      {% assign first_variant_with_color = variant %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<ul id="Slider-Gallery-{{ section.id }}"
+    class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+    role="list">
+
+    {% assign media_position = 0 %}
+
+    {% comment %} 1. Show featured image first {% endcomment %}
+    {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+    {%- if featured_media -%}
+        {%- assign media_position = media_position | plus: 1 -%}
+        <li id="Slide-{{ section.id }}-{{ featured_media.id }}"
+            data-type="image"
+            data-src="{{ featured_media | image_url: width: 1946 }}"
+            class="product__media-item grid__item slider__slide is-active{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            data-media-id="{{ section.id }}-{{ featured_media.id }}">
+            {% render 'product-thumbnail',
+                media: featured_media,
+                media_count: media_count,
+                position: media_position,
+                desktop_layout: section.settings.gallery_layout,
+                mobile_layout: section.settings.mobile_thumbnails,
+                loop: section.settings.enable_video_looping,
+                modal_id: section.id,
+                xr_button: true,
+                media_width: media_width,
+                media_fit: section.settings.media_fit,
+                constrain_to_viewport: section.settings.constrain_to_viewport,
+                lazy_load: false
+            %}
+        </li>
+    {%- endif -%}
+
+    {% comment %} 2. Loop through first variant's metafield images {% endcomment %}
+    {%- if first_variant_with_color and first_variant_with_color.metafields.custom.variant_images -%}
+        {%- for variant_image in first_variant_with_color.metafields.custom.variant_images.value -%}
+            {%- assign media_position = media_position | plus: 1 -%}
+            <li id="Slide-{{ section.id }}-first-{{ forloop.index }}"
+                data-type="image"
+                data-src="{{ variant_image | image_url: width: 1946 }}"
+                class="product__media-item grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                data-media-id="{{ section.id }}-first-{{ forloop.index }}">
+                <div class="product__media media gradient global-media-settings{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+                    style="padding-top: {{ 1 | divided_by: 1 | times: 100 }}%;">
+                    <img
+                        srcset="{{ variant_image | image_url: width: 493 }} 493w,
+                                {{ variant_image | image_url: width: 600 }} 600w,
+                                {{ variant_image | image_url: width: 713 }} 713w,
+                                {{ variant_image | image_url: width: 823 }} 823w,
+                                {{ variant_image | image_url: width: 990 }} 990w,
+                                {{ variant_image | image_url: width: 1946 }} 1946w"
+                        sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+                        src="{{ variant_image | image_url: width: 1946 }}"
+                        alt="{{ product.title }}"
+                        {% if media_position > 1 %}loading="lazy"{% endif %}
+                        width="1946"
+                        height="1946"
+                        class="image-magnify-{{ section.settings.image_zoom }} motion-reduce" data-zoom="{{ variant_image | image_url: width: 3000 }}">
+                </div>
+            </li>
+        {%- endfor -%}
+    {%- endif -%}
+
+    {% comment %} 3. Loop through selected variant's metafield images (only if different from first variant) {% endcomment %}
+    {%- if product.selected_or_first_available_variant.metafields.custom.variant_images -%}
+        {%- if first_variant_with_color.id != product.selected_or_first_available_variant.id -%}
+            {%- for variant_image in product.selected_or_first_available_variant.metafields.custom.variant_images.value -%}
+            {%- assign media_position = media_position | plus: 1 -%}
+            <li id="Slide-{{ section.id }}-selected-{{ forloop.index }}"
+                data-type="image"
+                data-src="{{ variant_image | image_url: width: 1946 }}"
+                class="product__media-item grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                data-media-id="{{ section.id }}-selected-{{ forloop.index }}">
+                <div class="product__media media gradient global-media-settings{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+                    style="padding-top: {{ 1 | divided_by: 1 | times: 100 }}%;">
+                    <img
+                        srcset="{{ variant_image | image_url: width: 493 }} 493w,
+                                {{ variant_image | image_url: width: 600 }} 600w,
+                                {{ variant_image | image_url: width: 713 }} 713w,
+                                {{ variant_image | image_url: width: 823 }} 823w,
+                                {{ variant_image | image_url: width: 990 }} 990w,
+                                {{ variant_image | image_url: width: 1946 }} 1946w"
+                        sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+                        src="{{ variant_image | image_url: width: 1946 }}"
+                        alt="{{ product.title }}"
+                        {% if media_position > 1 %}loading="lazy"{% endif %}
+                        width="1946"
+                        height="1946"
+                        class="image-magnify-{{ section.settings.image_zoom }} motion-reduce" data-zoom="{{ variant_image | image_url: width: 3000 }}">
+                </div>
+            </li>
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endif -%}
+</ul>

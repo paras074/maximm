@@ -1,0 +1,114 @@
+{{ 'section-make-maximm-360.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="make-maximm-360 section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="bgImg" style="background-image:url({{ 'make-maximm-360-grid-bg.svg' | asset_url }})"></div>
+  <div class="floating-element-1">
+    <img class="w-100 parallaxBlockUp" src="{{ 'maximm-logo-element-yellow-gradient.svg' | asset_url }}">
+  </div>
+  <div class="page-width js-has-stretch">
+    <div class="inner-page-width">
+      <div class="st-row st-align-items-center">
+        <div class="st-col-md-4 image-holder">
+          <div class="circleBg"></div>
+          <div class="js-stretch-right">
+            {{ section.settings.floating_image | image_url: width: 1000 | image_tag: class: 'w-100 fadeIn' }}
+          </div>
+        </div>
+        <div class="st-col-md content-holder">
+          <div class="box">
+            {{ section.settings.content }}
+            <a class="btn btn-white" href="{{ section.settings.btn_url }}">
+              {{ section.settings.btn_txt }}
+              <span class="ico-holder">
+                <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+{% schema %}
+  {
+    "name": "Sec: Make Maximm 360",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "floating_image",
+        "label": "Main Floating Image"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "type": "text",
+        "id": "btn_txt",
+        "label": "Button: Text"
+      },
+      {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button: URL"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 90
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 90
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile: Padding top",
+        "default": 42
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile: Padding Bottom",
+        "default": 98
+      }
+    ]
+  }
+  {% endschema %}
+  

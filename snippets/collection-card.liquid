@@ -1,0 +1,21 @@
+<div class="st-col-md-3 st-col-sm-6 card-product-item">
+    <div class="card">
+        <a class="card__link" href="{{ collection.url }}">
+            <div class="product-image">
+                {% if collection.featured_image != blank %}
+                    {{ collection.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                {%  elsif collection.image != blank %}
+                    {{ collection.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+            </div>
+            <div class="product-bottom">
+                <div class="heading">{{ collection.title }}</div>
+                <div class="icon-trigger">
+                    {%- render 'icon-arrow-right-long' -%}
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

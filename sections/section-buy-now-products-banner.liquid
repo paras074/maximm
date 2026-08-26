@@ -1,0 +1,142 @@
+{{ 'section-buy-now-products-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding-mobile {
+      padding-top: {{ section.settings.padding_top_mobile | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom_mobile | divided_by: 10 }}rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | divided_by: 10 }}rem;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 10 }}rem;
+    }
+  }
+{%- endstyle -%}
+<div class="section-buy-now-products-banner section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
+  <div class="page-width">
+    <div class="st-row columns">
+      <div class="st-col-md-6 column">
+        <div class="column__box">
+          <div class="image">
+            {{ section.settings.main_image_left | image_url: width: 1000 | image_tag }}
+          </div>
+          <div class="caption">
+            <h3>{{ section.settings.title_left }}</h3>
+            <a class="btn btn-white" href="{{ section.settings.btn_url_left }}">
+              {{ section.settings.btn_txt_left }}
+              <span class="ico-holder">
+                <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="st-col-md-6 column">
+        <div class="column__box">
+          <div class="image">
+            {{ section.settings.main_image_right | image_url: width: 1000 | image_tag }}
+          </div>
+          <div class="caption">
+            <h3>{{ section.settings.title_right }}</h3>
+            <a class="btn btn-white" href="{{ section.settings.btn_url_right }}">
+              {{- section.settings.btn_txt_right -}}
+              <span class="ico-holder">
+                <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sec: Buy Now Banners",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image_left",
+      "label": "Left: Main Image"
+    },
+    {
+      "type": "text",
+      "id": "title_left",
+      "label": "Left: Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt_left",
+      "label": "Left Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url_left",
+      "label": "Left Button: URL"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "main_image_right",
+      "label": "Right: Main Image"
+    },
+    {
+      "type": "text",
+      "id": "title_right",
+      "label": "Right: Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt_right",
+      "label": "Right Button: Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url_right",
+      "label": "Right Button: URL"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile: Padding Bottom",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}
