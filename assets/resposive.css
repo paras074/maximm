@@ -680,3 +680,210 @@
     }
 
 }
+/* =========================================================================
+   Collection cards — variant size badge, cart layout, bottom spacing
+   (added for variant-level Color / Cord Length cards)
+   ========================================================================= */
+
+/* Size badge (pill) */
+.custom-product-variant-size {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 2px 0 12px;
+    padding: 5px 11px;
+    background: rgba(39, 60, 255, 0.08);
+    color: #273cff;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.2px;
+    vertical-align: middle;
+}
+.custom-product-variant-size .cpv-size__icon {
+    flex: 0 0 auto;
+    opacity: 0.9;
+}
+.custom-product-variant-size .cpv-size__label {
+    font-weight: 500;
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.6px;
+}
+.custom-product-variant-size .cpv-size__val {
+    font-weight: 700;
+}
+
+/* Breathing room between the collection grid and the footer */
+.collection-details {
+    padding-bottom: 48px;
+}
+
+/* Desktop only: quantity selector + Add to cart side by side */
+@media screen and (min-width: 750px) {
+    .custom-product-cart .product-form__wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .custom-product-cart .product-form__quantity {
+        display: block;
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0;
+    }
+    .custom-product-cart .product-form {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+    .custom-product-cart .product-form__submit {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 0 6px !important;
+        font-size: 13px;
+        letter-spacing: 0;
+        white-space: nowrap;
+    }
+    /* Compact stepper so both fit on one row inside narrow (faceted) cards */
+    .custom-product-cart quantity-input.quantity,
+    .custom-product-cart .pws-cstm quantity-input.quantity {
+        min-height: 38px !important;
+        max-width: 82px;
+    }
+    .custom-product-cart .quantity__input {
+        width: 26px;
+        min-width: 26px;
+        padding: 0;
+    }
+    .custom-product-cart .quantity__button {
+        width: 26px;
+        padding: 0;
+    }
+    /* Keep hidden/utility children from breaking the row */
+    .custom-product-cart .product-form__wrapper > .wishlist-icon-wrapper,
+    .custom-product-cart .product-form__wrapper > .similar-products-trigger {
+        flex: 1 0 100%;
+    }
+}
+
+/* =========================================================================
+   Collection empty state + Add-to-cart loading spinner
+   ========================================================================= */
+
+/* No products found */
+.collection--empty .collection-empty-state {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 60px 24px 72px;
+    text-align: center;
+}
+.collection-empty-state__icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #273cff;
+    background: rgba(39, 60, 255, 0.08);
+    border-radius: 50%;
+    --empty-icon-bg: #f2f3ff;
+}
+.collection-empty-state__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.collection-empty-state__text {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #6b7280;
+    margin: 0 auto 24px;
+    max-width: 360px;
+}
+.collection-empty-state__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.collection-empty-state__btn svg {
+    width: 13px;
+    height: 13px;
+}
+
+/* Add-to-cart loading spinner (clean self-contained ring) */
+.custom-product-cart .product-form__submit.loading {
+    opacity: 1 !important;
+    color: transparent !important;
+    cursor: progress;
+    position: relative;
+}
+.custom-product-cart .product-form__submit.loading .loading__spinner {
+    display: none !important;
+}
+.custom-product-cart .product-form__submit.loading > span {
+    visibility: hidden;
+}
+.custom-product-cart .product-form__submit.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2.5px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: cpaSpin 0.6s linear infinite;
+}
+@keyframes cpaSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================================
+   Active colour filter swatch — clear selected state
+   Uses ONLY outline (no transform / no box-shadow layering) so it can never
+   change hit-testing or block clicks on the swatch or its neighbours.
+   ========================================================================= */
+.facets .swatch-input__input:checked + .swatch-input__label,
+.mobile-facets .swatch-input__input:checked + .swatch-input__label {
+    outline: 3px solid #273cff !important;
+    outline-offset: 2px !important;
+}
+
+/* =========================================================================
+   Collection count — three-dot loader while filters/sort are updating
+   ========================================================================= */
+.collection-count__loader {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 1em;
+    vertical-align: middle;
+}
+.collection-count__loader span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #273cff;
+    display: inline-block;
+    animation: ccDots 1s infinite ease-in-out both;
+}
+.collection-count__loader span:nth-child(1) { animation-delay: -0.32s; }
+.collection-count__loader span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes ccDots {
+    0%, 80%, 100% { transform: scale(0.5); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+}

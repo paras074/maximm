@@ -113,20 +113,17 @@
         <div class="collection-types-filter">
           <div class="filter-top-bar">
 
-            {% paginate collection.products by 24 %}
-              {% assign products_per_page = paginate.page_size %}
-              {% assign current_offset = paginate.current_offset %}
-              {% assign start = current_offset | plus: 1 %}
-              {% assign end = current_offset | plus: products_per_page %}
-
-              {% if end > collection.products_count %}
-                {% assign end = collection.products_count %}
-              {% endif %}
-
+              {%- liquid
+                if section.settings.hide_out_of_stock
+                  assign visible_products = collection.products | where: 'available', true
+                  assign visible_count = visible_products.size
+                else
+                  assign visible_count = collection.products_count
+                endif
+              -%}
               <p class="collection-count">
-                Showing {{ start }}–{{ end }} of {{ collection.products_count }} products
+                Showing {{ visible_count }} products
               </p>
-            {% endpaginate %}
             <div class="right-filter">
               <div class="sort-title">
                 {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
@@ -207,61 +204,105 @@
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}>
-          {%- if collection.products.size == 0 -%}
-            <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
-              <div class="loading-overlay gradient"></div>
-              <div class="title-wrapper center">
-                <h2 class="title title--primary">
-                  {{ 'sections.collection_template.empty' | t -}}
-                  <br>
-                  {{
-                    'sections.collection_template.use_fewer_filters_html'
-                    | t: link: collection.url, class: 'underlined-link link'
-                  }}
-                </h2>
-              </div>
-            </div>
-          {%- else -%}
+          {%- liquid
+            # ---- Variant-level card expansion setup (Color + Cord Length only) ----
+            # Re-derive the active filter selections once, so each product can be
+            # expanded to matching-variant cards inside 'collection-variant-cards'.
+            assign vf_color_active = false
+            assign vf_size_active = false
+            assign vf_active_colors = ''
+            assign vf_opt_constrained = ''
+            assign vf_opt_pairs = ''
+            assign vf_avail_in_stock = false
+            assign vf_avail_oos = false
+
+            for filter in collection.filters
+              if filter.active_values.size == 0
+                continue
+              endif
+              assign fname = filter.param_name
+              assign flabel_down = filter.label | downcase
+              if fname contains 'color' or flabel_down contains 'color'
+                assign vf_color_active = true
+                for fv in filter.active_values
+                  assign fvlab = fv.label | downcase | strip
+                  assign vf_active_colors = vf_active_colors | append: '||' | append: fvlab | append: '||'
+                endfor
+              elsif fname contains 'filter.v.option.'
+                assign optname = fname | remove: 'filter.v.option.' | downcase | strip
+                assign vf_opt_constrained = vf_opt_constrained | append: '||' | append: optname | append: '||'
+                for fv in filter.active_values
+                  assign fvval = fv.value | downcase | strip
+                  assign vf_opt_pairs = vf_opt_pairs | append: '||' | append: optname | append: '::' | append: fvval | append: '||'
+                endfor
+                if optname == 'size' or optname == 'cord-length' or optname == 'length'
+                  assign vf_size_active = true
+                endif
+              elsif fname contains 'filter.v.availability'
+                for fv in filter.active_values
+                  if fv.value == '1'
+                    assign vf_avail_in_stock = true
+                  elsif fv.value == '0'
+                    assign vf_avail_oos = true
+                  endif
+                endfor
+              endif
+            endfor
+
+            assign vf_require_available = false
+            if vf_avail_in_stock and vf_avail_oos == false
+              assign vf_require_available = true
+            endif
+          -%}
+
+          {%- comment -%} Build the cards first so we can show the empty state when everything is filtered out {%- endcomment -%}
+          {%- capture grid_items -%}
+            {%- for product in collection.products -%}
+              {% assign lazy_load = false %}
+              {%- if forloop.index > 2 -%}
+                {%- assign lazy_load = true -%}
+              {%- endif -%}
+              {% render 'collection-variant-cards',
+                card_product: product,
+                color_active: vf_color_active,
+                size_active: vf_size_active,
+                active_colors: vf_active_colors,
+                opt_constrained: vf_opt_constrained,
+                opt_pairs: vf_opt_pairs,
+                require_available: vf_require_available,
+                hide_oos: section.settings.hide_out_of_stock,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_quick_add: section.settings.enable_quick_add,
+                section_base_id: section.id,
+                collection_list: collection.metafields.custom.collection_product_features,
+                lazy_load: lazy_load,
+                forloop_index: forloop.index
+              %}
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {%- if grid_items contains 'grid__item' -%}
             <div class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}">
               <div class="loading-overlay gradient"></div>
-             
+
               <ul
                 id="product-grid"
                 data-id="{{ section.id }}"
                 class="product-grid-view grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
                 grid--{{ section.settings.columns_desktop }}-col-desktop" >
-                {%- for product in collection.products -%}
-                  {% assign lazy_load = false %}
-                  {%- if forloop.index > 2 -%}
-                    {%- assign lazy_load = true -%}
-                  {%- endif -%}
-                  <li
-                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                    {% if settings.animations_reveal_on_scroll %}
-                      data-cascade
-                      style="--animation-order: {{ forloop.index }};"
-                    {% endif %}
-                  >
-                    {% assign section_id = section.id | append: product.id | append: forloop.index0 %}
-                    {% render 'card-product-new',
-                      card_product: product,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      lazy_load: lazy_load,
-                      show_quick_add: section.settings.enable_quick_add,
-                      section_id: section_id,
-                      forloop_index: forloop.index,
-                      collection_list: collection.metafields.custom.collection_product_features
-                    %}
-                  </li>
-                {%- endfor -%}
-                
+                {{ grid_items }}
               </ul>
 
               {%- if paginate.pages > 1 -%}
                 {% render 'pagination', paginate: paginate, anchor: '' %}
               {%- endif -%}
+            </div>
+          {%- else -%}
+            <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+              <div class="loading-overlay gradient"></div>
+              {% render 'collection-empty-state' %}
             </div>
           {%- endif -%}
         </div>
@@ -322,6 +363,64 @@
       observer.observe(container, { childList: true, subtree: true });
     }
   });
+</script>
+
+<script>
+  // Keep the "Showing N products" counter in sync with the actual cards on
+  // screen. Because cards are expanded per variant (Color / Cord Length) and
+  // sold-out items are hidden, the only reliable count is the rendered cards.
+  (function () {
+    var COUNT_SEL = '.collection-count';
+
+    function countCards() {
+      var grid = document.getElementById('product-grid');
+      if (!grid) return 0;
+      // only the real product cards (grid items), not the empty-state markup
+      return grid.querySelectorAll(':scope > li.grid__item').length;
+    }
+
+    function setCount() {
+      var el = document.querySelector(COUNT_SEL);
+      if (!el) return;
+      var n = countCards();
+      el.textContent = 'Showing ' + n + ' product' + (n === 1 ? '' : 's');
+    }
+
+    function showLoader() {
+      var el = document.querySelector(COUNT_SEL);
+      if (!el) return;
+      el.innerHTML =
+        '<span class="collection-count__loader" role="status" aria-label="Updating results">' +
+        '<span></span><span></span><span></span></span>';
+    }
+
+    // Initial paint
+    if (document.readyState !== 'loading') setCount();
+    else document.addEventListener('DOMContentLoaded', setCount);
+
+    // Show the dots the moment a filter / sort / clear is triggered
+    document.addEventListener('change', function (e) {
+      if (e.target.closest && e.target.closest('#FacetFiltersForm, #FacetFiltersFormMobile, #FacetSortForm, #FacetSortDrawerForm, facet-filters-form')) {
+        showLoader();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('.active-facets a, facet-remove a, .mobile-facets__clear-wrapper, .facets__reset a')) {
+        showLoader();
+      }
+    });
+
+    // Recount after Dawn swaps #ProductGridContainer (debounced so it runs once
+    // the new grid has finished rendering).
+    var container = document.getElementById('ProductGridContainer');
+    if (container) {
+      var t;
+      new MutationObserver(function () {
+        clearTimeout(t);
+        t = setTimeout(setCount, 60);
+      }).observe(container, { childList: true, subtree: true });
+    }
+  })();
 </script>
 
 
@@ -444,6 +543,13 @@
       "id": "enable_quick_add",
       "default": false,
       "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_out_of_stock",
+      "default": true,
+      "label": "Hide out of stock products",
+      "info": "Hides products (and colour/size variants) that are sold out, on load and after filtering."
     },
     {
       "type": "header",

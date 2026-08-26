@@ -1,0 +1,172 @@
+{%- comment -%}
+  Renders one or more product cards for a single collection product, expanding
+  the card to VARIANT level for the Color and Cord Length (Size) filters only.
+
+  Behaviour:
+  - When neither the Color nor the Size filter is active, renders exactly one
+    card for the product (identical to the default collection grid behaviour).
+  - When Color and/or Size filters are active, renders one card per matching
+    variant "group": grouped by the selected color and/or size. Each card uses
+    that variant's image, price, size label and adds that variant to the cart.
+  - All other active variant filters (e.g. Gauge, Availability) are applied as
+    constraints so their existing behaviour is preserved. Product-level filters
+    (e.g. Pack) are untouched — Shopify already narrows the product list.
+
+  Accepts:
+  - card_product: {Object} product
+  - color_active / size_active: {Boolean}
+  - active_colors: {String} '||black||green||' (downcased color filter labels)
+  - opt_constrained: {String} '||size||gauge||' (option names with active values)
+  - opt_pairs: {String} '||size::2 ft||gauge::16 gauge||' (downcased option::value)
+  - require_available: {Boolean} in-stock availability filter is active
+  - media_aspect_ratio, image_shape, show_secondary_image, show_quick_add
+  - section_base_id: {String} section.id
+  - collection_list: {Object} metafield passed through to the card
+  - lazy_load: {Boolean}
+  - forloop_index: {Number} base animation order
+{%- endcomment -%}
+
+{%- liquid
+  assign anim = settings.animations_reveal_on_scroll
+-%}
+
+{%- if color_active == false and size_active == false -%}
+  {%- comment -%} Default single-card behaviour (optionally hiding sold-out products) {%- endcomment -%}
+  {%- if hide_oos and card_product.available == false -%}
+    {%- comment -%} product is sold out — render nothing {%- endcomment -%}
+  {%- else -%}
+    {%- assign section_id = section_base_id | append: card_product.id | append: forloop_index -%}
+    <li
+      class="grid__item{% if anim %} scroll-trigger animate--slide-in{% endif %}"
+      {% if anim %}
+        data-cascade
+        style="--animation-order: {{ forloop_index }};"
+      {% endif %}
+    >
+      {% render 'card-product-new',
+        card_product: card_product,
+        media_aspect_ratio: media_aspect_ratio,
+        image_shape: image_shape,
+        show_secondary_image: show_secondary_image,
+        lazy_load: lazy_load,
+        show_quick_add: show_quick_add,
+        section_id: section_id,
+        forloop_index: forloop_index,
+        collection_list: collection_list
+      %}
+    </li>
+  {%- endif -%}
+{%- else -%}
+  {%- comment -%} Variant-level expansion for Color / Cord Length {%- endcomment -%}
+  {%- liquid
+    assign color_pos = 0
+    assign size_pos = 0
+    for opt in card_product.options_with_values
+      assign okey = opt.name | downcase | strip | replace: ' ', '-'
+      if okey == 'color'
+        assign color_pos = forloop.index
+      elsif okey == 'size' or okey == 'cord-length' or okey == 'length'
+        assign size_pos = forloop.index
+      endif
+    endfor
+
+    assign color_idx = color_pos | minus: 1
+    assign size_idx = size_pos | minus: 1
+    assign seen_keys = ''
+    assign card_counter = 0
+    assign matched_any = false
+  -%}
+
+  {%- for v in card_product.variants -%}
+    {%- liquid
+      # matches_filters = does the variant satisfy the selected filters (ignoring stock)
+      assign matches_filters = true
+
+      # Constraint: every active variant-option filter (size, gauge, ...) must match
+      for opt in card_product.options_with_values
+        assign okey = opt.name | downcase | strip | replace: ' ', '-'
+        assign opt_probe = '||' | append: okey | append: '||'
+        if opt_constrained contains opt_probe
+          assign vval = v.options[forloop.index0] | downcase | strip
+          assign pair_probe = '||' | append: okey | append: '::' | append: vval | append: '||'
+          unless opt_pairs contains pair_probe
+            assign matches_filters = false
+          endunless
+        endif
+      endfor
+
+      # Constraint: Color (taxonomy color-pattern) matched against the Color option value
+      if color_active and color_pos > 0
+        assign vcolor = v.options[color_idx] | downcase | strip
+        assign color_probe = '||' | append: vcolor | append: '||'
+        unless active_colors contains color_probe
+          assign matches_filters = false
+        endunless
+      endif
+
+      if matches_filters
+        assign matched_any = true
+      endif
+
+      # ok = matches AND passes stock rules (availability filter and/or hide-out-of-stock)
+      assign ok = matches_filters
+      if require_available and v.available == false
+        assign ok = false
+      endif
+      if hide_oos and v.available == false
+        assign ok = false
+      endif
+    -%}
+
+    {%- if ok -%}
+      {%- liquid
+        # Group key: split into a separate card per selected color and/or size
+        assign vkey = ''
+        if color_active and color_pos > 0
+          assign vkey = vkey | append: 'c:' | append: v.options[color_idx] | downcase
+        endif
+        assign v_size_label = ''
+        if size_active and size_pos > 0
+          assign v_size_label = v.options[size_idx]
+          assign vkey = vkey | append: 's:' | append: v_size_label | downcase
+        endif
+        assign key_probe = '<<' | append: vkey | append: '>>'
+      -%}
+      {%- unless seen_keys contains key_probe -%}
+        {%- assign seen_keys = seen_keys | append: key_probe -%}
+        {%- assign card_counter = card_counter | plus: 1 -%}
+        {%- assign order = forloop_index | times: 100 | plus: card_counter -%}
+        {%- assign section_id = section_base_id | append: card_product.id | append: v.id -%}
+        <li
+          class="grid__item{% if anim %} scroll-trigger animate--slide-in{% endif %}"
+          {% if anim %}
+            data-cascade
+            style="--animation-order: {{ order }};"
+          {% endif %}
+        >
+          {% render 'card-product-new',
+            card_product: card_product,
+            card_variant: v,
+            card_size_label: v_size_label,
+            media_aspect_ratio: media_aspect_ratio,
+            image_shape: image_shape,
+            show_secondary_image: show_secondary_image,
+            lazy_load: lazy_load,
+            show_quick_add: show_quick_add,
+            section_id: section_id,
+            forloop_index: forloop_index,
+            collection_list: collection_list
+          %}
+        </li>
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    If NO variant matched the active colour/size filters, render nothing.
+    This happens when a Shopify *taxonomy* colour (e.g. "Bronze") has no matching
+    product option value (the product calls it "Gold"), so we can't point at a
+    real variant. Rather than show a misleading card with the wrong colour, we
+    hide the product from this filtered view entirely.
+  {%- endcomment -%}
+{%- endif -%}

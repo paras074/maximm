@@ -1,10 +1,33 @@
 
+{%- comment -%}
+  Collection product card.
+
+  Optional variant-level params (used by 'collection-variant-cards' for the
+  Color / Cord Length filters). When omitted the card behaves exactly as before.
+  - card_variant: {Object} a specific variant to represent (image / price / cart)
+  - card_size_label: {String} e.g. "1 FT" shown as "Size: 1 FT"
+{%- endcomment -%}
+
+{%- liquid
+  assign render_variant = card_variant
+
+  assign card_url = card_product.url
+  if render_variant
+    assign card_url = card_product.url | append: '?variant=' | append: render_variant.id
+  endif
+
+  assign card_image = card_product.featured_image
+  if render_variant and render_variant.image
+    assign card_image = render_variant.image
+  endif
+-%}
+
 <div class="custom-product-card">
 
-  <div class="PwsColl_wrapper"> 
-    <a href="{{ card_product.url }}" class="custom-product-image">
+  <div class="PwsColl_wrapper">
+    <a href="{{ card_url }}" class="custom-product-image">
       {{
-        card_product.featured_image
+        card_image
         | image_url: width: 600
         | image_tag:
         loading: 'lazy',
@@ -15,10 +38,21 @@
     <div class="custom-product-info">
 
       <h3 class="custom-product-title">
-        <a href="{{ card_product.url }}">
+        <a href="{{ card_url }}">
           {{ card_product.title }}
         </a>
       </h3>
+
+      {%- if card_size_label != blank -%}
+        <div class="custom-product-variant-size">
+          <svg class="cpv-size__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+            <path d="M3 8.5 8.5 3 21 15.5 15.5 21 3 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M7 7.5 9 9.5M9.5 5 12.5 8M12 4.5 14 6.5M14.5 7 17.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="cpv-size__label">Size</span>
+          <span class="cpv-size__val">{{ card_size_label }}</span>
+        </div>
+      {%- endif -%}
 
       <!-- Judge.me Rating -->
       <div class="custom-product-rating">
@@ -29,16 +63,33 @@
 
       <!-- Price -->
       <div class="custom-product-price">
-        {% render 'price', product: card_product %}
+        {%- if render_variant -%}
+          <div class="price{% if render_variant.compare_at_price > render_variant.price %} price--on-sale{% endif %}{% unless render_variant.available %} price--sold-out{% endunless %}">
+            <div class="price__container">
+              <div class="price__regular">
+                <span class="price-item price-item--regular">{{ render_variant.price | money }}</span>
+              </div>
+              {%- if render_variant.compare_at_price > render_variant.price -%}
+                <div class="price__sale">
+                  <s class="price-item price-item--regular">{{ render_variant.compare_at_price | money }}</s>
+                  <span class="price-item price-item--sale">{{ render_variant.price | money }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- else -%}
+          {% render 'price', product: card_product %}
+        {%- endif -%}
       </div>
     </div>
-  </div> 
+  </div>
   <!-- Add To Cart -->
   <div class="custom-product-cart">
         {% assign product_form_id = 'product-form-' | append: section_id | append: card_product.id %}
 
         {% render 'collection_buy_button',
           product: card_product,
+          card_variant: render_variant,
           product_form_id: product_form_id,
           show_pickup_availability: false
         %}
