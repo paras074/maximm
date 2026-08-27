@@ -26,7 +26,7 @@
       "settings": {
         "content": "<p>MAXIMM 360 is an innovative extension cord solution with a slim, 360-degree-rotating plug, allowing you to <strong>reach any outlet without compromise.</strong></p>",
         "btn_txt": "Discover",
-        "btn_url": "",
+        "btn_url": "shopify://collections/360-cords",
         "padding_top": 48,
         "padding_bottom": 48,
         "padding_top_mobile": 40,
