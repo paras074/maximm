@@ -491,6 +491,9 @@
     .section-product-template {
         padding: 40px 0;
     }
+    .st-wishlist-details-button[data-type=manually] .st-number {
+        top: 10px!important;
+    }
 }
 
 @media screen and (max-width: 575px) {
