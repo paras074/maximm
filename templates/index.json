@@ -183,7 +183,7 @@
         "collection_block_TqKgRf": {
           "type": "collection_block",
           "settings": {
-            "collection": "2-outlet-splitter-1",
+            "collection": "cat6-cca",
             "custom_title": "",
             "button_label": "Shop Now"
           }
@@ -191,7 +191,7 @@
         "collection_block_idfH84": {
           "type": "collection_block",
           "settings": {
-            "collection": "2-prong-3-outlet-with-cover",
+            "collection": "hdmi",
             "custom_title": "",
             "button_label": "Shop Now"
           }
@@ -199,7 +199,7 @@
         "collection_block_fnEnYp": {
           "type": "collection_block",
           "settings": {
-            "collection": "3-outlet-1-sided-angled-plug",
+            "collection": "quadshield",
             "custom_title": "",
             "button_label": "Shop Now"
           }
@@ -207,7 +207,7 @@
         "collection_block_xNdmep": {
           "type": "collection_block",
           "settings": {
-            "collection": "3-outlet-16awg-with-loop",
+            "collection": "12awg",
             "custom_title": "",
             "button_label": "Shop Now"
           }
@@ -215,7 +215,7 @@
         "collection_block_87mbYx": {
           "type": "collection_block",
           "settings": {
-            "collection": "3-outlet-1-sided-angled-plug",
+            "collection": "0-5in",
             "custom_title": "",
             "button_label": "Shop Now"
           }
