@@ -2280,6 +2280,6 @@ span.st-label.st-js-label {
   height: 40px;
   max-width: 40px !important;
   padding: 0 15px;
- width: 100%;
+ width: 100% !important;
 }
 
