@@ -71,7 +71,7 @@
         "main_background_image_mobile": "shopify://shop_images/gaming-exp-mobile.png",
         "content": "<h2>Enjoy Ultimate Gaming Experience</h2><p>Free shipping and free returns on eligible items.</p>",
         "btn_txt": "Shop Ethernet Cables",
-        "btn_url": "",
+        "btn_url": "shopify://collections/ethernet-cables",
         "padding_top": 50,
         "padding_bottom": 50,
         "padding_top_mobile": 50,
