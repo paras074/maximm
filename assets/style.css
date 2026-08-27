@@ -2273,13 +2273,12 @@ span.st-label.st-js-label {
 }
 
 .st-wishlist-details-button.st-wishlist-details-button--bottom_right {
- right: 20px;
+ right: 20px !important;
 }
 
 .st-wishlist-details-button[data-type=floating] {
-  height: 40px;
+  height: 45px !important;
   max-width: 40px !important;
-  padding: 0 15px;
  width: 100% !important;
 }
 
