@@ -15,30 +15,35 @@
   }
 {%- endstyle -%}
 <div class="best-selling-products section-{{ section.id }}-padding  section-{{ section.id }}-padding-mobile">
-  <div class="page-width">
-    <div class="section-heading ">
-      {{ section.settings.section_heading }}
+ <div class="page-width">
+  <div class="section-heading">
+    {{ section.settings.section_heading }}
+  </div>
+
+  <div class="swiper js-best-products-slider">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% if block.settings.product != blank %}
+          <div class="swiper-slide">
+            {% render 'card-product-col', product: block.settings.product %}
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
-    <div class="swiper js-best-products-slider">
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-        <div class="swiper-slide">
-          {% render 'card-product-col', product: block.settings.product %}
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    {% if section.settings.btm_btn_txt != blank %}
+  </div>
+
+  {% if section.settings.btm_btn_txt != blank and section.settings.btm_btn_url != blank %}
     <div class="btn-wrapper">
       <a class="btn btn-primary" href="{{ section.settings.btm_btn_url }}" target="_blank">
         {{ section.settings.btm_btn_txt }}
+
         <span class="ico-holder">
-          <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}">
+          <img src="{{ 'maximm-logo-single-element-gradient.svg' | asset_url }}" alt="">
         </span>
       </a>
     </div>
-    {% endif %}
-  </div>
+  {% endif %}
+</div>
 </div>
 
 {% schema %}
