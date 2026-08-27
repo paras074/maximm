@@ -502,6 +502,9 @@
         column-gap: 20px;
         row-gap: 10px;
     }
+        .wholesale-card__list li {
+        padding-left: 15px;
+    }
 }
 
 @media screen and (max-width: 575px) {
