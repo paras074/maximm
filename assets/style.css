@@ -295,7 +295,7 @@ ul.menu-drawer__menu.has-submenu.list-menu.list-menu-secondary {
     /* margin-bottom: 15px; */
 }
 .st-wishlist-details-button.st-wishlist-details-button--bottom_right {
-    bottom: 140px !important;
+    bottom: 160px !important;
 }
 .st-wishlist-details-button[data-type=manually] .st-number {
     height: 17px !important;
@@ -2269,21 +2269,17 @@ a.button.klaviyo-bis-trigger {
     color: white !important;
 }
 span.st-label.st-js-label {
-    display: none;
+  display: none;
 }
 
 .st-wishlist-details-button.st-wishlist-details-button--bottom_right {
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
-    right: 20px;
+ right: 20px;
 }
 
 .st-wishlist-details-button[data-type=floating] {
-    height: 40px;
-    max-width: 40px !important;
-    padding: 0 15px;
-    width: 100%;
+  height: 40px;
+  max-width: 40px !important;
+  padding: 0 15px;
+ width: 100%;
 }
 
-.st-wishlist-details-button.st-wishlist-details-button--bottom_right {
-    bottom: 160px!important;
-}
