@@ -2260,9 +2260,7 @@ a.button.klaviyo-bis-trigger {
 #az_reviews .image-wrapper .delete-icon i {
     display: block !important;
 }
-.loading__spinner.hidden {
-    display: block !important;
-}
+
 
 .loading__spinner svg {
     display: block !important;
