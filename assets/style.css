@@ -2286,3 +2286,7 @@ span.st-label.st-js-label {
     height: 17px !important;
     width: 17px !important;
 }
+
+.list-view .custom-product-cart .product-form__submit {
+    padding: 0px 16px!important;
+}
