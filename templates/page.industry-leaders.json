@@ -1,1 +1,114 @@
-{"sections":{"secondaryBanner":{"type":"section-secondary-banner-industry-leaders","settings":{"title":"The Choice of Those In Charge","description":"Maximm has earned its stripes as the <strong>premier cable purveyor of big-name<\/strong> and<strong> big-responsibility hosts<\/strong>","main_bg_image":"shopify:\/\/shop_images\/industry-leaders-banner.png","padding_top":0,"padding_bottom":0,"padding_top_mobile":0,"padding_bottom_mobile":0}},"industryHotels":{"type":"section-industry-hotels","settings":{"main_image_top_section":"shopify:\/\/shop_images\/hotels-1.png","content_top_section":"<h2>HOTELS<\/h2><p>Maximm provides hotel operators across the country with the <strong>premium cables and extensions <\/strong>they need to welcome guests and <strong>keep them connected.<\/strong><\/p>","main_image_btm_section":"shopify:\/\/shop_images\/hotels-2.png","content_btm_section":"<p>The wear and tear of high-turnover usage demands the <strong>best in quality and durability.<\/strong><\/p>","btn_txt_btm_section":"Shop Cables","btn_url_btm_section":"https:\/\/google.com","padding_top":120,"padding_bottom":120,"padding_top_mobile":66,"padding_bottom_mobile":90}},"studentAccommodations":{"type":"section-student-accommodations","settings":{"main_bg_image_desktop":"shopify:\/\/shop_images\/student-accommodation.png","main_bg_image_mobile":"shopify:\/\/shop_images\/student-accommodation-mobile.png","title":"STUDENT ACCOMMODATIONS","description":"School administrations have come to rely on the <strong>Maximm edge<\/strong> to ensure that 21st-century students — both in the classroom and the dorm — can <strong>access their devices and internet connections<\/strong> when and where they need it.","btn_txt":"Shop Now","btn_url":"","padding_top":110,"padding_bottom":110,"padding_top_mobile":60,"padding_bottom_mobile":0}},"industryHospitality":{"type":"section-industry-hospitality","settings":{"main_image":"shopify:\/\/shop_images\/hospitality.png","content":"<h2>HOSPITALITY<\/h2><p>From the service industry to recreation and travel, those with skin in the game put their trust in Maximm products and the <strong>Maximm guarantee of excellence —<\/strong> and their clients are as grateful as they are.<\/p>","btn_txt":"Explore Products","btn_url":"","padding_top":100,"padding_bottom":140,"padding_top_mobile":66,"padding_bottom_mobile":26}},"ethernetCableBannerIndustry":{"type":"section-ethernet-cable-banner-industry","settings":{"main_background_image_desktop":"shopify:\/\/shop_images\/gaming-exp.png","main_background_image_mobile":"shopify:\/\/shop_images\/gaming-exp-mobile.png","content":"<h2>Enjoy Ultimate Gaming Experience<\/h2><p>Free shipping and free returns on eligible items.<\/p>","btn_txt":"Shop Ethernet Cables","btn_url":"","padding_top":50,"padding_bottom":50,"padding_top_mobile":50,"padding_bottom_mobile":50}},"testimonial":{"type":"section-testimonials","settings":{"section_heading_richtext":"","padding_top":100,"padding_bottom":100,"padding_top_mobile":60,"padding_bottom_mobile":140}},"newsletter":{"type":"section-newsletter","disabled":true,"settings":{"subtext":"TOP RATED PRODUCTS","title":"Extension Cords, Internet Cables, Hdmi, & More Buy In Bulk Wholesale Pricing.","show_form":true,"padding_top":70,"padding_bottom":100,"padding_top_mobile":30,"padding_bottom_mobile":66}}},"order":["secondaryBanner","industryHotels","studentAccommodations","industryHospitality","ethernetCableBannerIndustry","testimonial","newsletter"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "secondaryBanner": {
+      "type": "section-secondary-banner-industry-leaders",
+      "settings": {
+        "title": "The Choice of Those In Charge",
+        "description": "Maximm has earned its stripes as the <strong>premier cable purveyor of big-name</strong> and<strong> big-responsibility hosts</strong>",
+        "main_bg_image": "shopify://shop_images/industry-leaders-banner.png",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "industryHotels": {
+      "type": "section-industry-hotels",
+      "settings": {
+        "main_image_top_section": "shopify://shop_images/hotels-1.png",
+        "content_top_section": "<h2>HOTELS</h2><p>Maximm provides hotel operators across the country with the <strong>premium cables and extensions </strong>they need to welcome guests and <strong>keep them connected.</strong></p>",
+        "main_image_btm_section": "shopify://shop_images/hotels-2.png",
+        "content_btm_section": "<p>The wear and tear of high-turnover usage demands the <strong>best in quality and durability.</strong></p>",
+        "btn_txt_btm_section": "Shop Cables",
+        "btn_url_btm_section": "shopify://collections/cable-management",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "padding_top_mobile": 66,
+        "padding_bottom_mobile": 90
+      }
+    },
+    "studentAccommodations": {
+      "type": "section-student-accommodations",
+      "settings": {
+        "main_bg_image_desktop": "shopify://shop_images/student-accommodation.png",
+        "main_bg_image_mobile": "shopify://shop_images/student-accommodation-mobile.png",
+        "title": "STUDENT ACCOMMODATIONS",
+        "description": "School administrations have come to rely on the <strong>Maximm edge</strong> to ensure that 21st-century students — both in the classroom and the dorm — can <strong>access their devices and internet connections</strong> when and where they need it.",
+        "btn_txt": "Shop Now",
+        "btn_url": "",
+        "padding_top": 110,
+        "padding_bottom": 110,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "industryHospitality": {
+      "type": "section-industry-hospitality",
+      "settings": {
+        "main_image": "shopify://shop_images/hospitality.png",
+        "content": "<h2>HOSPITALITY</h2><p>From the service industry to recreation and travel, those with skin in the game put their trust in Maximm products and the <strong>Maximm guarantee of excellence —</strong> and their clients are as grateful as they are.</p>",
+        "btn_txt": "Explore Products",
+        "btn_url": "",
+        "padding_top": 100,
+        "padding_bottom": 140,
+        "padding_top_mobile": 66,
+        "padding_bottom_mobile": 26
+      }
+    },
+    "ethernetCableBannerIndustry": {
+      "type": "section-ethernet-cable-banner-industry",
+      "settings": {
+        "main_background_image_desktop": "shopify://shop_images/gaming-exp.png",
+        "main_background_image_mobile": "shopify://shop_images/gaming-exp-mobile.png",
+        "content": "<h2>Enjoy Ultimate Gaming Experience</h2><p>Free shipping and free returns on eligible items.</p>",
+        "btn_txt": "Shop Ethernet Cables",
+        "btn_url": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "testimonial": {
+      "type": "section-testimonials",
+      "settings": {
+        "section_heading_richtext": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 140
+      }
+    },
+    "newsletter": {
+      "type": "section-newsletter",
+      "disabled": true,
+      "settings": {
+        "subtext": "TOP RATED PRODUCTS",
+        "title": "Extension Cords, Internet Cables, Hdmi, & More Buy In Bulk Wholesale Pricing.",
+        "show_form": true,
+        "padding_top": 70,
+        "padding_bottom": 100,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 66
+      }
+    }
+  },
+  "order": [
+    "secondaryBanner",
+    "industryHotels",
+    "studentAccommodations",
+    "industryHospitality",
+    "ethernetCableBannerIndustry",
+    "testimonial",
+    "newsletter"
+  ]
+}
