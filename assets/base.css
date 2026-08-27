@@ -4545,7 +4545,7 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 .lightbox-open main {
-  z-index: 2;
+  z-index: 8;
 }
 
 .shopify-section-header-sticky {
