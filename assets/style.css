@@ -297,6 +297,14 @@ ul.menu-drawer__menu.has-submenu.list-menu.list-menu-secondary {
 .st-wishlist-details-button.st-wishlist-details-button--bottom_right {
     bottom: 140px !important;
 }
+.st-wishlist-details-button[data-type=manually] .st-number {
+    height: 17px !important;
+    top: 2px !important;
+    width: 17px !important;
+    right: -16px !important;
+    font-size: 10px ;
+}
+
 #findRightCord .frc-viewall svg {
     width: 16px;
     height: 16px;
