@@ -104,7 +104,7 @@
         "main_image_bottom": "shopify://shop_images/more-than-just-wire.png",
         "content": "<h3>To ensure a complete customer experience, we carry <strong>stereo adapters, grounding adapters, 2-to-3 prong adapters, </strong>heavy duty adapters, wall tap adapters, and even extension adapters that help make the most out of your existing cables.</h3><p>We also offer cable ties, cable sleeves, and cable clips, so you can keep your home or office neat and tidy, and your wires in order.</p>",
         "btn_txt": "Shop HDMI Cables",
-        "btn_url": "https://maximmcable.com/collections/hdmi-cables",
+        "btn_url": "shopify://collections/hdmi",
         "padding_top": 60,
         "padding_bottom": 0,
         "padding_top_mobile": 50,
