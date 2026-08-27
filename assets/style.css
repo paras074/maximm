@@ -2265,3 +2265,6 @@ a.button.klaviyo-bis-trigger {
 .loading__spinner svg {
     display: block !important;
 }
+.cart-drawer__empty-content a.button {
+    color: white !important;
+}
