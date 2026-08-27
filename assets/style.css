@@ -2268,3 +2268,22 @@ a.button.klaviyo-bis-trigger {
 .cart-drawer__empty-content a.button {
     color: white !important;
 }
+span.st-label.st-js-label {
+    display: none;
+}
+
+.st-wishlist-details-button.st-wishlist-details-button--bottom_right {
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
+}
+
+.st-wishlist-details-button[data-type=floating] {
+    height: 40px;
+    max-width: 40px !important;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.st-wishlist-details-button.st-wishlist-details-button--bottom_right {
+    bottom: 160px!important;
+}
