@@ -39,10 +39,17 @@
       </p>
     {% endif %}
 
-    <a href="{{ collection_link }}" class="collection-360-btn">
-      View Products ({{ collection.all_products_count }})
-    </a>
+   {% assign in_stock_count = 0 %}
 
+    {% for product in collection.products %}
+      {% if product.available %}
+        {% assign in_stock_count = in_stock_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
+    <a href="{{ collection_link }}" class="collection-360-btn">
+      View Products ({{ in_stock_count }})
+    </a>
   </div>
 <a href="{{ collection_link }}" class="ablut-link"> </a>
 </div>
