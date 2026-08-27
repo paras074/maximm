@@ -430,7 +430,7 @@
         "button_text_color": "#ffffff",
         "right_heading": "What are you plugging in?",
         "viewall_label": "View All",
-        "viewall_link": "",
+        "viewall_link": "shopify://collections/ethernet-cables",
         "padding_top": 30,
         "padding_bottom": 30,
         "padding_top_mobile": 20,
