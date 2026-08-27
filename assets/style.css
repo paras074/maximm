@@ -2277,8 +2277,12 @@ span.st-label.st-js-label {
 }
 
 .st-wishlist-details-button[data-type=floating] {
-  height: 45px !important;
-  max-width: 45px !important;
+  height: 43px !important;
+  max-width: 43px !important;
  width: 100% !important;
 }
 
+.st-wishlist-details-button .st-wishlist-icon {
+    height: 17px !important;
+    width: 17px !important;
+}
