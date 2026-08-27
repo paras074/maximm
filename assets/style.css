@@ -2253,3 +2253,10 @@ a.button.klaviyo-bis-trigger {
     border-radius: 220px;
     line-height: 16px;
 }
+
+
+/****** 27/8/2026 ******/
+
+#az_reviews .image-wrapper .delete-icon i {
+    display: block !important;
+}
