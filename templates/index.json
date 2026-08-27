@@ -559,7 +559,7 @@
         "collection_YNeP3M": {
           "type": "collection",
           "settings": {
-            "collection": "extension-cords",
+            "collection": "extension-cords-old",
             "image": "shopify://shop_images/extension-cords.png",
             "title": "",
             "price": ""
