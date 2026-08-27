@@ -1,1 +1,145 @@
-{"sections":{"secondaryBanner":{"type":"main-banner-secondary","settings":{"main_bg_image_desktop":"shopify:\/\/shop_images\/brand-banner-bg.png","content":"<h2>A Better Way To Connect<\/h2><p>Maximm Cable is a leading US firm providing business and consumers with <strong>superior cables<\/strong> and <strong>extensions to meet their everyday needs<\/strong>.<\/p>","main_bg_image_mobile":"shopify:\/\/shop_images\/brand-banner-bg-mobile.png","padding_top":64,"padding_bottom":64,"padding_top_mobile":64,"padding_bottom_mobile":144}},"contentWithStretchImage":{"type":"section-content-with-stretch-image","settings":{"title":"Durability. Capability. Reliability.","subtxt":"THE HALLMARKS OF A MAXIMM PRODUCT","main_image":"shopify:\/\/shop_images\/hallmarks-of-maximm-product.png","description":"All products are UL Listed and\/or ETL Listed and certified. Safety comes first. Your safety; the safety of your home, your family, your business; and the safety of your devices."}},"ourJourney":{"type":"section-our-journey","settings":{"title":"Our Journey","description":"<p>Founded in 2013, Maximm Cable set out to bring innovation to the cables and extensions market.<\/p><p>Scouring the manufacturing world for the highest quality materials and applying forward-thinking solutions in production and design, <strong>Maximm Cable soon began to experience a meteoric rise in this niche field.<\/strong><\/p><p>In the years since, the firm has grown to become one of Amazon’s most trusted brands for HDMI cables, extension cords, ethernet cables, adapters, cable management solutions, and more.<\/p>","btm_floating_img_desktop":"shopify:\/\/shop_images\/halftone-wave-with-journey.png","btm_floating_img_mobile":"shopify:\/\/shop_images\/halftone-wave-with-journey-mobile.png","padding_top":130,"padding_bottom":0,"padding_top_mobile":60,"padding_bottom_mobile":0}},"visitOnlineStore":{"type":"section-visit-online-store","disabled":true,"settings":{"description":"With Thousands of happy customers on<strong> Amazon US, Amazon Canada, and Amazon Mexico, Maximm Cable <\/strong>has established itself as a brand customers can rely on for first-rate, long-lasting products that are delivered promptly; <strong>world-class customer service; and a generous 1-year warranty across all product lines.<\/strong>","btn_txt":"Visit Our Online Store","btn_url":"https:\/\/www.amazon.com\/stores\/MaximmCable\/page\/53595675-48B8-4241-BAA4-E4C16C29E183","padding_top":110,"padding_bottom":220,"padding_top_mobile":66,"padding_bottom_mobile":50}},"piFuture":{"type":"section-plugged-into-future","settings":{"main_image":"shopify:\/\/shop_images\/plugged-into-the-future.png","subtxt":"PLUGGED INTO THE FUTURE","content":"<h2>Our HDMI cable technology continues to be brought up-to-date so that you can get the most out of your <strong>4K and 8K TVs and other modern devices.<\/strong><\/h2><p>Because wherever technology goes, Maximm leads the way<\/p>","btn_txt":"Shop HDMI Cables","btn_url":"https:\/\/maximmcable.com\/collections\/hdmi-cables","padding_top":106,"padding_bottom":50,"padding_top_mobile":0,"padding_bottom_mobile":66}},"shopExtensionCords":{"type":"section-shop-extension-cords","settings":{"content":"<h4>Your needs are our only guide<\/h4><p>With wide and varied extension cord offerings, you’re sure to find the extension cord to fit your needs. Whether it’s a heavy duty waterproof extension for tough jobs, or a 5-in-1 USB and outlet combo for travel, Maximm Cable is where you turn for quality and results.<\/p>","main_image":"shopify:\/\/shop_images\/brand-extension-cords.png","btn_txt":"Shop Extension Cords","btn_url":"https:\/\/maximmcable.com\/collections\/extension-cords","padding_top":92,"padding_bottom":62,"padding_top_mobile":120,"padding_bottom_mobile":100}},"shopEthernetCable":{"type":"section-shop-ethernet-cable","settings":{"main_image_desktop":"shopify:\/\/shop_images\/ethernet-cable.png","main_image_mobile":"shopify:\/\/shop_images\/ethernet-cable-mobile.png","content":"<h4>Our ethernet cables offer a variety of categories and uses.<\/h4><p>From affordable to lightning fast; indoor, outdoor or inwall; waterproof and weatherproof; extra short and extra-long; we have just the right ethernet cable for every job, project, or connection.<\/p>","btn_txt":"Shop Ethernet Cable","btn_url":"https:\/\/maximmcable.com\/collections\/ethernet-cables","padding_top":170,"padding_bottom":100,"padding_top_mobile":0,"padding_bottom_mobile":120}},"completeCustomerExperience":{"type":"section-complete-customer-experience","settings":{"subtxt":"MORE THAN JUST WIRES","main_image_bottom":"shopify:\/\/shop_images\/more-than-just-wire.png","content":"<h3>To ensure a complete customer experience, we carry <strong>stereo adapters, grounding adapters, 2-to-3 prong adapters, <\/strong>heavy duty adapters, wall tap adapters, and even extension adapters that help make the most out of your existing cables.<\/h3><p>We also offer cable ties, cable sleeves, and cable clips, so you can keep your home or office neat and tidy, and your wires in order.<\/p>","btn_txt":"Shop HDMI Cables","btn_url":"https:\/\/maximmcable.com\/collections\/hdmi-cables","padding_top":60,"padding_bottom":0,"padding_top_mobile":50,"padding_bottom_mobile":0}},"brandContactUs":{"type":"section-brand-contactus","settings":{"title":"We believe in our products and prove it with our <strong>company-wide 1-year guarantee<\/strong>","btn_txt":"Contact Us","btn_url":"shopify:\/\/pages\/contact","padding_top":150,"padding_bottom":100,"padding_top_mobile":110,"padding_bottom_mobile":70}},"fullWidthBanner":{"type":"section-full-width-banner","settings":{"main_bg_image":"shopify:\/\/shop_images\/house-ext.png"}}},"order":["secondaryBanner","contentWithStretchImage","ourJourney","visitOnlineStore","piFuture","shopExtensionCords","shopEthernetCable","completeCustomerExperience","brandContactUs","fullWidthBanner"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "secondaryBanner": {
+      "type": "main-banner-secondary",
+      "settings": {
+        "main_bg_image_desktop": "shopify://shop_images/brand-banner-bg.png",
+        "content": "<h2>A Better Way To Connect</h2><p>Maximm Cable is a leading US firm providing business and consumers with <strong>superior cables</strong> and <strong>extensions to meet their everyday needs</strong>.</p>",
+        "main_bg_image_mobile": "shopify://shop_images/brand-banner-bg-mobile.png",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 144
+      }
+    },
+    "contentWithStretchImage": {
+      "type": "section-content-with-stretch-image",
+      "settings": {
+        "title": "Durability. Capability. Reliability.",
+        "subtxt": "THE HALLMARKS OF A MAXIMM PRODUCT",
+        "main_image": "shopify://shop_images/hallmarks-of-maximm-product.png",
+        "description": "All products are UL Listed and/or ETL Listed and certified. Safety comes first. Your safety; the safety of your home, your family, your business; and the safety of your devices."
+      }
+    },
+    "ourJourney": {
+      "type": "section-our-journey",
+      "settings": {
+        "title": "Our Journey",
+        "description": "<p>Founded in 2013, Maximm Cable set out to bring innovation to the cables and extensions market.</p><p>Scouring the manufacturing world for the highest quality materials and applying forward-thinking solutions in production and design, <strong>Maximm Cable soon began to experience a meteoric rise in this niche field.</strong></p><p>In the years since, the firm has grown to become one of Amazon’s most trusted brands for HDMI cables, extension cords, ethernet cables, adapters, cable management solutions, and more.</p>",
+        "btm_floating_img_desktop": "shopify://shop_images/halftone-wave-with-journey.png",
+        "btm_floating_img_mobile": "shopify://shop_images/halftone-wave-with-journey-mobile.png",
+        "padding_top": 130,
+        "padding_bottom": 0,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "visitOnlineStore": {
+      "type": "section-visit-online-store",
+      "disabled": true,
+      "settings": {
+        "description": "With Thousands of happy customers on<strong> Amazon US, Amazon Canada, and Amazon Mexico, Maximm Cable </strong>has established itself as a brand customers can rely on for first-rate, long-lasting products that are delivered promptly; <strong>world-class customer service; and a generous 1-year warranty across all product lines.</strong>",
+        "btn_txt": "Visit Our Online Store",
+        "btn_url": "https://www.amazon.com/stores/MaximmCable/page/53595675-48B8-4241-BAA4-E4C16C29E183",
+        "padding_top": 110,
+        "padding_bottom": 220,
+        "padding_top_mobile": 66,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "piFuture": {
+      "type": "section-plugged-into-future",
+      "settings": {
+        "main_image": "shopify://shop_images/plugged-into-the-future.png",
+        "subtxt": "PLUGGED INTO THE FUTURE",
+        "content": "<h2>Our HDMI cable technology continues to be brought up-to-date so that you can get the most out of your <strong>4K and 8K TVs and other modern devices.</strong></h2><p>Because wherever technology goes, Maximm leads the way</p>",
+        "btn_txt": "Shop HDMI Cables",
+        "btn_url": "shopify://collections/hdmi",
+        "padding_top": 106,
+        "padding_bottom": 50,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 66
+      }
+    },
+    "shopExtensionCords": {
+      "type": "section-shop-extension-cords",
+      "settings": {
+        "content": "<h4>Your needs are our only guide</h4><p>With wide and varied extension cord offerings, you’re sure to find the extension cord to fit your needs. Whether it’s a heavy duty waterproof extension for tough jobs, or a 5-in-1 USB and outlet combo for travel, Maximm Cable is where you turn for quality and results.</p>",
+        "main_image": "shopify://shop_images/brand-extension-cords.png",
+        "btn_txt": "Shop Extension Cords",
+        "btn_url": "https://maximmcable.com/collections/extension-cords",
+        "padding_top": 92,
+        "padding_bottom": 62,
+        "padding_top_mobile": 120,
+        "padding_bottom_mobile": 100
+      }
+    },
+    "shopEthernetCable": {
+      "type": "section-shop-ethernet-cable",
+      "settings": {
+        "main_image_desktop": "shopify://shop_images/ethernet-cable.png",
+        "main_image_mobile": "shopify://shop_images/ethernet-cable-mobile.png",
+        "content": "<h4>Our ethernet cables offer a variety of categories and uses.</h4><p>From affordable to lightning fast; indoor, outdoor or inwall; waterproof and weatherproof; extra short and extra-long; we have just the right ethernet cable for every job, project, or connection.</p>",
+        "btn_txt": "Shop Ethernet Cable",
+        "btn_url": "https://maximmcable.com/collections/ethernet-cables",
+        "padding_top": 170,
+        "padding_bottom": 100,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 120
+      }
+    },
+    "completeCustomerExperience": {
+      "type": "section-complete-customer-experience",
+      "settings": {
+        "subtxt": "MORE THAN JUST WIRES",
+        "main_image_bottom": "shopify://shop_images/more-than-just-wire.png",
+        "content": "<h3>To ensure a complete customer experience, we carry <strong>stereo adapters, grounding adapters, 2-to-3 prong adapters, </strong>heavy duty adapters, wall tap adapters, and even extension adapters that help make the most out of your existing cables.</h3><p>We also offer cable ties, cable sleeves, and cable clips, so you can keep your home or office neat and tidy, and your wires in order.</p>",
+        "btn_txt": "Shop HDMI Cables",
+        "btn_url": "https://maximmcable.com/collections/hdmi-cables",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "brandContactUs": {
+      "type": "section-brand-contactus",
+      "settings": {
+        "title": "We believe in our products and prove it with our <strong>company-wide 1-year guarantee</strong>",
+        "btn_txt": "Contact Us",
+        "btn_url": "shopify://pages/contact",
+        "padding_top": 150,
+        "padding_bottom": 100,
+        "padding_top_mobile": 110,
+        "padding_bottom_mobile": 70
+      }
+    },
+    "fullWidthBanner": {
+      "type": "section-full-width-banner",
+      "settings": {
+        "main_bg_image": "shopify://shop_images/house-ext.png"
+      }
+    }
+  },
+  "order": [
+    "secondaryBanner",
+    "contentWithStretchImage",
+    "ourJourney",
+    "visitOnlineStore",
+    "piFuture",
+    "shopExtensionCords",
+    "shopEthernetCable",
+    "completeCustomerExperience",
+    "brandContactUs",
+    "fullWidthBanner"
+  ]
+}
