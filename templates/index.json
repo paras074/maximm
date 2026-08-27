@@ -831,7 +831,7 @@
         "left_heading": "Wholesale Program",
         "left_description": "Exclusive pricing, volume discounts, and dedicated support for businesses and resellers.",
         "button_label": "Apply Now",
-        "button_link": "",
+        "button_link": "shopify://pages/b2b",
         "right_bg_color": "#f0f2ef",
         "right_text_color": "#141414",
         "right_heading": "Stay Updated",
