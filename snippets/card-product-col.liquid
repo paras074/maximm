@@ -1,13 +1,13 @@
 <div class="default-product-card">
   <div class="product-image">
     <a class="link" href="{{ product.url }}">
-     {% if product.featured_image %}
-  <img
-    src="{{ product.featured_image | image_url: width: 600 }}"
-    alt="{{ product.title | escape }}"
-    loading="lazy"
-  >
-{% endif %}
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          alt="{{ product.title | escape }}"
+          loading="lazy"
+        >
+      {% endif %}
     </a>
   </div>
   <div class="product-content">
@@ -15,11 +15,9 @@
     <div class="product-title 1">
       <a href="{{ product.url }}">{{ product.title }}</a>
       <!-- Start Areviews Collection Rating Code -->
-<div class='areviews_product_item areviews_stars{{ product.id }}' data-product-id='{{ product.id }}'></div>
-<!-- End Areviews Collection Rating Code -->
+      <div class="areviews_product_item areviews_stars{{ product.id }}" data-product-id="{{ product.id }}"></div>
+      <!-- End Areviews Collection Rating Code -->
     </div>
-    
-
   </div>
   <div class="product-footer">
     <div class="product-footer__top">
