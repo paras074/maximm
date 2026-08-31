@@ -182,6 +182,6 @@ div#price-template--23310091682036__main {
 }
 
 .price__sale.PriceMWrap {
-    display: flex;
-    flex-direction: row-reverse;
+    display: flex !important;
+    flex-direction: row-reverse !important;
 }
