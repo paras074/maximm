@@ -173,3 +173,10 @@ a#HeaderMenu-blog {
 		margin-bottom: 11px!important;
 	}
 }
+
+
+/* 31/08/26 */
+
+div#price-template--23310091682036__main {
+    display: none;
+}
