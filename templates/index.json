@@ -446,7 +446,7 @@
             "show_sample_reviews": false,
             "reviews_selection": "all",
             "products": [],
-            "filter_pinned": false,
+            "filter_pinned": true,
             "filter_featured": false,
             "filter_custom_tags": "",
             "star_rating": "3_to_5_star",
