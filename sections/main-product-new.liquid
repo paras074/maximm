@@ -607,26 +607,36 @@
               <span class="per">/ each</span>
             </div>
          
-             <div id="price-{{ section.id }}-bulk" role="status">
-  {%- render 'price',
-    product: product,
-    use_variant: true,
-    show_badges: true,
-    price_class: 'price--large'
-  -%}
-</div>
-<script>
-document.addEventListener('variant:changed', function(e) {
-  const variant = e.detail?.variant;
-  if (!variant) return;
-  
-  const priceEl = document.querySelector('.bulk-price .price');
-  if (priceEl) {
-    priceEl.textContent = variant.price / 100 % 1 === 0 
-      ? '$' + variant.price / 100 
-      : '$' + (variant.price / 100).toFixed(2);
-  }
-});
+               <div id="price-{{ section.id }}-sidebar" role="status" class="bulk-price PwsAppendprice">
+        {%- render 'price',
+              product: product,
+              use_variant: true,
+              show_badges: true,
+              price_class: 'price--large'
+            -%}
+        <span class="per">/ each</span>
+      </div>
+      <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productInfo = document.querySelector('product-info');
+    if (!productInfo) return;
+
+    const mainPrice = document.getElementById('price-{{ section.id }}');
+    const sidebarPrice = document.getElementById('price-{{ section.id }}-sidebar');
+
+    if (!mainPrice || !sidebarPrice) return;
+
+    // Main price observe karo — jab woh update ho toh sidebar bhi copy karo
+    const observer = new MutationObserver(function () {
+      sidebarPrice.innerHTML = mainPrice.innerHTML;
+    });
+
+    observer.observe(mainPrice, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  });
 </script>
             <!-- Bulk Discount Table -->
              {%- for tier in product.metafields.custom.bulk_discounts.value -%}
