@@ -70,7 +70,7 @@
                 <span class="price-item price-item--regular">{{ render_variant.price | money }}</span>
               </div>
               {%- if render_variant.compare_at_price > render_variant.price -%}
-                <div class="price__sale card">
+                <div class="price__sale">
                   <s class="price-item price-item--regular">{{ render_variant.compare_at_price | money }}</s>
                   <span class="price-item price-item--sale">{{ render_variant.price | money }}</span>
                 </div>
