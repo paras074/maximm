@@ -204,6 +204,7 @@
       "block_order": [
         "areviews_reviews_importer_areviews_display_reviews_468207"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
