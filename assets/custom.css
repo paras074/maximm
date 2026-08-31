@@ -183,5 +183,5 @@ a#HeaderMenu-blog {
 
 .price__sale.PriceMWrap {
     display: flex !important;
-    flex-direction: row-reverse !important;
+    /* flex-direction: row-reverse !important; */
 }
