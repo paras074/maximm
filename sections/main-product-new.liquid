@@ -602,12 +602,20 @@
         <div class="bulk-discount-card">
 
             <!-- Price -->
-            <div class="bulk-price PwsAppendprice">
-              <span class="price">{{ product.price | money }}</span>
-              <span class="per">/ each</span>
-            </div>
-         
+            <!-- Price -->
+<div class="bulk-price PwsAppendprice" data-product-price>
+  <span class="price" data-custom-variant-price>
+    {{ product.selected_or_first_available_variant.price | money }}
+  </span>
+  <span class="per">/ each</span>
+</div>
 
+{%- render 'price',
+  product: product,
+  use_variant: true,
+  show_badges: true,
+  price_class: 'price--large'
+-%}
             <!-- Bulk Discount Table -->
              {%- for tier in product.metafields.custom.bulk_discounts.value -%}
                 {% assign tier = tier %}
