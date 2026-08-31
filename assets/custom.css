@@ -180,3 +180,8 @@ a#HeaderMenu-blog {
 div#price-template--23310091682036__main {
     display: none;
 }
+
+.price__sale.PriceMWrap {
+    display: flex;
+    flex-direction: row-reverse;
+}
