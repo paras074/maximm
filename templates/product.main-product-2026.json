@@ -16,6 +16,10 @@
           "type": "title",
           "settings": {}
         },
+        "areviews_reviews_importer_areviews_title_rating_B5587F": {
+          "type": "shopify://apps/areviews-reviews-importer/blocks/AreviewsTitleRating/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f",
+          "settings": {}
+        },
         "judge_me_reviews_preview_badge_P8hfft": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
@@ -25,6 +29,10 @@
           "settings": {
             "text_style": "body"
           }
+        },
+        "price_RLVrCi": {
+          "type": "price",
+          "settings": {}
         },
         "icon_with_text_LXzMMY": {
           "type": "icon-with-text",
@@ -79,10 +87,6 @@
             "icon": "shopify://shop_images/safety.png",
             "text": "Bulk Pricing - Save More"
           }
-        },
-        "areviews_reviews_importer_areviews_title_rating_B5587F": {
-          "type": "shopify://apps/areviews-reviews-importer/blocks/AreviewsTitleRating/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f",
-          "settings": {}
         }
       },
       "block_order": [
@@ -90,6 +94,7 @@
         "areviews_reviews_importer_areviews_title_rating_B5587F",
         "judge_me_reviews_preview_badge_P8hfft",
         "sku_wCNk4w",
+        "price_RLVrCi",
         "icon_with_text_LXzMMY",
         "variant_picker",
         "item_fVag6z",
@@ -199,7 +204,9 @@
       "block_order": [
         "areviews_reviews_importer_areviews_display_reviews_468207"
       ],
-      "settings": {}
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
