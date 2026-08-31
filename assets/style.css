@@ -2290,3 +2290,11 @@ span.st-label.st-js-label {
 .list-view .custom-product-cart .product-form__submit {
     padding: 0px 16px!important;
 }
+
+.product-faqs-wrapper .faq-content p {
+    margin: 0;
+}
+
+.product-faqs-wrapper .faq-content p br {
+    display: none;
+}
