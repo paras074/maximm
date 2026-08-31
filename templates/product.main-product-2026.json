@@ -32,6 +32,7 @@
         },
         "price_RLVrCi": {
           "type": "price",
+          "disabled": true,
           "settings": {}
         },
         "icon_with_text_LXzMMY": {

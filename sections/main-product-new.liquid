@@ -602,10 +602,10 @@
         <div class="bulk-discount-card">
 
             <!-- Price -->
-            <div class="bulk-price PwsAppendprice">
+            {% comment %} <div class="bulk-price PwsAppendprice">
               <span class="price">{{ product.price | money }}</span>
               <span class="per">/ each</span>
-            </div>
+            </div> {% endcomment %}
          
                <div id="price-{{ section.id }}-sidebar" role="status" class="bulk-price PwsAppendprice">
         {%- render 'price',
