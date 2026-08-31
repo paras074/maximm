@@ -790,6 +790,65 @@
       {{ product | structured_data }}
     </script>
   </div>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const productInfo = document.querySelector('product-info');
+  if (!productInfo) return;
+
+  const customPrice = productInfo.querySelector('[data-custom-variant-price]');
+  if (!customPrice) return;
+
+  function formatMoney(cents) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: '{{ cart.currency.iso_code }}'
+    }).format(cents / 100);
+  }
+
+  function updateCustomPrice(variant) {
+    if (!variant || !variant.price) return;
+
+    customPrice.textContent = formatMoney(variant.price);
+  }
+
+  // Shopify Dawn variant event
+  productInfo.addEventListener('variant:change', function (event) {
+    if (event.detail && event.detail.variant) {
+      updateCustomPrice(event.detail.variant);
+    }
+  });
+
+  // Fallback: variant selector change
+  productInfo.addEventListener('change', function (event) {
+    if (
+      event.target.matches(
+        'input[name^="options"], select[name^="options"]'
+      )
+    ) {
+      setTimeout(function () {
+        const variantIdInput = productInfo.querySelector(
+          'form[action*="/cart/add"] input[name="id"]'
+        );
+
+        if (!variantIdInput) return;
+
+        const variantId = Number(variantIdInput.value);
+
+        fetch(
+          '{{ routes.root_url }}variants/' + variantId + '.js'
+        )
+          .then(response => response.json())
+          .then(variant => {
+            updateCustomPrice(variant);
+          })
+          .catch(error => {
+            console.error('Variant price update error:', error);
+          });
+      }, 100);
+    }
+  });
+});
+</script>
 </product-info>
 
 
