@@ -106,6 +106,8 @@
       <span class="price-item price-item--sale price-item--last" >
         {{ money_price }} 
       </span>
+        {%- assign custom_min_qty = product.metafields.custom.set_minimum_quantity.value -%}
+        {{custom_min_qty }}
           <span class="per">/ each</span>
     </div>
     <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
