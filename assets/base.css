@@ -2154,7 +2154,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 main {
   position: relative;
-  /* z-index: 1; */
+  z-index: 1;
 }
 
 .visually-hidden {
