@@ -446,10 +446,10 @@
 
     if (!checkoutBtn) return;
 
-    // ✅ FIX: bfcache se page restore hone par button reset karo
+    
     window.addEventListener('pageshow', function (event) {
       if (event.persisted) {
-        // Page bfcache se aaya hai — loading state saaf karo
+      
         var isUnavailable = checkoutBtn.getAttribute('data-unavailable') === 'true';
         checkoutBtn.disabled = isUnavailable;
         checkoutBtn.classList.remove('loading');
@@ -483,7 +483,7 @@
           window.location.href = window.Shopify.routes.root + 'checkout';
         })
         .catch(function (error) {
-          // ✅ Error par bhi button reset hoga
+         
           checkoutBtn.disabled = false;
           checkoutBtn.classList.remove('loading');
           console.error('Direct checkout error:', error);
