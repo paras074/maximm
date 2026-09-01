@@ -2308,3 +2308,6 @@ div#bestSeller .bs-title a {
 .page-collection main#MainContent {
     z-index: inherit !important;
 }
+s.price-item.price-item--regular {
+    font-size: 17px;
+}
