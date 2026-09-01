@@ -508,6 +508,9 @@
     .collection-details {
         padding-bottom: 0px !important;
     }
+    .lightbox-overlay .lightbox-content {
+    overflow: auto !important;
+}
 }
 
 @media screen and (max-width: 575px) {
