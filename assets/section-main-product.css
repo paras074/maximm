@@ -3927,7 +3927,7 @@ a.product__text {
 .lightbox-overlay .lightbox-content {
   padding: 20px;
   max-height: calc(90vh - 70px);
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
   flex: 1;
   position: relative !important;
   z-index: 1001;
