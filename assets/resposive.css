@@ -505,6 +505,9 @@
         .wholesale-card__list li {
         padding-left: 15px;
     }
+    .collection-details {
+        padding-bottom: 0px !important;
+    }
 }
 
 @media screen and (max-width: 575px) {
