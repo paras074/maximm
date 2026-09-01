@@ -2298,3 +2298,6 @@ span.st-label.st-js-label {
 .product-faqs-wrapper .faq-content p br {
     display: none;
 }
+div#bestSeller .bs-title a {
+    font-size: 14px;
+}
