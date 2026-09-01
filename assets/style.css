@@ -2305,13 +2305,6 @@ div#bestSeller .bs-title a {
     color: #000;
     font-weight: 500;
 }
-/* div#shopify-section-sections--23310080901364__announcement-bar {
-    z-index: 1 !important;
+.page-collection main#MainContent {
+    z-index: inherit !important;
 }
-
-div#shopify-section-sections--23310080901364__header {
-    z-index: 1 !important;
-} */
-/* .overflow-hidden-tablet div#shopify-section-sections--23310080901364__header {
-    z-index: 4 !important;
-} */

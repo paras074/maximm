@@ -438,8 +438,62 @@
         </div>
       {%- endform -%}
     </product-form>
+    <script>
+  (function () {
+    var checkoutBtn = document.getElementById('DirectCheckoutButton-{{ section_id }}');
+    var qtyInput = document.getElementById('Quantity-{{ section.id }}');
+    var variantInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
 
-       <script>
+    if (!checkoutBtn) return;
+
+    // ✅ FIX: bfcache se page restore hone par button reset karo
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) {
+        // Page bfcache se aaya hai — loading state saaf karo
+        var isUnavailable = checkoutBtn.getAttribute('data-unavailable') === 'true';
+        checkoutBtn.disabled = isUnavailable;
+        checkoutBtn.classList.remove('loading');
+      }
+    });
+
+    checkoutBtn.addEventListener('click', function () {
+      if (checkoutBtn.disabled) return;
+
+      var quantity = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      var variantId = variantInput ? variantInput.value : null;
+
+      if (!variantId) return;
+
+      checkoutBtn.disabled = true;
+      checkoutBtn.classList.add('loading');
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ id: variantId, quantity: quantity }]
+        })
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            return response.json().then(function (err) {
+              throw new Error(err.description || 'Add to cart failed');
+            });
+          }
+          window.location.href = window.Shopify.routes.root + 'checkout';
+        })
+        .catch(function (error) {
+          // ✅ Error par bhi button reset hoga
+          checkoutBtn.disabled = false;
+          checkoutBtn.classList.remove('loading');
+          console.error('Direct checkout error:', error);
+          alert('Something went wrong. Please try again.');
+        });
+    });
+  })();
+</script>
+
+       {% comment %} <script>
       (function () {
         var checkoutBtn = document.getElementById('DirectCheckoutButton-{{ section_id }}');
         var qtyInput = document.getElementById('Quantity-{{ section.id }}');
@@ -481,7 +535,7 @@
             });
         });
       })();
-    </script>
+    </script> {% endcomment %}
     {%- if custom_min_qty and custom_min_qty > 1 and settings.enable_min_order_quantity -%}
         <p
           class="min-order-qty-message caption"
