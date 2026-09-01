@@ -295,7 +295,7 @@ ul.menu-drawer__menu.has-submenu.list-menu.list-menu-secondary {
     /* margin-bottom: 15px; */
 }
 .st-wishlist-details-button.st-wishlist-details-button--bottom_right {
-    bottom: 150px !important;
+    bottom: 90px !important;
 }
 .st-wishlist-details-button[data-type=manually] .st-number {
     height: 17px !important;
