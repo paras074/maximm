@@ -2314,3 +2314,6 @@ s.price-item.price-item--regular {
 .template-search .article-card-wrapper  .card__information {
     padding: 20px;
 }
+.template-search main#MainContent {
+    z-index: inherit !important;
+}
