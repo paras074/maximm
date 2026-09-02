@@ -40,17 +40,17 @@
           "settings": {
             "layout": "horizontal",
             "icon_1": "none",
-            "image_1": "shopify://shop_images/idea_028b9b2b-9c53-4d59-9d26-ab9bdf162d6e.png",
-            "heading_1": "<strong>LIGHTED END</strong> Power On Indicator",
+            "image_1": "shopify://shop_images/3_outlet.png",
+            "heading_1": "<strong>3 OUTLETS</strong>",
             "icon_2": "return",
-            "image_2": "shopify://shop_images/weather.png",
-            "heading_2": "<strong>ALL-WEATHER </strong>JTW Jacket",
+            "image_2": "shopify://shop_images/indoor_dbbfe86b-4ad7-4fbc-9486-479438908a7b.png",
+            "heading_2": "<strong>INDOOR</strong>",
             "icon_3": "truck",
             "image_3": "shopify://shop_images/connection.png",
             "heading_3": "<strong>DURABLE </strong>Built to Last",
             "icon_4": "pants",
             "image_4": "shopify://shop_images/safety.png",
-            "heading_4": "<strong>High power </strong>13AMP / 1625w"
+            "heading_4": "<strong>HIGH POWER </strong>15A / 1875Watts"
           }
         },
         "variant_picker": {
