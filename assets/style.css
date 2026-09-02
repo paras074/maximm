@@ -2311,3 +2311,6 @@ div#bestSeller .bs-title a {
 s.price-item.price-item--regular {
     font-size: 17px;
 }
+.article-card-wrapper  .card__information {
+    padding: 20px;
+}
