@@ -629,10 +629,10 @@
         display: none;
     }
 
-    .collection-card img {
+    /* .collection-card img {
         height: auto;
         max-width: 28px;
-    }
+    } */
 
     .collection-card {
         justify-content: flex-start;
