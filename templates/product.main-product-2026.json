@@ -40,17 +40,17 @@
           "settings": {
             "layout": "horizontal",
             "icon_1": "none",
-            "image_1": "shopify://shop_images/3_outlet.png",
-            "heading_1": "<strong>3 OUTLETS</strong>",
+            "image_1": "shopify://shop_images/1_outlet.png",
+            "heading_1": "<strong>1 OUTLET</strong>",
             "icon_2": "return",
             "image_2": "shopify://shop_images/indoor_dbbfe86b-4ad7-4fbc-9486-479438908a7b.png",
             "heading_2": "<strong>INDOOR</strong>",
             "icon_3": "truck",
-            "image_3": "shopify://shop_images/connection.png",
-            "heading_3": "<strong>DURABLE </strong>Built to Last",
+            "image_3": "shopify://shop_images/Rotating_Plug_360.png",
+            "heading_3": "<strong>360 PLUG</strong>",
             "icon_4": "pants",
             "image_4": "shopify://shop_images/safety.png",
-            "heading_4": "<strong>HIGH POWER </strong>15A / 1875Watts"
+            "heading_4": "<strong>High power </strong>13A/1625 Watts"
           }
         },
         "variant_picker": {
@@ -62,7 +62,6 @@
         },
         "item_fVag6z": {
           "type": "item",
-          "disabled": true,
           "settings": {
             "icon": "shopify://shop_images/weather.png",
             "text": "ETL Listed for Safety"
