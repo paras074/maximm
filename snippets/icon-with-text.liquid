@@ -151,6 +151,7 @@
 {%- liquid
   assign metaobject_items = product.metafields.custom.icon_with_text.value
 -%}
+{%- if block.settings.enable_icon_with_text -%}
 {%- if metaobject_items != blank -%}
 
   <ul
@@ -328,4 +329,6 @@
       </li>
     {%- endunless -%}
   </ul>
+{%- endif -%}
+
 {%- endif -%}
