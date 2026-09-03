@@ -71,7 +71,7 @@
           <img src="" class="zoom-preview">
         </div> {% endcomment %}
       </div>
-      <div class="{% if customer and customer.tags contains 'b2b' %}b2b-info {% endif %}dads product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="{% if customer and customer.tags contains 'b2b' %}b2b-info {% endif %} product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
@@ -1588,6 +1588,12 @@
           ],
           "default": "horizontal",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.layout.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_icon_with_text",
+          "label": "Enable icon with text",
+          "default": true
         },
         {
           "type": "header",
