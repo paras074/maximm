@@ -952,8 +952,8 @@ li.icon-with-text__item h4 {
 }
 
 .product__info-container .icon-with-text.icon-with-text--horizontal .icon-with-text__item img {
-    height: 20px !important;
-    width: 20px !important;
+    height: 25px !important;
+    width: 25px !important;
 }
 
 .product__info-container .icon-with-text.icon-with-text--horizontal .icon-with-text__item .inline-richtext strong {
