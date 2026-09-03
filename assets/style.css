@@ -2317,3 +2317,6 @@ s.price-item.price-item--regular {
 .template-search main#MainContent {
     z-index: inherit !important;
 }
+ul.icon-with-text.single-product {
+    justify-content: flex-start;
+}
