@@ -151,29 +151,16 @@
 {%- liquid
   assign metaobject_items = product.metafields.custom.icon_with_text.value
 -%}
-
-
-{% comment %}
-  ============================================================
-  METAOBJECT CONTENT
-  ============================================================
-{% endcomment %}
-
 {%- if metaobject_items != blank -%}
 
   <ul
     class="icon-with-text single-product icon-with-text--{{ block.settings.layout }} list-unstyled"
     {{ block.shopify_attributes }}
   >
-
     {%- for item in metaobject_items -%}
-
       {%- if item.text != blank -%}
-
         <li class="icon-with-text__item">
-
           {%- if item.image != blank -%}
-
             <img
               src="{{ item.image | image_url: width: 100 }}"
               alt="{{ item.image.alt | default: item.text | escape }}"
@@ -181,27 +168,14 @@
               height="{{ item.image.height }}"
               loading="lazy"
             >
-
           {%- endif -%}
-
           <span class="h4 inline-richtext">
             {{ item.text }}
           </span>
-
         </li>
-
       {%- endif -%}
-
     {%- endfor -%}
-
   </ul>
-
-
-{% comment %}
-  ============================================================
-  FALLBACK - THEME CUSTOMIZER CONTENT
-  ============================================================
-{% endcomment %}
 
 {%- else -%}
 
@@ -253,32 +227,18 @@
     endif
 
   -%}
-
-
   <ul
     class="icon-with-text single-product icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
     {{ block.shopify_attributes }}
   >
 
-
-    {% comment %}
-      ========================================================
-      CUSTOMIZER ITEM 1
-      ========================================================
-    {% endcomment %}
-
     {%- unless heading_1_empty -%}
-
       <li class="icon-with-text__item">
-
         {%- if block.settings.image_1 == blank -%}
-
           {%- render 'icon-accordion',
             icon: block.settings.icon_1
           -%}
-
         {%- else -%}
-
           <img
             src="{{ block.settings.image_1 | image_url }}"
             {% if block.settings.image_1.alt != blank %}
@@ -290,36 +250,20 @@
             width="auto"
             loading="lazy"
           >
-
         {%- endif -%}
-
         <span class="h4 inline-richtext">
           {{- block.settings.heading_1 -}}
         </span>
-
       </li>
 
     {%- endunless -%}
-
-
-    {% comment %}
-      ========================================================
-      CUSTOMIZER ITEM 2
-      ========================================================
-    {% endcomment %}
-
     {%- unless heading_2_empty -%}
-
       <li class="icon-with-text__item">
-
         {%- if block.settings.image_2 == blank -%}
-
           {%- render 'icon-accordion',
             icon: block.settings.icon_2
           -%}
-
         {%- else -%}
-
           <img
             src="{{ block.settings.image_2 | image_url }}"
             {% if block.settings.image_2.alt != blank %}
@@ -330,37 +274,21 @@
             height="auto"
             width="auto"
             loading="lazy"
-          >
-
+        >
         {%- endif -%}
-
-        <span class="h4 inline-richtext">
+       <span class="h4 inline-richtext">
           {{- block.settings.heading_2 -}}
         </span>
-
       </li>
-
     {%- endunless -%}
 
-
-    {% comment %}
-      ========================================================
-      CUSTOMIZER ITEM 3
-      ========================================================
-    {% endcomment %}
-
     {%- unless heading_3_empty -%}
-
       <li class="icon-with-text__item">
-
         {%- if block.settings.image_3 == blank -%}
-
           {%- render 'icon-accordion',
             icon: block.settings.icon_3
           -%}
-
         {%- else -%}
-
           <img
             src="{{ block.settings.image_3 | image_url }}"
             {% if block.settings.image_3.alt != blank %}
@@ -372,30 +300,16 @@
             width="auto"
             loading="lazy"
           >
-
         {%- endif -%}
-
         <span class="h4 inline-richtext">
           {{- block.settings.heading_3 -}}
         </span>
-
       </li>
-
     {%- endunless -%}
 
-
-    {% comment %}
-      ========================================================
-      CUSTOMIZER ITEM 4
-      ========================================================
-    {% endcomment %}
-
     {%- unless block.settings.heading_4 == blank -%}
-
       <li class="icon-with-text__item">
-
         {%- if block.settings.image_4 != blank -%}
-
           <img
             src="{{ block.settings.image_4 | image_url }}"
             alt="{{ block.settings.image_4.alt | escape }}"
@@ -403,24 +317,15 @@
             height="{{ block.settings.image_4.height }}"
             loading="lazy"
           >
-
         {%- else -%}
-
           {%- render 'icon-accordion',
             icon: block.settings.icon_4
           -%}
-
         {%- endif -%}
-
         <span class="h4 inline-richtext">
           {{- block.settings.heading_4 -}}
         </span>
-
       </li>
-
     {%- endunless -%}
-
-
   </ul>
-
 {%- endif -%}
