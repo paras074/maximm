@@ -2320,3 +2320,20 @@ s.price-item.price-item--regular {
 ul.icon-with-text.single-product {
     justify-content: flex-start;
 }
+span.PwsTextwrap {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+li.icon-with-text__item {
+    gap: 3px;
+}
+
+span.PwsSUb-heading {
+    font-size: 10px;
+}
+
+.icon-with-text__item_inner {
+    display: flex;
+    flex-direction: column;
+}
