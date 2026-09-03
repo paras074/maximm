@@ -170,12 +170,14 @@
               loading="lazy"
             >
           {%- endif -%}
-          <span class="h4 inline-richtext">
-            {{ item.text }}
-          </span>
-          <span class="PwsSUb-heading">
-          {{item.sub_heading }}  
-          </span> 
+          <div class="icon-with-text__item_inner">
+            <span class="h4 inline-richtext">
+              {{ item.text }}
+            </span>
+            <span class="PwsSUb-heading">
+            {{item.sub_heading }}  
+            </span>
+          </div> 
           
         </li>
       {%- endif -%}
