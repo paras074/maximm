@@ -515,6 +515,9 @@
         max-width: 100% !important;
         overflow: auto !important;
     }
+    .icon-with-text.single-product {
+        padding: 12px;
+    }
 }
 
 @media screen and (max-width: 575px) {
