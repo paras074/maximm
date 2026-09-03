@@ -39,6 +39,7 @@
           "type": "icon-with-text",
           "settings": {
             "layout": "horizontal",
+            "enable_icon_with_text": false,
             "icon_1": "none",
             "image_1": "shopify://shop_images/1_outlet.png",
             "heading_1": "<strong>1 OUTLET</strong>",
