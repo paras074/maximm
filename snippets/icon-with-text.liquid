@@ -158,7 +158,7 @@
     class="icon-with-text single-product icon-with-text--{{ block.settings.layout }} list-unstyled"
     {{ block.shopify_attributes }}
   >
-    {%- for item in metaobject_items -%}
+    {%- for item in metaobject_items limit: 4  -%}
       {%- if item.text != blank -%}
         <li class="icon-with-text__item">
           {%- if item.image != blank -%}
