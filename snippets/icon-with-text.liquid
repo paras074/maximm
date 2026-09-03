@@ -171,8 +171,10 @@
             >
           {%- endif -%}
           <span class="h4 inline-richtext">
-            {{ item.text }}
+            {{ item.text }}<br>
+            {{item.sub_heading }}
           </span>
+          
         </li>
       {%- endif -%}
     {%- endfor -%}
