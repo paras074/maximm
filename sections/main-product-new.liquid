@@ -848,7 +848,24 @@
     </script>
   </div>
 </product-info>
+<script>
+document.addEventListener('change', function(e) {
+  const input = e.target;
+  
+  if (
+    input.matches('[name="id"]') ||
+    input.closest('variant-selects') ||
+    input.closest('variant-radios')
+  ) {
+    const variantId = document.querySelector(
+      'input[name="id"]:checked, select[name="id"], variant-selects input:checked, variant-radios input:checked'
+    )?.value || input.value;
 
+    alert('Variant changed! ID: ' + variantId);
+  }
+});
+
+</script>
 
 {% schema %}
 {
