@@ -639,7 +639,7 @@
   });
 </script>
             <!-- Bulk Discount Table -->
-             {%- for tier in product.metafields.custom.bulk_discounts.value -%}
+             {% comment %} {%- for tier in product.metafields.custom.bulk_discounts.value -%}
                 {% assign tier = tier %}
               {%endfor %}
                 {%if tier != blank %}
@@ -675,7 +675,42 @@
                 </tbody>
               </table>
             </div>
-            {%endif %}
+            {%endif %} {% endcomment %}
+
+            {%- assign current_variant = product.selected_or_first_available_variant -%}
+                {%- assign bulk_tiers = current_variant.metafields.custom.bulk_discounts.value -%}
+
+                {%- if bulk_tiers != blank -%}
+                <div class="bulk-discount-table">
+                  <h4>Bulk Discounts (Mix & Match)</h4>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>QTY (PCS)</th>
+                        <th>PRICE / EACH</th>
+                        <th>YOU SAVE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {%- for tier in bulk_tiers -%}
+                        <tr>
+                          <td>{{ tier.quantity_label.value }}</td>
+                          <td>{{ tier.price_per_item.value | money }}</td>
+                          <td>
+                            {%- if tier.save_percentage.value != blank and tier.save_percentage.value != '-' -%}
+                              <span class="save">{{ tier.save_percentage.value }}</span>
+                            {%- else -%}
+                              —
+                            {%- endif -%}
+                          </td>
+                        </tr>
+                      {%- else -%}
+                        <tr><td colspan="3">No bulk pricing set</td></tr>
+                      {%- endfor -%}
+                    </tbody>
+                  </table>
+                </div>
+                {%- endif -%}
 
             <!-- Stock -->
             <div class="stock-status">
