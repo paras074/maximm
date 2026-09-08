@@ -849,27 +849,7 @@
   </div>
 </product-info>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
 
-  // Step 1: Check karo elements mil rahe hain ya nahi
-  const productInfoEl = document.querySelector('[data-section]');
-  const dataUrl = document.querySelector('[data-url]');
-  
-  console.log('product-info element:', productInfoEl);
-  console.log('data-section:', productInfoEl?.dataset?.section);
-  console.log('data-url:', dataUrl?.dataset?.url);
-
-  // Step 2: Variant change detect ho rha hai ya nahi
-  document.addEventListener('change', function (e) {
-    console.log('Change event fired on:', e.target);
-    console.log('Target name:', e.target.name);
-    console.log('Target value:', e.target.value);
-    console.log('Closest variant-radios:', e.target.closest('variant-radios'));
-    console.log('Closest variant-selects:', e.target.closest('variant-selects'));
-  });
-
-});
-</script>
 {% comment %} <script>
 document.addEventListener('DOMContentLoaded', function () {
 
