@@ -849,22 +849,63 @@
   </div>
 </product-info>
 <script>
-document.addEventListener('change', function(e) {
-  const input = e.target;
-  
-  if (
-    input.matches('[name="id"]') ||
-    input.closest('variant-selects') ||
-    input.closest('variant-radios')
-  ) {
-    const variantId = document.querySelector(
-      'input[name="id"]:checked, select[name="id"], variant-selects input:checked, variant-radios input:checked'
-    )?.value || input.value;
+document.addEventListener('DOMContentLoaded', function () {
 
-    alert('Variant changed! ID: ' + variantId);
+  function updateBulkDiscounts(variantId) {
+    const productHandle = document.querySelector('[data-url]')?.dataset?.url?.split('/products/')?.[1]?.split('?')?.[0];
+    const sectionId = document.querySelector('[data-section]')?.dataset?.section;
+
+    if (!productHandle || !sectionId) return;
+
+    const tableWrapper = document.querySelector('.bulk-discount-table');
+    const tableContainer = tableWrapper ? tableWrapper.parentElement : document.querySelector('.bulk-discount-card');
+
+    fetch(`/products/${productHandle}?variant=${variantId}&section_id=${sectionId}`)
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const newTable = doc.querySelector('.bulk-discount-table');
+        const oldTable = document.querySelector('.bulk-discount-table');
+
+        if (newTable && oldTable) {
+          // Table thi, naya content replace karo
+          oldTable.innerHTML = newTable.innerHTML;
+          oldTable.style.display = '';
+        } else if (newTable && !oldTable) {
+          // Pehle table nahi thi, ab add karo
+          const stockDiv = document.querySelector('.stock-status');
+          if (stockDiv) stockDiv.insertAdjacentElement('beforebegin', newTable);
+        } else if (!newTable && oldTable) {
+          // Is variant mein discount nahi hai, hide karo
+          oldTable.style.display = 'none';
+        }
+      })
+      .catch(err => console.error('Bulk discount fetch error:', err));
   }
-});
 
+  // ✅ Variant change detect karo
+  document.addEventListener('change', function (e) {
+    const input = e.target;
+
+    if (
+      input.matches('[name="id"]') ||
+      input.closest('variant-selects') ||
+      input.closest('variant-radios')
+    ) {
+      const selected = document.querySelector(
+        'variant-radios input:checked, variant-selects input:checked, input[name="id"]:checked, select[name="id"]'
+      );
+      const variantId = selected?.value || input.value;
+
+      if (variantId) {
+        updateBulkDiscounts(variantId);
+      }
+    }
+  });
+
+});
 </script>
 
 {% schema %}
