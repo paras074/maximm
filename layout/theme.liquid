@@ -1019,25 +1019,17 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(err => console.error('Fetch error:', err));
   }
 
-  // ✅ Hidden input[name="id"] change detect karo — yahi variant change karta hai
+  
   document.addEventListener('change', function (e) {
     const input = e.target;
-
-    // Radio button click se hidden field update hoti hai — dono cases handle karo
     if (input.name === 'id' || input.closest('variant-selects')) {
-
       let variantId = null;
-
-      // Hidden field se seedha lo
       if (input.name === 'id') {
         variantId = input.value;
       } else {
-        // variant-selects ke andar ka hidden field
         variantId = input.closest('variant-selects')
           ?.querySelector('input[name="id"], .product-variant-id')
           ?.value;
-        
-        // Ya page ka koi bhi hidden id field
         if (!variantId) {
           variantId = document.querySelector('.product-variant-id, input[name="id"][type="hidden"]')?.value;
         }
