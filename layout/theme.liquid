@@ -976,78 +976,7 @@
         subtree: true
     });
 })();
-// Bulk Discount Table - Variant Change Handler
-document.addEventListener('DOMContentLoaded', function () {
-  
-  function updateBulkDiscounts(variantId) {
-    // Find variant metafield data from Shopify's variant JSON
-    const productHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
-    
-    if (!productHandle) return;
 
-    fetch(`/products/${productHandle}.js`)
-      .then(res => res.json())
-      .then(product => {
-        const variant = product.variants.find(v => v.id == variantId);
-        if (!variant) return;
-
-        // Fetch variant metafields via storefront (needs Storefront API or section render)
-        fetchBulkDiscountSection(variantId);
-      });
-  }
-
-  function fetchBulkDiscountSection(variantId) {
-    const sectionId = document.querySelector('[data-section-id]')?.dataset?.sectionId 
-                   || document.querySelector('.shopify-section')?.id?.replace('shopify-section-', '');
-
-    if (!sectionId) return;
-
-    fetch(`${window.location.pathname}?variant=${variantId}&section_id=${sectionId}`)
-      .then(res => res.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        const newTable = doc.querySelector('.bulk-discount-table');
-        const currentTable = document.querySelector('.bulk-discount-table');
-
-        if (currentTable && newTable) {
-          currentTable.innerHTML = newTable.innerHTML;
-        } else if (!currentTable && newTable) {
-          // Insert before price or add to cart button
-          const priceEl = document.querySelector('.price, .product__price, [class*="price"]');
-          if (priceEl) {
-            priceEl.after(newTable);
-          }
-        } else if (currentTable && !newTable) {
-          // This variant has no bulk discounts - hide table
-          currentTable.style.display = 'none';
-        }
-      });
-  }
-
-  // ✅ Listen for variant change - works with most Shopify themes
-  document.addEventListener('change', function (e) {
-    const input = e.target;
-    if (
-      input.matches('[name="id"]') ||
-      input.closest('variant-selects') ||
-      input.closest('variant-radios')
-    ) {
-      const variantId = document.querySelector(
-        'input[name="id"]:checked, select[name="id"], variant-selects input:checked'
-      )?.value || input.value;
-
-      if (variantId) updateBulkDiscounts(variantId);
-    }
-  });
-
-  // ✅ Also catch URL param change (some themes update URL on variant switch)
-  const urlParams = new URLSearchParams(window.location.search);
-  const initialVariant = urlParams.get('variant');
-  if (initialVariant) updateBulkDiscounts(initialVariant);
-
-});
 </script>
   </body>
 </html>
