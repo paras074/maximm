@@ -2337,3 +2337,6 @@ span.PwsSUb-heading {
     display: flex;
     flex-direction: column;
 }
+.menu-drawer__inner-container a#cart-icon-bubble {
+    display: none;
+}
