@@ -1038,7 +1038,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__inner-container {
   position: relative;
   height: 100%;
-  box-shadow: inset 5px 5px 35px -20px rgb(61, 61, 61);
+  /* box-shadow: inset 5px 5px 35px -20px rgb(61, 61, 61); */
 }
 .menu-drawer__inner-container .wholesale-wrap {
   padding: 0rem 3rem;
