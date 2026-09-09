@@ -518,6 +518,9 @@
     .icon-with-text.single-product {
         padding: 12px;
     }
+    .wholesale-login span, .wholesale-login a {
+    font-size: 13px;
+}
 }
 
 @media screen and (max-width: 575px) {
