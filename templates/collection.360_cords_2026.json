@@ -1,1 +1,65 @@
-{"sections":{"banner":{"type":"section-shop","disabled":true,"settings":{"padding_top":0,"padding_bottom":0,"padding_top_mobile":0,"padding_bottom_mobile":0}},"product-grid":{"type":"main-collection-product-grid-new","disabled":true,"settings":{"products_per_page":24,"columns_desktop":4,"color_scheme":"","image_ratio":"portrait","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":true,"enable_quick_add":true,"enable_filtering":true,"filter_type":"vertical","enable_sorting":true,"columns_mobile":"1","padding_top":16,"padding_bottom":0}},"360_cords_tagLNU":{"type":"360-cords","name":"360 Main Category","settings":{"sort":"alphabetical","image_ratio":"adapt","columns_desktop":3,"columns_mobile":"2","background_color":"#ffffff","padding_top":0,"padding_bottom":20,"padding_top_mobile":0,"padding_bottom_mobile":16}}},"order":["banner","product-grid","360_cords_tagLNU"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "section-shop",
+      "disabled": true,
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid-new",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "hide_out_of_stock": true,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "1",
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "360_cords_tagLNU": {
+      "type": "360-cords",
+      "name": "360 Main Category",
+      "settings": {
+        "sort": "alphabetical",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "background_color": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 16
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "360_cords_tagLNU"
+  ]
+}

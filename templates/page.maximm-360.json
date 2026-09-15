@@ -48,50 +48,36 @@
     "bestSellingProducts": {
       "type": "section-best-selling-products",
       "blocks": {
-        "product_3WELTW": {
+        "product_DMGapd": {
           "type": "product",
           "settings": {
-            "product": "cat-6-ethernet-cable-100-pure-copper-cat6-cable-lan-cable-internet-cable-patch-cable-and-network-cable-utp"
+            "product": "s360-c6f-14awg-nomount"
           }
         },
-        "product_x4CmRj": {
+        "product_QnmjkB": {
           "type": "product",
           "settings": {
-            "product": "4-outlet-outdoor-extension-cord-with-multiple-outlets-10-gauge-etl-listed"
+            "product": "maximm-360-degree-rotating-flat-extension-cord-multi-3-outlet-power-cord-grounded-16-awg-ul-certified-white"
           }
         },
-        "product_a7wmmD": {
+        "product_qLJ47w": {
           "type": "product",
           "settings": {
-            "product": "extension-cord-with-3-outlets-14-gauge-indoor-outdoor"
+            "product": "maximm-cable-360-rotating-flat-plug-extension-cord-wire-16-awg-multi-3-outlet-extension-wire-3-prong-grounded-wire-ul-certified"
           }
         },
-        "product_NG7HMQ": {
+        "product_Hx8LtD": {
           "type": "product",
           "settings": {
-            "product": "cat8-outdoor-ethernet-cable-40gbps-2000mhz-high-speed-waterproof-lan-network-cable"
-          }
-        },
-        "product_LJ7An7": {
-          "type": "product",
-          "settings": {
-            "product": "extension-cord-outdoor-extension-cord-with-multiple-outlets-and-lit-ends-16-gauge-etl-listed"
-          }
-        },
-        "product_MihnyY": {
-          "type": "product",
-          "settings": {
-            "product": "extension-cord-with-lighted-power-indicator-single-outlet-16-gauge-sjtw-heavy-duty-outdoor-extension-cord"
+            "product": "maximm-360-rotating-flat-plug-extension-cord-flat-extension-cord-under-carpet-with-slim-space-saving-plug-design-low-profile-extension-cord"
           }
         }
       },
       "block_order": [
-        "product_3WELTW",
-        "product_x4CmRj",
-        "product_a7wmmD",
-        "product_NG7HMQ",
-        "product_LJ7An7",
-        "product_MihnyY"
+        "product_DMGapd",
+        "product_QnmjkB",
+        "product_qLJ47w",
+        "product_Hx8LtD"
       ],
       "settings": {
         "section_heading": "<h2>Best Selling</h2><p>Ensured to provide the highest quality products and customer care for over a decade.</p>",
