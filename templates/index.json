@@ -172,6 +172,14 @@
     "shop_by_product_QpbGJQ": {
       "type": "shop-by-product",
       "blocks": {
+        "collection_block_8r9HHn": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "360-rotating-plug-extension-cords",
+            "custom_title": "",
+            "button_label": "Shop Now"
+          }
+        },
         "collection_block_PdfJm8": {
           "type": "collection_block",
           "settings": {
@@ -222,6 +230,7 @@
         }
       },
       "block_order": [
+        "collection_block_8r9HHn",
         "collection_block_PdfJm8",
         "collection_block_TqKgRf",
         "collection_block_idfH84",
