@@ -45,7 +45,7 @@
           "type": "text",
           "settings": {
             "heading": "Contact Details",
-            "subtext": "<p>190 Crystal Run Rd, Middletown, NY 10977<br/><br/><a href=\"tel:845.219.1999\">845.219.1999<br/></a><a href=\"mailto:sales@maximmcable.com\" title=\"mailto:sales@maximmcable.com\">sales@maximmcable.com</a></p>"
+            "subtext": "<p>190 Crystal Run Rd, Middletown, NY 10977<br/><br/><a href=\"tel:845.219.1999\">845.219.1999<br/></a>SALES:<a href=\"mailto:sales@maximmcable.com\" title=\"mailto:sales@maximmcable.com\">sales@maximmcable.com</a></p><p>INQUIRY:<a href=\"mailto:sales@maximmcable.com\" title=\"mailto:sales@maximmcable.com\"><br/>info@maximmcable.com</a></p>"
           }
         }
       },
