@@ -48,18 +48,6 @@
     "bestSellingProducts": {
       "type": "section-best-selling-products",
       "blocks": {
-        "product_DMGapd": {
-          "type": "product",
-          "settings": {
-            "product": "s360-c6f-14awg-nomount"
-          }
-        },
-        "product_QnmjkB": {
-          "type": "product",
-          "settings": {
-            "product": "maximm-360-degree-rotating-flat-extension-cord-multi-3-outlet-power-cord-grounded-16-awg-ul-certified-white"
-          }
-        },
         "product_qLJ47w": {
           "type": "product",
           "settings": {
@@ -71,13 +59,25 @@
           "settings": {
             "product": "maximm-360-rotating-flat-plug-extension-cord-flat-extension-cord-under-carpet-with-slim-space-saving-plug-design-low-profile-extension-cord"
           }
+        },
+        "product_DMGapd": {
+          "type": "product",
+          "settings": {
+            "product": "s360-c6f-14awg-nomount"
+          }
+        },
+        "product_QnmjkB": {
+          "type": "product",
+          "settings": {
+            "product": "maximm-360-degree-rotating-flat-extension-cord-multi-3-outlet-power-cord-grounded-16-awg-ul-certified-white"
+          }
         }
       },
       "block_order": [
-        "product_DMGapd",
-        "product_QnmjkB",
         "product_qLJ47w",
-        "product_Hx8LtD"
+        "product_Hx8LtD",
+        "product_DMGapd",
+        "product_QnmjkB"
       ],
       "settings": {
         "section_heading": "<h2>Best Selling</h2><p>Ensured to provide the highest quality products and customer care for over a decade.</p>",
