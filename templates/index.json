@@ -325,7 +325,7 @@
       "type": "best-seller",
       "name": "Best Seller",
       "settings": {
-        "heading": "Best Seller",
+        "heading": "BestSellers",
         "collection": "360-rotating-plug-extension-cords",
         "product_limit": 12,
         "bg_color": "#ffffff",
