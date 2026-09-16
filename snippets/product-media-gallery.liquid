@@ -137,7 +137,17 @@
       </div>
     {% endif %}
 
-  {% render 'product-lightbox', product: product, section: section, media_width %}
+  {% render 'product-lightbox', product: product, section: section %}
 
 
-</media-gallery>
+</media-gallery>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-lightbox', product: product, section: section, media_width
+    %}"
+  to: "{% render 'product-lightbox', product: product, section: section %}"
+  position: 5205..5272
+{%- endcomment -%}
