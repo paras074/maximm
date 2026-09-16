@@ -61,13 +61,6 @@
             "swatch_shape": "circle"
           }
         },
-        "item_fVag6z": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/weather_2101d399-324a-4b99-8293-eac6043d8950.png",
-            "text": "ETL Listed for Safety"
-          }
-        },
         "item_KCMjza": {
           "type": "item",
           "settings": {
@@ -98,7 +91,6 @@
         "price_RLVrCi",
         "icon_with_text_LXzMMY",
         "variant_picker",
-        "item_fVag6z",
         "item_KCMjza",
         "item_zwGF4t",
         "item_7d786h"
